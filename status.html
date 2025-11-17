@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的世界服务器状态</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .server-status {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+    .server-header {
+      margin-bottom: 25px;
+    }
+    .server-address {
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .server-type {
+      display: inline-block;
+      padding: 5px 15px;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .motd {
+      font-size: 24px;
+      color: #333;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .info-item {
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .info-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .info-value {
+      font-size: 16px;
+      color: #333;
+    }
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .status-online {
+      background-color: #4caf50;
+    }
+    .status-offline {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+<div class="server-status">
+  <div class="server-header">
+    <div class="server-address">LuckyCLover状态</div>
+    <div class="server-type">基岩版服务器</div>
+  </div>
+
+  <div id="server-info">
+    <div class="motd">加载中...</div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">服务器状态</div>
+        <div class="info-value" id="server-status">检测中...</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">在线玩家</div>
+        <div class="info-value" id="players-count">-</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">游戏版本</div>
+        <div class="info-value" id="server-version">-</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">游戏模式</div>
+        <div class="info-value" id="game-mode">-</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const serverAddress = 'play.beeeeeawa.top';
+  const serverPort = '38219';
+
+  async function getServerInfo() {
+    try {
+      const apiUrl = `https://motd.minebbs.com/api/status?ip=${serverAddress}&port=${serverPort}&stype=be`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      // 更新MOTD
+      document.querySelector('.motd').textContent = data.pureMotd || '无MOTD信息';
+
+      // 更新服务器状态
+      const statusElement = document.getElementById('server-status');
+      if (data.status === 'online') {
+        statusElement.innerHTML = '<span class="status-indicator status-online"></span>在线';
+      } else {
+        statusElement.innerHTML = '<span class="status-indicator status-offline"></span>离线';
+      }
+
+      // 更新玩家数量
+      document.getElementById('players-count').textContent =
+              `${data.players.online}/${data.players.max}`;
+
+      // 更新版本信息
+      document.getElementById('server-version').textContent = data.version;
+
+      // 更新游戏模式
+      const gameModeMap = {
+        'Survival': '生存',
+        'Creative': '创造',
+        'Adventure': '冒险',
+        'Spectator': '观察者'
+      };
+      document.getElementById('game-mode').textContent =
+              gameModeMap[data.gamemode] || data.gamemode;
+
+    } catch (error) {
+      console.error('获取服务器信息失败:', error);
+      document.querySelector('.motd').textContent = '无法获取服务器信息';
+    }
+  }
+
+  // 页面加载完成后立即获取服务器信息
+  getServerInfo();
+
+  // 每30秒更新一次服务器信息
+  setInterval(getServerInfo, 30000);
+</script>
+</body>
+</html>
