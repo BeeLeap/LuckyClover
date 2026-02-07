@@ -121,6 +121,60 @@
                 transform: translate(-50%, -50%) scale(1);
             }
         }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            #mc-status-play-beeeeeawa-top-23063 {
+                width: 100% !important;
+                height: 350px !important;
+                margin: 0 10px;
+            }
+
+            .server-status {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .server-address {
+                font-size: 16px;
+            }
+
+            .motd {
+                font-size: 18px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .runtime {
+                font-size: 12px;
+                bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #mc-status-play-beeeeeawa-top-23063 {
+                height: 300px !important;
+            }
+
+            .server-status {
+                padding: 15px;
+            }
+
+            .server-address {
+                font-size: 14px;
+            }
+
+            .motd {
+                font-size: 16px;
+            }
+
+            .info-value {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body class="is-preload">
