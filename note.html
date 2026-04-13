@@ -1,114 +1,86 @@
-<!DOCTYPE HTML>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <title>LuckyClover</title>
-    <meta charset="utf-8"/>
-    <meta name="keywords" content="LuckyClover">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="assets/css/main.css"/>
-    <link rel="shortcut icon" href="images/cd.ico"/>
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css"/>
-    </noscript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>最新动态 - LuckyClover</title>
+  <link rel="stylesheet" href="assets/css/modern.css">
+  <link rel="shortcut icon" href="images/cd.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .note-list { max-width: 800px; margin: 0 auto; }
+    .note-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 24px; transition: all 0.3s ease; }
+    .note-card:hover { border-color: var(--border-hover); }
+    .note-date { font-size: 0.875rem; color: var(--accent-secondary); margin-bottom: 12px; }
+    .note-card h3 { font-size: 1.5rem; margin-bottom: 16px; }
+    .note-card p { color: var(--text-secondary); line-height: 1.8; }
+    .page-header { text-align: center; padding: 120px 24px 60px; }
+    .page-header h1 { font-size: 3rem; margin-bottom: 16px; }
+    .page-header p { font-size: 1.125rem; color: var(--text-secondary); }
+  </style>
 </head>
-<body class="is-preload">
-
-<!-- Wrapper -->
-<div id="wrapper">
-
-    <!-- Header -->
-    <header id="header" class="alt">
-        <a href="index.html" class="logo"><strong>LuckyClover</strong> <span> 官方网站</span></a>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
         <nav>
-            <a href="#menu">菜单</a>
+          <a href="index.html">首页</a>
+          <a href="team.html">团队</a>
+          <a href="status.html">服务器状态</a>
+          <a href="note.html">最新动态</a>
         </nav>
-    </header>
+      </div>
+    </div>
+  </header>
 
-    <!-- Menu -->
-    <nav id="menu">
-        <ul class="links">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="team.html">LuckyClover team</a></li>
-            <li><a href="status.html">服务器状态</a></li>
-            <li><a href="note.html">最新动态</a></li>
-        </ul>
-        <ul class="actions stacked">
+  <section class="page-header">
+    <div class="container">
+      <h1>最新<span style="color: var(--accent-secondary);">动态</span></h1>
+      <p>服务器公告与动态</p>
+    </div>
+  </section>
 
-        </ul>
-    </nav>
-
-    <!-- Banner -->
-    <!-- Note: The "styleN" class below should match that of the header element. -->
-    <section id="banner" class="style6">
-        <div class="inner">
-            <div class="content">
-                <h1>服务器公告<br><sub>Server Announcement</sub></h1>
-            </div>
+  <section class="section">
+    <div class="container">
+      <div class="note-list">
+        <div class="note-card">
+          <div class="note-date">2026.04.13</div>
+          <h3>官网页面已更改</h3>
+          <p>我觉得挺好看的（）</p>
         </div>
-    </section>
-
-    <!-- Main -->
-    <div id="main">
-
-        <!-- One -->
-        <div class="inner">
-            <header class="major">
-                <h3>2026.01.29  服务器已升级，并迁移完成</h3>
-            </header>
-            <div class="row">
-                <div class="col-6 col-12-small">
-                    <p>服务器已开启</p>
-                </div>
-
-            </div>
-
-            <header class="major">
-                <h3>2026.01.07  服务器已恢复</h3>
-            </header>
-            <div class="row">
-                <div class="col-6 col-12-small">
-                    <p>可以访问服务器了</p>
-                    <a href="https://wj.qq.com/s2/25451519/ed5b/">点此投票是否换档</a>
-                </div>
-
-            </div>
-
-            <ul></ul>
-
-            <div class="col-6 col-12-small">
-                <ul class="actions stacked">
-                    <li><a href="index.html" class="button primary fit">返回</a></li>
-                </ul>
-            </div>
-
-            <!-- Footer -->
-            <footer id="footer">
-                <div class="inner">
-                    <ul class="copyright">
-                        <li>由<strong>Github Pages</strong>强力驱动</li>
-                        <li>All Rights Reserved</li>
-                        <li><a href="https://github.com/beeeee-really">Github:Beeeee-really</a></li>
-                        <li>Design: Redsugar</li>
-                        <li></li><!--   莱幻工作室——IMS幻想浮城服务器管理组-->
-                    </ul>
-                </div>
-            </footer>
+      <div class="note-list">
+        <div class="note-card">
+          <div class="note-date">2026.01.29</div>
+          <h3>服务器已升级，并迁移完成</h3>
+          <p>服务器已开启，各项服务已恢复。</p>
         </div>
+        <div class="note-card">
+          <div class="note-date">2026.01.07</div>
+          <h3>服务器已恢复</h3>
+          <p>可以访问服务器了。<br><a href="https://wj.qq.com/s2/25451519/ed5b/" style="color: var(--accent-secondary);">点此投票是否换档</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
+          <p>© 2024 LuckyClover. All Rights Reserved.</p>
+        </div>
+        <div class="footer-right">
+          <a href="https://github.com/beeeee-really">Github</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() { document.querySelector('nav').classList.toggle('active'); }
+    document.querySelectorAll('nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) document.querySelector('nav').classList.remove('active'); }); });
+  </script>
 </body>
 </html>

@@ -1,166 +1,95 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-		<title>LuckyClover</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="shortcut icon" href=" images/cd.ico"/>
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-<script type="text/javascript">
-	(function (w, d, s, i, v, j, b) {
-		w[i] = w[i] || function () {
-			(w[i].v = w[i].v || []).push(arguments)
-		};
-		j = d.createElement(s),
-			b = d.getElementsByTagName(s)[0];
-		j.async = true;
-		j.charset = "UTF-8";
-		j.src = "https://www.v5kf.com/171158/29c9603013e19/v5kf.js";
-		b.parentNode.insertBefore(j, b);
-	})(window, document, "script", "V5CHAT");
-</script>		
-	</head>
-	<body class="is-preload">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何加入服务器 - LuckyClover</title>
+  <link rel="stylesheet" href="assets/css/modern.css">
+  <link rel="shortcut icon" href="images/cd.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .steps { max-width: 700px; margin: 0 auto; }
+    .step-card { display: flex; gap: 24px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: 20px; }
+    .step-number { width: 48px; height: 48px; background: var(--accent-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; flex-shrink: 0; }
+    .step-content h3 { font-size: 1.25rem; margin-bottom: 12px; }
+    .step-content p { color: var(--text-secondary); }
+    .step-content .btn { margin-top: 16px; }
+    .page-header { text-align: center; padding: 120px 24px 60px; }
+    .page-header h1 { font-size: 3rem; margin-bottom: 16px; }
+    .page-header p { font-size: 1.125rem; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <nav>
+          <a href="index.html">首页</a>
+          <a href="team.html">团队</a>
+          <a href="status.html">服务器状态</a>
+          <a href="note.html">最新动态</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  <section class="page-header">
+    <div class="container">
+      <h1>如何<span style="color: var(--accent-secondary);">加入</span></h1>
+      <p>服务器登录教程</p>
+    </div>
+  </section>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="index.html" class="logo"><strong>LuckyClover</strong> <span>官方网站</span></a>
-					</header>
+  <section class="section">
+    <div class="container">
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>下载Minecraft</h3>
+            <p>服务器版本为最新版，请在应用商店下载或购买正版Minecraft基岩版。</p>
+            <a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" class="btn btn-secondary" target="_blank">谷歌商店</a>
+            <a href="https://www.microsoft.com/zh-cn/store/p/minecraft-for-windows/9nblggh2jhxj" class="btn btn-secondary" target="_blank">微软商店</a>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>加入交流群</h3>
+            <p>点击下方按钮加入QQ交流群，获取服务器IP地址和白名单申请方式。</p>
+            <a href="https://qm.qq.com/q/VpseZW3KO6" class="btn btn-primary" target="_blank">加入交流群</a>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>进入服务器</h3>
+            <p>在游戏中添加服务器IP地址即可加入LuckyClover服务器。</p>
+            <p style="margin-top: 12px; color: var(--accent-secondary);">服务器IP: play.beeeeeawa.top:23063</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-				
-				<!-- Banner -->
-				<!-- Note: The "styleN" class below should match that of the header element. -->
-					<section id="banner" class="style2">
-						<div class="inner">
-							<span class="image">
-								<img src="images/pic17.jpg" alt="" />
-							</span>
-							<header class="major">
-								<h1>如何在Minecraft游玩服务器</h1>
-							</header>
-							<div class="content">
-								<p>服务器登录教程</p>
-							</div>
-						</div>
-					</section>
-
-				<!-- Main -->
-					<div id="main">
-						<section id="one">
-						<!-- Two -->
-							<section id="two" class="spotlights">
-								<section>
-									<a class="image">
-										<img src="images/pic62.png" alt="" data-position="top center" />
-									</a>
-									<div class="content">
-										<div class="inner">
-												<h3>1.下载minecraft</h3>
-												<dl>
-													<dd>
-														<p>服务器版本最新版<br /><font color="#ff55000">安装包仅供研究与学习
-,支持正版</font></p>
-													</dd>
-												</dl>
-									<div class="col-6 col-12-small">
-
-										</div>
-									<ul class="actions fit">
-														<li><a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" class="button fit small">谷歌商店购买</a></li>
-														<li><a href="https://www.microsoft.com/zh-cn/store/p/minecraft-for-windows-10/9nblggh2jhxj" class="button fit small">微软商店购买</a></li>
-													</ul>
-									<!-- <ul class="actions">
-									<li><a href="http://nsub2.118pan.net:81/dl.php?MjM4Y1NoWGZVQ09HUXB2Y0RZck1WTTdSL1BZT1l5RWtaVE5MZ1ZISGFldkJQZlJUS0V0RCsxbm55SFB5elRwMFFaV2lhM0htd21XQWdiV2NxMGxNdEk2dzVIRGZhMUJqM00vaUw3aDB2cTZ4bW9mdDRWbitqRkNlSnltSzFZVk16Wko2NnBmSmo2U2Vjcm5MYzhYV2FjWlVmY1EzVFVCOUt1N2t0eEF4NzBWd3dvS04rcm9xSUY1MWxXNEdRWDBwVkJtWXNtYkJ0cFg5VytmTTAwZ05QZTJrSHJBejFVMGU2RS8yYXFZVlN6TnpDeEZqTURWaFBGQlJkNU0xVjl0QjhRTWI%3D" class="button icon solid fa-download">点击下载</a></li>
-									</ul>
-									<ul class="actions">
-									<li><a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" class="button fit" target="_blank">谷歌商店购买</a></li>
-									<li><a href="https://www.microsoft.com/zh-cn/store/p/minecraft-for-windows-10/9nblggh2jhxj" class="button fit" target="_blank">微软商店购买</a></li>
-									</ul> -->
-									</div>
-										</div>
-								</section>
-								<section>
-									<a class="image">
-										<img src="images/pic23.png" alt="" data-position="top center" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<h3>2.Join Us</h3>
-																							<dl>
-																								<dd>
-																									<p>点击下方<u>加入交流群</u>获取IP地址</p>
-																								</dd>
-																							</dl>
-										<div class="col-6 col-12-small">
-											<ul class="actions stacked">
-												<li><a href="https://qm.qq.com/q/VpseZW3KO6" class="button fit">加入交流群</a></li>
-											</ul>
-										</div>
-										</div>
-									</div>
-								</section>
-								<section>
-									<a class="image">
-										
-									</a>
-									<div class="content">
-										<div class="inner">
-								<h3>3.进入服务器</h3>
-									<dl>
-										<dd>
-											<p>在服务器中输入ip，即可加入</p>
-										</dd>
-									</dl>
-											
-										</div>
-									</div>
-								</section>
-								
-							</section>
-						</div>
-						<hr class="major" />
-						<section id="one">
-								<div class="inner">
-									<ul class="actions stacked">
-										<li><a href="index.html" class="button primary fit">返回</a></li>
-									</ul>
-						</section>
-					<footer id="footer">
-						<div class="inner">
-							<ul class="copyright">
-								<li>由<strong>Github Pages</strong>强力驱动</li><li>All Rights Reserved</li><li><a href="https://github.com/beeeee-really">Github:Beeeee-really</a></li><li>Design: Redsugar</li><li></li><!--   莱幻工作室——IMS幻想浮城服务器管理组-->
-							</ul>
-						</div>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
+          <p>© 2024 LuckyClover. All Rights Reserved.</p>
+        </div>
+        <div class="footer-right">
+          <a href="https://github.com/beeeee-really">Github</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() { document.querySelector('nav').classList.toggle('active'); }
+    document.querySelectorAll('nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) document.querySelector('nav').classList.remove('active'); }); });
+  </script>
+</body>
 </html>
-<!-- <section>
-									<a class="image">
-										<img src="images/pic23.png" alt="" data-position="top center" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<header class="major">
-												<h3>2.申请白名单</h3>
-											</header>
-											<p>服务器搭载白名单系统，需要提前申请白名单才可以游玩，点击下方按钮快速申请<br>
-										按照要求填写相关回答，点击提交即可<br>
-										<b>-每周五审核，周六加入白名单-</b></p>
-										</div>
-									</div>
-								</section> -->
