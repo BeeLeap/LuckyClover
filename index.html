@@ -150,10 +150,10 @@
       <div class="server-info">
         <h3>如何加入服务器</h3>
         <ul>
-          <li>需要添加服务器白名单后才能进入游戏</li>
-          <li>请在游戏内查看最新公告获取加群方式</li>
+          <li>需要添加QQ群后获取IP才能进入游戏</li>
+          <li>请在本站内查看加群方式</li>
           <li>服务器禁止使用任何外挂、作弊客户端</li>
-          <li>禁止破坏游戏地图，违规者将取消白名单</li>
+          <li>禁止破坏游戏地图，违规者拉入黑名单</li>
           <li>如有问题请联系管理员</li>
         </ul>
         <div class="hero-buttons">
@@ -216,12 +216,12 @@
 
     async function updateServerStatus() {
       try {
-        const response = await fetch('https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=23063&stype=auto');
+        const response = await fetch('https://motdbe.blackbe.work/api?host=play.beeeeeawa.top:23063');
         const data = await response.json();
         
-        if (data.status === 'online' || data.status === 'Online') {
-          document.getElementById('online').textContent = data.players.online + '/' + data.players.max;
-          document.getElementById('version').textContent = 'v' + data.version;
+        if (data.status === 'online') {
+          document.getElementById('online').textContent = data.online + '/' + data.max;
+          document.getElementById('version').textContent = data.version;
         } else {
           document.getElementById('online').textContent = '离线';
           document.getElementById('version').textContent = '--';
