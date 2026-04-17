@@ -100,7 +100,7 @@
   <script>
     async function updateServerStatus() {
       try {
-        const response = await fetch('https://motdbe.blackbe.work/api?host=play.beeeeeawa.top:23063');
+        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=23063&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         
         const badge = document.getElementById('status-badge');
@@ -109,7 +109,7 @@
         if (data.status === 'online') {
           badge.className = 'status-badge';
           statusText.textContent = '在线';
-          document.getElementById('players').textContent = data.online + '/' + data.max;
+          document.getElementById('players').textContent = data.players.online + '/' + data.players.max;
           document.getElementById('version').textContent = data.version;
           document.getElementById('gamemode').textContent = data.gamemode || '生存';
           document.getElementById('motd').textContent = data.motd || '无';
