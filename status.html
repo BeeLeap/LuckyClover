@@ -100,7 +100,7 @@
   <script>
     async function updateServerStatus() {
       try {
-        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=11454&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=19135&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
         
         const badge = document.getElementById('status-badge');
