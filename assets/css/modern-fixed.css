@@ -237,6 +237,28 @@ nav a:hover::after {
   color: var(--text-primary);
 }
 
+.text-button-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: rgba(162, 155, 254, 0.12);
+  border: 1px solid rgba(162, 155, 254, 0.22);
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(162, 155, 254, 0.9);
+  transition: all 0.25s ease;
+}
+
+.text-button-link:hover {
+  background: rgba(162, 155, 254, 0.18);
+  transform: translateY(-1px);
+}
+
 .hero-stats {
   display: flex;
   justify-content: center;
