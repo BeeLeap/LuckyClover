@@ -238,25 +238,28 @@ nav a:hover::after {
 }
 
 .text-button-link {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
-  margin-top: 10px;
+  padding: 12px 18px;
+  margin-top: 12px;
   border-radius: 999px;
-  background: rgba(162, 155, 254, 0.12);
-  border: 1px solid rgba(162, 155, 254, 0.22);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.95), rgba(162, 155, 254, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;
-  text-decoration-color: rgba(162, 155, 254, 0.9);
+  text-decoration-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(108, 92, 231, 0.35);
   transition: all 0.25s ease;
 }
 
 .text-button-link:hover {
-  background: rgba(162, 155, 254, 0.18);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(124, 110, 255, 1), rgba(177, 172, 255, 1));
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(108, 92, 231, 0.45);
 }
 
 .hero-stats {
