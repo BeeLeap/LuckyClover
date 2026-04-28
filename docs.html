@@ -30,6 +30,27 @@
     .docs-aside .mini-card .value { color: var(--text-primary); font-weight: 600; }
     .docs-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
     .docs-topbar .tag { padding: 8px 12px; border-radius: 999px; background: rgba(108, 92, 231, 0.14); color: var(--accent-secondary); font-size: 0.875rem; font-weight: 600; }
+    .docs-search-btn { padding: 10px 14px; border-radius: 999px; background: rgba(162, 155, 254, 0.12); border: 1px solid rgba(162, 155, 254, 0.2); color: var(--text-primary); cursor: pointer; font-weight: 600; }
+    .docs-search-btn:hover { background: rgba(162, 155, 254, 0.18); }
+    .docs-search-modal { position: fixed; inset: 0; display: none; align-items: flex-start; justify-content: center; padding: 120px 16px 24px; background: rgba(7, 10, 18, 0.72); backdrop-filter: blur(10px); z-index: 200; }
+    .docs-search-modal.active { display: flex; }
+    .docs-search-panel { width: min(760px, 100%); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; box-shadow: var(--shadow-card); overflow: hidden; }
+    .docs-search-panel input { width: 100%; padding: 18px 20px; border: 0; background: var(--bg-secondary); color: var(--text-primary); outline: none; font-size: 1rem; }
+    .docs-search-panel input::placeholder { color: var(--text-muted); }
+    .docs-search-results { max-height: 420px; overflow: auto; padding: 12px; display: grid; gap: 10px; }
+    .docs-search-result { display: block; padding: 14px 16px; border-radius: 14px; background: var(--bg-secondary); border: 1px solid var(--border-color); }
+    .docs-search-result strong { display: block; margin-bottom: 6px; color: var(--text-primary); }
+    .docs-search-result span { color: var(--text-secondary); font-size: 0.92rem; }
+    .docs-search { display: flex; gap: 12px; align-items: center; margin: 22px 0 10px; }
+    .docs-search input { flex: 1; min-width: 0; padding: 14px 16px; border-radius: 999px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); outline: none; }
+    .docs-search input::placeholder { color: var(--text-muted); }
+    .docs-search .hint { white-space: nowrap; font-size: 0.85rem; color: var(--text-muted); }
+    .docs-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 18px; }
+    .docs-link-card { display: block; padding: 18px; border-radius: 18px; background: var(--bg-secondary); border: 1px solid var(--border-color); transition: all 0.25s ease; }
+    .docs-link-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--shadow-card); }
+    .docs-link-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text-primary); }
+    .docs-link-card p { margin: 0; font-size: 0.95rem; color: var(--text-secondary); }
+    .docs-link-card .meta { display: inline-flex; margin-top: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(162, 155, 254, 0.12); color: var(--accent-secondary); font-size: 0.8rem; }
     @media (max-width: 1100px) {
       .docs-layout { grid-template-columns: 220px minmax(0, 1fr); }
       .docs-aside { grid-column: 1 / -1; position: static; }
@@ -54,6 +75,7 @@
           <a href="team.html">团队</a>
           <a href="status.html">服务器状态</a>
           <a href="note.html">最新动态</a>
+          <button class="docs-search-btn" type="button" onclick="openDocsSearch()">搜索</button>
         </nav>
       </div>
     </div>
@@ -62,12 +84,13 @@
   <main class="docs-layout">
     <aside class="docs-sidebar">
       <h3>目录</h3>
-      <a class="active" href="#overview">概览</a>
-      <a href="#server-info">服务器信息</a>
-      <a href="#command-guide">常用指令</a>
-      <a href="#rules">基础规则</a>
-      <a href="#guide">入服指南</a>
-      <a href="#faq">常见问题</a>
+      <a class="active" href="docs.html">文档首页</a>
+      <a href="docs-overview.html">概览</a>
+      <a href="docs-server-info.html">服务器信息</a>
+      <a href="docs-command-guide.html">指令说明</a>
+      <a href="docs-rules.html">玩家守则</a>
+      <a href="docs-guide.html">新手指南</a>
+      <a href="docs-faq.html">常见问题</a>
     </aside>
 
     <section class="docs-content">
@@ -76,80 +99,61 @@
         <div class="tag">Minecraft Bedrock</div>
       </div>
 
-      <h1 id="overview">欢迎来到 LuckyClover 文档</h1>
-      <p>这里整理了服务器的关键信息与常用玩法说明，帮助新玩家更快上手，也方便老玩家随时查阅。</p>
+      <h1>文档中心</h1>
+      <p>这里把 LuckyClover 的文档拆成多个独立页面，方便按主题查看。</p>
 
-      <div class="docs-card-grid">
-        <div class="docs-card">
-          <div class="label">服务器地址</div>
-          <div class="value">加群获取</div>
-        </div>
-        <div class="docs-card">
-          <div class="label">推荐版本</div>
-          <div class="value" id="docs-version">--</div>
-        </div>
-        <div class="docs-card">
-          <div class="label">当前模式</div>
-          <div class="value" id="docs-gamemode">生存</div>
-        </div>
+      <div class="docs-search">
+        <input id="docs-search-input" type="text" placeholder="搜索文档，按 Ctrl + K 聚焦">
+        <div class="hint">Ctrl + K</div>
       </div>
 
-      <h2 id="server-info">服务器信息</h2>
-      <div class="docs-block">
-        <p>LuckyClover 以长期稳定运营为目标，强调公平、友好与社区协作。请先阅读规则再进入游戏。</p>
-      </div>
-      <div class="docs-list">
-        <div class="item">支持平台：手机、平板、Windows 基岩版</div>
-        <div class="item">入服方式：先加 QQ 群，再按公告申请白名单</div>
-        <div class="item">运行环境：长期在线，维护时间会提前公告</div>
-      </div>
-
-      <h2 id="command-guide">常用指令</h2>
-      <div class="docs-list">
-        <div class="item">`/signin`：每日签到领取奖励</div>
-        <div class="item">`/home`：返回家园</div>
-        <div class="item">`/warp`：前往公共地点</div>
-        <div class="item">`/tpa`：向玩家发起传送请求</div>
-        <div class="item">`/tpr`：随机传送</div>
-        <div class="item">`/death`：返回死亡点（如插件开启）</div>
-        <div class="item">`/daily`：每日任务</div>
-      </div>
-
-      <h2 id="rules">基础规则</h2>
-      <div class="docs-list">
-        <div class="item">禁止外挂、刷物资、恶意利用漏洞。</div>
-        <div class="item">禁止恶意破坏、偷窃或骚扰其他玩家。</div>
-        <div class="item">如有争议，以管理员最终判定为准。</div>
-      </div>
-
-      <h2 id="guide">入服指南</h2>
-      <div class="docs-list">
-        <div class="item">在“加入页面”获取 QQ 群入口。</div>
-        <div class="item">按照群公告提交申请并等待审核。</div>
-        <div class="item">通过后使用服务器地址进入游戏。</div>
-      </div>
-
-      <h2 id="faq">常见问题</h2>
-      <div class="docs-list">
-        <div class="item">Q：服务器地址在哪里？ A：请在 QQ 群公告获取。</div>
-        <div class="item">Q：支持什么客户端？ A：Minecraft 基岩版。</div>
-        <div class="item">Q：进不去怎么办？ A：先看状态页，再联系管理员。</div>
+      <div class="docs-links" id="docs-links">
+        <a class="docs-link-card" href="docs-overview.html" data-keywords="概览 快速了解 介绍">
+          <h3>概览</h3>
+          <p>快速了解服务器与文档结构。</p>
+          <span class="meta">Overview</span>
+        </a>
+        <a class="docs-link-card" href="docs-server-info.html" data-keywords="服务器信息 ip 版本 模式">
+          <h3>服务器信息</h3>
+          <p>查看服务器地址、版本、模式等信息。</p>
+          <span class="meta">Info</span>
+        </a>
+        <a class="docs-link-card" href="docs-command-guide.html" data-keywords="指令 说明 命令">
+          <h3>指令说明</h3>
+          <p>整理常用指令与权限说明。</p>
+          <span class="meta">Commands</span>
+        </a>
+        <a class="docs-link-card" href="docs-rules.html" data-keywords="玩家守则 规则 纪律">
+          <h3>玩家守则</h3>
+          <p>服务器内的行为规范和注意事项。</p>
+          <span class="meta">Rules</span>
+        </a>
+        <a class="docs-link-card" href="docs-guide.html" data-keywords="新手 指南 入服 教程">
+          <h3>新手指南</h3>
+          <p>新玩家入服流程与基础说明。</p>
+          <span class="meta">Guide</span>
+        </a>
+        <a class="docs-link-card" href="docs-faq.html" data-keywords="常见问题 faq 问答">
+          <h3>常见问题</h3>
+          <p>常见疑问和快速解答。</p>
+          <span class="meta">FAQ</span>
+        </a>
       </div>
     </section>
 
     <aside class="docs-aside">
-      <h3>实时信息</h3>
+      <h3>快捷入口</h3>
+      <div class="mini-card">
+        <div class="label">文档首页</div>
+        <div class="value"><a href="docs.html">返回文档中心</a></div>
+      </div>
       <div class="mini-card">
         <div class="label">服务器状态</div>
-        <div class="value" id="docs-status">检测中...</div>
+        <div class="value"><a href="status.html">查看实时状态</a></div>
       </div>
       <div class="mini-card">
-        <div class="label">在线玩家</div>
-        <div class="value" id="docs-players">--</div>
-      </div>
-      <div class="mini-card">
-        <div class="label">当前 MOTD</div>
-        <div class="value" id="docs-motd">--</div>
+        <div class="label">活动公告</div>
+        <div class="value"><a href="huodong.html">查看活动页</a></div>
       </div>
     </aside>
   </main>
@@ -168,32 +172,70 @@
     </div>
   </footer>
 
+  <div class="docs-search-modal" id="docs-search-modal" aria-hidden="true">
+    <div class="docs-search-panel">
+      <input id="docs-modal-input" type="text" placeholder="搜索文档，按 Ctrl + K">
+      <div class="docs-search-results" id="docs-modal-results"></div>
+    </div>
+  </div>
+
   <script>
-    async function updateDocsStatus() {
-      try {
-        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=19135&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
-        const data = await response.json();
-
-        if (data.status === 'online') {
-          document.getElementById('docs-status').textContent = '在线';
-          document.getElementById('docs-players').textContent = `${data.players.online}/${data.players.max}`;
-          document.getElementById('docs-version').textContent = data.version || '--';
-          document.getElementById('docs-gamemode').textContent = data.gamemode || '生存';
-          document.getElementById('docs-motd').textContent = data.motd || '--';
-        } else {
-          document.getElementById('docs-status').textContent = '离线';
-          document.getElementById('docs-players').textContent = '0';
-          document.getElementById('docs-motd').textContent = '服务器离线';
-        }
-      } catch (error) {
-        document.getElementById('docs-status').textContent = '查询失败';
-      }
-    }
-
     function toggleMenu() { document.querySelector('nav').classList.toggle('active'); }
     document.querySelectorAll('nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) document.querySelector('nav').classList.remove('active'); }); });
-    setInterval(updateDocsStatus, 30000);
-    updateDocsStatus();
+
+    const searchInput = document.getElementById('docs-search-input');
+    const cards = Array.from(document.querySelectorAll('#docs-links .docs-link-card'));
+
+    function filterDocs() {
+      const query = searchInput.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const text = `${card.textContent} ${card.dataset.keywords || ''}`.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterDocs);
+    document.addEventListener('keydown', (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        openDocsSearch();
+      }
+    });
+
+    const docsModal = document.getElementById('docs-search-modal');
+    const docsModalInput = document.getElementById('docs-modal-input');
+    const docsModalResults = document.getElementById('docs-modal-results');
+    const docsPages = [
+      { title: '概览', href: 'docs-overview.html', desc: '快速了解服务器与文档结构。', keywords: '概览 快速了解 介绍' },
+      { title: '服务器信息', href: 'docs-server-info.html', desc: '查看服务器地址、版本、模式等信息。', keywords: '服务器信息 ip 版本 模式' },
+      { title: '指令说明', href: 'docs-command-guide.html', desc: '整理常用指令与权限说明。', keywords: '指令 说明 命令' },
+      { title: '玩家守则', href: 'docs-rules.html', desc: '服务器内的行为规范和注意事项。', keywords: '玩家守则 规则 纪律' },
+      { title: '新手指南', href: 'docs-guide.html', desc: '新玩家入服流程与基础说明。', keywords: '新手 指南 入服 教程' },
+      { title: '常见问题', href: 'docs-faq.html', desc: '常见疑问和快速解答。', keywords: '常见问题 faq 问答' },
+    ];
+
+    function renderDocsResults(query) {
+      const text = query.trim().toLowerCase();
+      const items = docsPages.filter(page => `${page.title} ${page.desc} ${page.keywords}`.toLowerCase().includes(text));
+      docsModalResults.innerHTML = items.map(page => `<a class="docs-search-result" href="${page.href}"><strong>${page.title}</strong><span>${page.desc}</span></a>`).join('') || '<div class="docs-search-result"><strong>没有结果</strong><span>试试别的关键词</span></div>';
+    }
+
+    function openDocsSearch() {
+      docsModal.classList.add('active');
+      docsModal.setAttribute('aria-hidden', 'false');
+      docsModalInput.value = '';
+      renderDocsResults('');
+      setTimeout(() => docsModalInput.focus(), 0);
+    }
+
+    function closeDocsSearch() {
+      docsModal.classList.remove('active');
+      docsModal.setAttribute('aria-hidden', 'true');
+    }
+
+    docsModalInput.addEventListener('input', () => renderDocsResults(docsModalInput.value));
+    docsModal.addEventListener('click', (event) => { if (event.target === docsModal) closeDocsSearch(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDocsSearch(); });
   </script>
 </body>
 </html>
