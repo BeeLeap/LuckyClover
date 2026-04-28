@@ -1,19 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>服务器状态 - LuckyClover</title>
-  <link rel="stylesheet" href="assets/css/modern.css">
+  <link rel="stylesheet" href="assets/css/modern-fixed.css">
   <link rel="shortcut icon" href="images/cd.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .status-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 48px; text-align: center; max-width: 600px; margin: 0 auto; }
+    .status-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 48px; text-align: center; max-width: 760px; margin: 0 auto; }
     .status-server-ip { font-size: 1.5rem; font-weight: 600; margin: 16px 0; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md); }
-    .status-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 32px; }
-    .status-info-item { background: var(--bg-secondary); padding: 20px; border-radius: var(--radius-md); }
-    .status-info-item .label { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 8px; }
-    .status-info-item .value { font-size: 1.25rem; font-weight: 600; }
     .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 210, 106, 0.1); color: #00d26a; border-radius: 50px; font-weight: 500; }
     .status-badge .dot { width: 8px; height: 8px; background: #00d26a; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
@@ -47,7 +43,7 @@
   <section class="page-header">
     <div class="container">
       <h1>服务器<span style="color: var(--accent-secondary);">状态</span></h1>
-      <p>实时查看服务器运行状态</p>
+      <p>实时查看 LuckyClover 运行情况</p>
     </div>
   </section>
 
@@ -58,8 +54,8 @@
           <span class="dot"></span>
           <span id="status-text">检测中...</span>
         </div>
-        <div class="status-server-ip">LuckyClover</div>
-        <p style="color: var(--text-secondary);">基岩版服务器 | Bedrock</p>
+        <div class="status-server-ip">play.beeeeeawa.top : 19135</div>
+        <p style="color: var(--text-secondary);">Minecraft Bedrock</p>
         <div class="status-details">
           <div class="status-detail">
             <div class="label">在线玩家</div>
@@ -74,7 +70,7 @@
             <div class="value" id="gamemode">--</div>
           </div>
         </div>
-        <div class="status-details" style="margin-top: 16px;">
+        <div class="status-details" style="margin-top: 16px; grid-template-columns: 1fr;">
           <div class="status-detail">
             <div class="label">MOTD</div>
             <div class="value" id="motd" style="font-size: 0.875rem;">--</div>
@@ -89,7 +85,7 @@
       <div class="footer-content">
         <div class="footer-left">
           <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2024 LuckyClover. All Rights Reserved.</p>
+          <p>© 2026 LuckyClover. All Rights Reserved.</p>
         </div>
         <div class="footer-right">
           <a href="https://github.com/beeeee-really">Github</a>
@@ -103,17 +99,17 @@
       try {
         const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=19135&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
-        
+
         const badge = document.getElementById('status-badge');
         const statusText = document.getElementById('status-text');
-        
+
         if (data.status === 'online') {
           badge.className = 'status-badge';
           statusText.textContent = '在线';
-          document.getElementById('players').textContent = data.players.online + '/' + data.players.max;
-          document.getElementById('version').textContent = data.version;
+          document.getElementById('players').textContent = `${data.players.online}/${data.players.max}`;
+          document.getElementById('version').textContent = data.version || '--';
           document.getElementById('gamemode').textContent = data.gamemode || '生存';
-          document.getElementById('motd').textContent = data.motd || '无';
+          document.getElementById('motd').textContent = data.motd || '-';
         } else {
           badge.className = 'status-badge status-offline';
           statusText.textContent = '离线';
@@ -137,3 +133,4 @@
   </script>
 </body>
 </html>
+

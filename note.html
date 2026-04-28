@@ -1,19 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>最新动态 - LuckyClover</title>
-  <link rel="stylesheet" href="assets/css/modern.css">
+  <link rel="stylesheet" href="assets/css/modern-fixed.css">
   <link rel="shortcut icon" href="images/cd.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .note-list { max-width: 800px; margin: 0 auto; }
-    .note-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 24px; transition: all 0.3s ease; }
-    .note-card:hover { border-color: var(--border-hover); }
-    .note-date { font-size: 0.875rem; color: var(--accent-secondary); margin-bottom: 12px; }
-    .note-card h3 { font-size: 1.5rem; margin-bottom: 16px; }
-    .note-card p { color: var(--text-secondary); line-height: 1.8; }
+    .news-list { max-width: 900px; margin: 0 auto; display: grid; gap: 20px; }
+    .news-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; }
+    .news-date { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 10px; }
+    .news-item h3 { margin-bottom: 10px; }
+    .news-item p { color: var(--text-secondary); line-height: 1.8; }
     .page-header { text-align: center; padding: 120px 24px 60px; }
     .page-header h1 { font-size: 3rem; margin-bottom: 16px; }
     .page-header p { font-size: 1.125rem; color: var(--text-secondary); }
@@ -39,29 +38,30 @@
   <section class="page-header">
     <div class="container">
       <h1>最新<span style="color: var(--accent-secondary);">动态</span></h1>
-      <p>服务器公告与动态</p>
+      <p>公告、活动与版本更新会在这里发布</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="note-list">
-        <div class="note-card">
-          <div class="note-date">2026.04.13</div>
-          <h3>官网页面已更改</h3>
-          <p>我觉得挺好看的（）</p>
-        </div>
-      <div class="note-list">
-        <div class="note-card">
-          <div class="note-date">2026.01.29</div>
-          <h3>服务器已升级，并迁移完成</h3>
-          <p>服务器已开启，各项服务已恢复。</p>
-        </div>
-        <div class="note-card">
-          <div class="note-date">2026.01.07</div>
-          <h3>服务器已恢复</h3>
-          <p>可以访问服务器了。<br><a href="https://wj.qq.com/s2/25451519/ed5b/" style="color: var(--accent-secondary);">点此投票是否换档</a></p>
-        </div>
+      <div class="news-list">
+        <article class="news-item">
+          <div class="news-date">2026-04-28</div>
+          <h3>官网页面维护完成</h3>
+          <p>本次更新修复了页面乱码、导航异常和脚本错误，同时统一了站点页脚与移动端菜单体验。</p>
+        </article>
+
+        <article class="news-item">
+          <div class="news-date">2026-04-20</div>
+          <h3>新成员入服说明优化</h3>
+          <p>加入流程页面新增了更清晰的三步引导，减少新玩家第一次进入时的配置成本。</p>
+        </article>
+
+        <article class="news-item">
+          <div class="news-date">2026-04-10</div>
+          <h3>社区建议征集</h3>
+          <p>欢迎在群内反馈你想要的玩法活动。我们会持续优化服务器体验与规则细节。</p>
+        </article>
       </div>
     </div>
   </section>
@@ -71,7 +71,7 @@
       <div class="footer-content">
         <div class="footer-left">
           <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2024 LuckyClover. All Rights Reserved.</p>
+          <p>© 2026 LuckyClover. All Rights Reserved.</p>
         </div>
         <div class="footer-right">
           <a href="https://github.com/beeeee-really">Github</a>
@@ -85,3 +85,4 @@
   </script>
 </body>
 </html>
+

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="LuckyClover, Minecraft, 我的世界, 基岩版服务器">
   <title>LuckyClover | 官方网站</title>
-  <link rel="stylesheet" href="assets/css/modern.css">
+  <link rel="stylesheet" href="assets/css/modern-fixed.css">
   <link rel="shortcut icon" href="images/cd.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
           <div class="logo-icon">🍀</div>
           <span>LuckyClover</span>
         </a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()">
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="切换菜单">
           <span></span>
           <span></span>
           <span></span>
@@ -70,35 +70,35 @@
     <div class="container">
       <div class="section-header">
         <h2>快捷导航</h2>
-        <p>快速访问服务器的各个板块</p>
+        <p>快速访问服务器的常用页面</p>
       </div>
       <div class="links-grid">
         <a href="note.html" class="link-card">
-          <div class="icon">📢</div>
+          <div class="icon">📝</div>
           <div class="info">
             <h4>服务器公告</h4>
-            <p>最新的服务器通知</p>
+            <p>查看最新通知和活动安排</p>
           </div>
         </a>
         <a href="pic-1.html" class="link-card">
-          <div class="icon">🏰</div>
+          <div class="icon">🖼</div>
           <div class="info">
             <h4>服内风景</h4>
-            <p>欣赏服务器建筑</p>
+            <p>浏览玩家建筑和精彩截图</p>
           </div>
         </a>
         <a href="status.html" class="link-card">
           <div class="icon">📊</div>
           <div class="info">
             <h4>服务器状态</h4>
-            <p>查看服务器负载</p>
+            <p>实时查看在线人数和版本</p>
           </div>
         </a>
         <a href="team.html" class="link-card">
           <div class="icon">👥</div>
           <div class="info">
-            <h4>LuckyClover Team</h4>
-            <p>管理团队介绍</p>
+            <h4>管理团队</h4>
+            <p>认识 LuckyClover 管理成员</p>
           </div>
         </a>
       </div>
@@ -109,38 +109,38 @@
     <div class="container">
       <div class="section-header">
         <h2>服务器特色</h2>
-        <p>了解LuckyClover服务器的独特之处</p>
+        <p>稳定、友好、长期运营的基岩版社区</p>
       </div>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🎮</div>
-          <h3>模组服</h3>
-          <p>使用CoreCraft模组，为玩家带来丰富的游戏体验</p>
-        </div>
-        <div class="feature-card">
           <div class="feature-icon">⚙️</div>
-          <h3>中等配置</h3>
-          <p>服务器中等配置，流畅运行的同时保持稳定性</p>
+          <h3>实用模组</h3>
+          <p>在保证公平性的前提下引入实用功能，提升日常体验。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🔨</div>
-          <h3>轻度生电</h3>
-          <p>允许轻度生电，保护游戏平衡</p>
+          <div class="feature-icon">🧭</div>
+          <h3>平衡玩法</h3>
+          <p>生存、建造、探索都有清晰规则，新手也能快速融入。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡</div>
+          <h3>反作弊</h3>
+          <p>严格禁止外挂和恶意破坏，保障长期游玩环境。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🎉</div>
           <h3>节日活动</h3>
-          <p>每逢过节在服务器开展精彩活动</p>
+          <p>不定期举办活动与挑战，社区氛围活跃。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>白名单</h3>
-          <p>有白名单系统，禁止外挂、炸图等违规行为</p>
+          <div class="feature-icon">📜</div>
+          <h3>白名单制</h3>
+          <p>通过申请审核加入，降低恶意玩家干扰。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">💬</div>
-          <h3>社区互动</h3>
-          <p>活跃的玩家社区，定期交流活动</p>
+          <h3>社区交流</h3>
+          <p>通过 QQ 群统一发布通知、答疑和组织活动。</p>
         </div>
       </div>
     </div>
@@ -151,11 +151,11 @@
       <div class="server-info">
         <h3>如何加入服务器</h3>
         <ul>
-          <li>需要添加QQ群后获取IP才能进入游戏</li>
-          <li>请在本站内查看加群方式</li>
-          <li>服务器禁止使用任何外挂、作弊客户端</li>
-          <li>禁止破坏游戏地图，违规者拉入黑名单</li>
-          <li>如有问题请联系管理员</li>
+          <li>先加入 QQ 群，获取服务器地址和申请说明。</li>
+          <li>请使用正版 Minecraft 基岩版客户端。</li>
+          <li>禁止使用任何外挂、脚本或作弊客户端。</li>
+          <li>禁止恶意破坏他人建筑和公共区域。</li>
+          <li>如有问题请联系管理员处理。</li>
         </ul>
         <div class="hero-buttons">
           <a href="jiao.html" class="btn btn-primary">申请加入</a>
@@ -169,11 +169,10 @@
       <div class="footer-content">
         <div class="footer-left">
           <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2024 LuckyClover. All Rights Reserved.</p>
+          <p>© 2026 LuckyClover. All Rights Reserved.</p>
         </div>
         <div class="footer-right">
           <a href="https://github.com/beeeee-really">Github</a>
-          <a href="#">Discord</a>
         </div>
       </div>
     </div>
@@ -203,15 +202,15 @@
     });
 
     function updateUptime() {
-      const startDate = new Date('2020/07/04');
+      const startDate = new Date('2020-07-04T00:00:00+08:00');
       const now = new Date();
       const diff = now - startDate;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      document.getElementById('uptime').textContent = ` LuckyClover已运行 ${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+
+      document.getElementById('uptime').textContent = `LuckyClover 已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
       document.getElementById('days').textContent = days;
     }
 
@@ -219,9 +218,9 @@
       try {
         const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=19135&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
-        
+
         if (data.status === 'online') {
-          document.getElementById('online').textContent = data.players.online + '/' + data.players.max;
+          document.getElementById('online').textContent = `${data.players.online}/${data.players.max}`;
           document.getElementById('version').textContent = data.version;
         } else {
           document.getElementById('online').textContent = '离线';
@@ -240,3 +239,4 @@
   </script>
 </body>
 </html>
+
