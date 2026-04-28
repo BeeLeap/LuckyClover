@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活动 - LuckyClover</title>
+  <link rel="stylesheet" href="assets/css/modern-fixed.css">
+  <link rel="shortcut icon" href="images/cd.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .page-wrap { padding: 120px 24px 64px; max-width: 980px; margin: 0 auto; }
+    .hero-card { padding: 32px; border-radius: 28px; background: linear-gradient(135deg, rgba(108,92,231,.18), rgba(26,26,46,.92)); border: 1px solid rgba(162,155,254,.2); box-shadow: 0 16px 50px rgba(0,0,0,.28); }
+    .hero-card h1 { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 12px; }
+    .hero-card p { color: var(--text-secondary); line-height: 1.8; }
+    .announce-grid { display: grid; gap: 18px; margin-top: 24px; }
+    .announce-item { padding: 22px; border-radius: 20px; background: var(--bg-card); border: 1px solid var(--border-color); }
+    .announce-item h2 { font-size: 1.25rem; margin-bottom: 10px; }
+    .announce-item p { color: var(--text-secondary); line-height: 1.85; margin: 0; white-space: pre-line; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .tag { padding: 8px 12px; border-radius: 999px; background: rgba(162,155,254,.12); color: var(--accent-secondary); font-size: .875rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🍀</div>
+          <span>LuckyClover</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="切换菜单"><span></span><span></span><span></span></button>
+        <nav id="main-nav">
+          <a href="index.html">首页</a>
+          <a href="docs.html">文档</a>
+          <a href="huodong.html">活动</a>
+          <a href="team.html">团队</a>
+          <a href="status.html">服务器状态</a>
+          <a href="note.html">最新动态</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="hero-card">
+      <div class="tag-row">
+        <span class="tag">劳动节活动</span>
+        <span class="tag">建筑大赛</span>
+        <span class="tag">每日奖励</span>
+      </div>
+      <h1>🎉【劳动节活动公告】🎉</h1>
+      <p>欢迎参与 LuckyClover 劳动节特别活动。活动期间将开放建筑挑战、登录奖励与限定称号，快来一起热闹过节。</p>
+    </section>
+
+    <section class="announce-grid">
+      <article class="announce-item">
+        <h2>🏗️ 建筑大赛</h2>
+        <p>围绕“劳动节”主题自由建造，可获得专属称号
+暂定5月2日举办活动，在主服务器内输入/huodong即可加入活动服务器（当前不可加入，请等待活动开启）</p>
+      </article>
+
+      <article class="announce-item">
+        <h2>💰 登录奖励上线</h2>
+        <p>活动期间每日登录领取 500资产 💵（现已上线）</p>
+      </article>
+
+      <article class="announce-item">
+        <h2>📢 注意</h2>
+        <p>请在指定区域建造，禁止抄袭</p>
+      </article>
+
+      <article class="announce-item">
+        <h2>✨ 温馨提示</h2>
+        <p>快来参加，一起过个热闹的劳动节！</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
+          <p>© 2026 LuckyClover. All Rights Reserved.</p>
+        </div>
+        <div class="footer-right">
+          <a href="https://github.com/beeeee-really">Github</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('main-nav').classList.toggle('active'); }
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) document.getElementById('main-nav').classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
