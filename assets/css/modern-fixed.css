@@ -226,6 +226,17 @@ nav a:hover::after {
   margin-bottom: 16px;
 }
 
+.hero p a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(162, 155, 254, 0.85);
+}
+
+.hero p a:hover {
+  color: var(--text-primary);
+}
+
 .hero-stats {
   display: flex;
   justify-content: center;
