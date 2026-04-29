@@ -29,7 +29,7 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top, #202126 0%, var(--bg-primary) 55%);
+  background: radial-gradient(circle at 50% 30%, #191d2c 0%, #111420 38%, #0c1019 100%);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
@@ -45,10 +45,10 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(183, 189, 255, 0.10) 0%, transparent 48%),
-    radial-gradient(ellipse at 80% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 52%),
-    radial-gradient(ellipse at 50% 50%, rgba(139, 147, 255, 0.04) 0%, transparent 70%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900'%3E%3Cg fill='none' stroke='%23f6a500' stroke-opacity='0.34' stroke-width='1.2'%3E%3Cpath d='M-40 0 C 120 40 180 180 -30 300 C -160 370 -130 520 40 620 C 220 730 260 860 120 940'/%3E%3Cpath d='M20 0 C 180 42 240 182 30 302 C -100 372 -70 522 100 622 C 280 732 320 862 180 940'/%3E%3Cpath d='M80 0 C 240 44 300 184 90 304 C -40 374 -10 524 160 624 C 340 734 380 864 240 940'/%3E%3Cpath d='M140 0 C 300 46 360 186 150 306 C 20 376 50 526 220 626 C 400 736 440 866 300 940'/%3E%3Cpath d='M200 0 C 360 48 420 188 210 308 C 80 378 110 528 280 628 C 460 738 500 868 360 940'/%3E%3Cpath d='M260 0 C 420 50 480 190 270 310 C 140 380 170 530 340 630 C 520 740 560 870 420 940'/%3E%3Cpath d='M320 0 C 480 52 540 192 330 312 C 200 382 230 532 400 632 C 580 742 620 872 480 940'/%3E%3Cpath d='M380 0 C 540 54 600 194 390 314 C 260 384 290 534 460 634 C 640 744 680 874 540 940'/%3E%3Cpath d='M440 0 C 600 56 660 196 450 316 C 320 386 350 536 520 636 C 700 746 740 876 600 940'/%3E%3Cpath d='M500 0 C 660 58 720 198 510 318 C 380 388 410 538 580 638 C 760 748 800 878 660 940'/%3E%3Cpath d='M560 0 C 720 60 780 200 570 320 C 440 390 470 540 640 640 C 820 750 860 880 720 940'/%3E%3Cpath d='M620 0 C 780 62 840 202 630 322 C 500 392 530 542 700 642 C 880 752 920 882 780 940'/%3E%3Cpath d='M680 0 C 840 64 900 204 690 324 C 560 394 590 544 760 644 C 940 754 980 884 840 940'/%3E%3Cpath d='M740 0 C 900 66 960 206 750 326 C 620 396 650 546 820 646 C 1000 756 1040 886 900 940'/%3E%3Cpath d='M800 0 C 960 68 1020 208 810 328 C 680 398 710 548 880 648 C 1060 758 1100 888 960 940'/%3E%3Cpath d='M860 0 C 1020 70 1080 210 870 330 C 740 400 770 550 940 650 C 1120 760 1160 890 1020 940'/%3E%3Cpath d='M920 0 C 1080 72 1140 212 930 332 C 800 402 830 552 1000 652 C 1180 762 1220 892 1080 940'/%3E%3Cpath d='M980 0 C 1140 74 1200 214 990 334 C 860 404 890 554 1060 654 C 1240 764 1280 894 1140 940'/%3E%3Cpath d='M1040 0 C 1200 76 1260 216 1050 336 C 920 406 950 556 1120 656 C 1300 766 1340 896 1200 940'/%3E%3Cpath d='M1100 0 C 1260 78 1320 218 1110 338 C 980 408 1010 558 1180 658 C 1360 768 1400 898 1260 940'/%3E%3Cpath d='M1160 0 C 1320 80 1380 220 1170 340 C 1040 410 1070 560 1240 660 C 1420 770 1460 900 1320 940'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
   pointer-events: none;
   z-index: -2;
 }
@@ -58,14 +58,13 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 15% 12%, rgba(183, 189, 255, 0.08) 0 10%, transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.05) 0 8%, transparent 22%),
-    radial-gradient(circle at 78% 78%, rgba(183, 189, 255, 0.06) 0 10%, transparent 28%),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: auto, auto, auto, 72px 72px, 72px 72px;
+    radial-gradient(circle at 18% 10%, rgba(255, 166, 0, 0.16) 0%, transparent 30%),
+    radial-gradient(circle at 85% 76%, rgba(255, 166, 0, 0.14) 0%, transparent 34%),
+    linear-gradient(rgba(255, 166, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 166, 0, 0.02) 1px, transparent 1px);
+  background-size: auto, auto, 72px 72px, 72px 72px;
   background-position: center;
-  opacity: 0.75;
+  opacity: 0.55;
   pointer-events: none;
   z-index: -1;
   animation: bg-drift 22s ease-in-out infinite alternate;
@@ -284,7 +283,26 @@ nav a:hover::after {
 .docs-search-panel,
 .docs-search-result,
 .mini-card {
-  backdrop-filter: blur(18px);
+  backdrop-filter: none;
+}
+
+.docs-content,
+.docs-sidebar,
+.docs-aside,
+.feature-card,
+.link-card,
+.server-info,
+.team-card,
+.note-card,
+.status-card,
+.step-card,
+.gallery-item,
+.docs-card,
+.docs-link-card,
+.docs-search-panel,
+.docs-search-result,
+.mini-card {
+  background: transparent !important;
 }
 
 .docs-search-btn {
