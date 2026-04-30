@@ -166,6 +166,16 @@ nav a:hover::after {
   opacity: 1;
 }
 
+nav a.active,
+nav a[aria-current="page"] {
+  color: var(--text-primary);
+}
+
+nav a.active::after,
+nav a[aria-current="page"]::after {
+  opacity: 1;
+}
+
 .mobile-menu-btn {
   display: none;
   position: absolute;

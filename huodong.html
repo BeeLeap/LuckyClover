@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="查看 LuckyClover 最新活动公告，了解节日活动、报名方式与参与说明。">
   <title>活动 - LuckyClover</title>
   <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="shortcut icon" href="images/cd.ico">
+  <link rel="icon" href="images/cd.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     .page-wrap { padding: 120px 24px 64px; max-width: 980px; margin: 0 auto; }
@@ -28,11 +29,11 @@
           <div class="logo-icon">🍀</div>
           <span>LuckyClover</span>
         </a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="切换菜单"><span></span><span></span><span></span></button>
+        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav id="main-nav">
           <a href="index.html">首页</a>
           <a href="docs.html">文档</a>
-          <a href="huodong.html">活动</a>
+          <a href="huodong.html" class="active" aria-current="page">活动</a>
           <a href="team.html">团队</a>
           <a href="status.html">服务器状态</a>
           <a href="note.html">最新动态</a>
@@ -92,10 +93,20 @@
   </footer>
 
   <script>
-    function toggleMenu() { document.getElementById('main-nav').classList.toggle('active'); }
+    function toggleMenu() {
+      const nav = document.getElementById('main-nav');
+      const button = document.querySelector('.mobile-menu-btn');
+      const isActive = nav.classList.toggle('active');
+      button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    }
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) document.getElementById('main-nav').classList.remove('active');
+        if (window.innerWidth <= 768) {
+          const nav = document.getElementById('main-nav');
+          const button = document.querySelector('.mobile-menu-btn');
+          nav.classList.remove('active');
+          button.setAttribute('aria-expanded', 'false');
+        }
       });
     });
   </script>

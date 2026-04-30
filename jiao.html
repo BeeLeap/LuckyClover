@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="查看 LuckyClover 加入方式，了解客户端准备、交流群入口与入服流程。">
   <title>如何加入服务器 - LuckyClover</title>
   <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="shortcut icon" href="images/cd.ico">
+  <link rel="icon" href="images/cd.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     .steps { max-width: 700px; margin: 0 auto; }
@@ -24,8 +25,8 @@
     <div class="container">
       <div class="header-content">
         <a href="index.html" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-        <nav>
+        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+        <nav id="main-nav">
           <a href="index.html">首页</a>
           <a href="docs.html">文档</a>
           <a href="huodong.html">活动</a>
@@ -90,8 +91,13 @@
     </div>
   </footer>
   <script>
-    function toggleMenu() { document.querySelector('nav').classList.toggle('active'); }
-    document.querySelectorAll('nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) document.querySelector('nav').classList.remove('active'); }); });
+    function toggleMenu() {
+      const nav = document.getElementById('main-nav');
+      const button = document.querySelector('.mobile-menu-btn');
+      const isActive = nav.classList.toggle('active');
+      button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    }
+    document.querySelectorAll('#main-nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) { const nav = document.getElementById('main-nav'); const button = document.querySelector('.mobile-menu-btn'); nav.classList.remove('active'); button.setAttribute('aria-expanded', 'false'); } }); });
   </script>
 </body>
 </html>

@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LuckyClover 页面未找到提示页，可返回首页继续浏览其他内容。">
   <title>404 - LuckyClover</title>
   <link rel="stylesheet" href="assets/css/modern-fixed.css">
+  <link rel="icon" href="images/cd.ico">
   <style>
     .not-found {
       min-height: 100vh;
@@ -30,16 +32,10 @@
   <main class="not-found">
     <section class="not-found-card">
       <h1>404</h1>
-      <p>页面不存在，3 秒后将返回首页。</p>
+      <p>页面不存在，你可以返回首页继续浏览。</p>
       <a class="btn btn-primary" href="index.html">立即返回首页</a>
     </section>
   </main>
-
-  <script>
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 3000);
-  </script>
 </body>
 </html>
 

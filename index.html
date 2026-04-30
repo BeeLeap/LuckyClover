@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LuckyClover 基岩版服务器官网，查看服务器状态、活动公告、加入方式与玩家文档。">
   <meta name="keywords" content="LuckyClover, Minecraft, 我的世界, 基岩版服务器">
   <title>LuckyClover | 官方网站</title>
   <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="shortcut icon" href="images/luckyclover.png">
+  <link rel="icon" href="images/cd.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -204,13 +205,13 @@
           <div class="logo-icon">🍀</div>
           <span>LuckyClover</span>
         </a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="切换菜单">
+        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
         <nav id="main-nav">
-          <a href="index.html">首页</a>
+          <a href="index.html" class="active" aria-current="page">首页</a>
           <a href="docs.html">文档</a>
           <a href="huodong.html">活动</a>
           <a href="team.html">团队</a>
@@ -379,14 +380,19 @@
     });
 
     function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('active');
+      const nav = document.getElementById('main-nav');
+      const button = document.querySelector('.mobile-menu-btn');
+      const isActive = nav.classList.toggle('active');
+      button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     }
 
-    document.querySelectorAll('nav a').forEach(link => {
+    document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
-          document.querySelector('nav').classList.remove('active');
+          const nav = document.getElementById('main-nav');
+          const button = document.querySelector('.mobile-menu-btn');
+          nav.classList.remove('active');
+          button.setAttribute('aria-expanded', 'false');
         }
       });
     });

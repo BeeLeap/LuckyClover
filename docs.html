@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LuckyClover 文档中心，集中查看服务器概览、规则、指令说明、新手指南和常见问题。">
   <title>文档 - LuckyClover</title>
   <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="shortcut icon" href="images/cd.ico">
+  <link rel="icon" href="images/cd.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     .docs-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr) 260px; gap: 24px; padding: 120px 24px 48px; max-width: 1440px; margin: 0 auto; }
@@ -67,10 +68,10 @@
     <div class="container">
       <div class="header-content">
         <a href="index.html" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-        <nav>
+        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+        <nav id="main-nav">
           <a href="index.html">首页</a>
-          <a href="docs.html">文档</a>
+          <a href="docs.html" class="active" aria-current="page">文档</a>
           <a href="huodong.html">活动</a>
           <a href="team.html">团队</a>
           <a href="status.html">服务器状态</a>
@@ -180,8 +181,13 @@
   </div>
 
   <script>
-    function toggleMenu() { document.querySelector('nav').classList.toggle('active'); }
-    document.querySelectorAll('nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) document.querySelector('nav').classList.remove('active'); }); });
+    function toggleMenu() {
+      const nav = document.getElementById('main-nav');
+      const button = document.querySelector('.mobile-menu-btn');
+      const isActive = nav.classList.toggle('active');
+      button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    }
+    document.querySelectorAll('#main-nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) { const nav = document.getElementById('main-nav'); const button = document.querySelector('.mobile-menu-btn'); nav.classList.remove('active'); button.setAttribute('aria-expanded', 'false'); } }); });
 
     const searchInput = document.getElementById('docs-search-input');
     const cards = Array.from(document.querySelectorAll('#docs-links .docs-link-card'));
