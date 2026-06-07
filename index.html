@@ -230,12 +230,13 @@
         </div>
         <div class="hero-badge">
           <span class="dot"></span>
-          <span>基岩版服务器</span>
+          <span>基岩版&java版服务器</span>
         </div>
         <h1>欢迎来到 <span>LuckyClover</span></h1>
         <p id="uptime">服务器运行中...</p>
         <p>服务器已加入<a href="https://mscpo.top/">mscpo服务器集体宣传组织</a></p>
-        <div class="hero-stats">
+        <div style="font-size:0.95rem;color:var(--accent-secondary);font-weight:600;margin-bottom:8px;">基岩版</div>
+        <div class="hero-stats" style="margin-top:0;">
           <div class="stat-item">
             <div class="stat-value" id="online">--</div>
             <div class="stat-label">在线玩家</div>
@@ -246,6 +247,21 @@
           </div>
           <div class="stat-item">
             <div class="stat-value" id="days">--</div>
+            <div class="stat-label">运行天数</div>
+          </div>
+        </div>
+        <div style="font-size:0.95rem;color:var(--accent-secondary);font-weight:600;margin-bottom:8px;margin-top:24px;">Java 版</div>
+        <div class="hero-stats" style="margin-top:0;">
+          <div class="stat-item">
+            <div class="stat-value" id="online-java">--</div>
+            <div class="stat-label">在线玩家</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="version-java">--</div>
+            <div class="stat-label">版本</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="days-java">--</div>
             <div class="stat-label">运行天数</div>
           </div>
         </div>
@@ -447,6 +463,39 @@
     setInterval(updateServerStatus, 30000);
     updateUptime();
     updateServerStatus();
+
+    async function updateServerStatusJava() {
+      try {
+        const response = await fetch(`https://motd.minebbs.com/api/status?ip=node4.yunmc.vip&port=10140&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+        const data = await response.json();
+
+        if (data.status === 'online') {
+          document.getElementById('online-java').textContent = `${data.players.online}/${data.players.max}`;
+          document.getElementById('version-java').textContent = data.version || '--';
+        } else {
+          document.getElementById('online-java').textContent = '离线';
+          document.getElementById('version-java').textContent = '--';
+        }
+      } catch (error) {
+        document.getElementById('online-java').textContent = '--';
+        document.getElementById('version-java').textContent = '--';
+      }
+    }
+
+    function updateUptimeJava() {
+      // TODO: 将下面日期替换为 Java 版实际开服时间
+      const startDateJava = new Date('2026-06-02T00:00:00+08:00');
+      const now = new Date();
+      const diff = now - startDateJava;
+      const daysJava = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById('days-java').textContent = daysJava;
+    }
+
+    setInterval(updateServerStatusJava, 30000);
+    setInterval(updateUptimeJava, 1000);
+    updateServerStatusJava();
+    updateUptimeJava();
   </script>
 </body>
 </html>
