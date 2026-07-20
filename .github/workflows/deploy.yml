@@ -25,11 +25,14 @@ jobs:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
           set -euo pipefail
+          : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
+          : "${DEPLOY_SSH_KEY:?Missing GitHub secret DEPLOY_SSH_KEY}"
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "${DEPLOY_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
       - name: Ensure remote directory exists
         env:
@@ -39,7 +42,11 @@ jobs:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
           set -euo pipefail
-          ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
+          : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
+          : "${DEPLOY_USER:?Missing GitHub secret DEPLOY_USER}"
+          : "${DEPLOY_PATH:?Missing GitHub secret DEPLOY_PATH}"
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
 
       - name: Sync files
         env:
@@ -49,8 +56,12 @@ jobs:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
           set -euo pipefail
+          : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
+          : "${DEPLOY_USER:?Missing GitHub secret DEPLOY_USER}"
+          : "${DEPLOY_PATH:?Missing GitHub secret DEPLOY_PATH}"
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
           rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${DEPLOY_PORT:-22}" \
+            -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT" \
             --exclude ".git/" \
             --exclude ".github/" \
             --exclude ".idea/" \
