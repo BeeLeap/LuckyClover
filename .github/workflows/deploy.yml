@@ -67,4 +67,5 @@ jobs:
             --exclude ".idea/" \
             --exclude ".vs/" \
             --exclude ".claude/" \
+            --exclude ".user.ini" \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
