@@ -18,16 +18,31 @@ Example Nginx config:
 ```nginx
 server {
     listen 80;
-    server_name your-domain.com;
+    server_name lcy.beeeeeawa.top;
 
-    root /var/www/luckyclover;
+    root /www/wwwroot/lcy.beeeeeawa.top;
     index index.html;
 
+    error_page 404 /404.html;
+
+    location = /404.html {
+    }
+
+    location = /index.html {
+        return 301 /;
+    }
+
+    location = / {
+        try_files /index.html =404;
+    }
+
     location / {
-        try_files $uri $uri/ /404.html;
+        try_files $uri $uri.html $uri/ /404.html;
     }
 }
 ```
+
+In BaoTa, open the site config for `lcy.beeeeeawa.top`, replace the old extensionless URL rules with this block, then reload Nginx.
 
 ## GitHub Secrets
 

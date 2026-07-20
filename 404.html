@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -16,16 +16,25 @@
       text-align: center;
       padding: 24px;
     }
+
     .not-found-card {
-      background: var(--bg-card);
+      background: transparent;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
       padding: 40px;
       max-width: 560px;
       width: 100%;
     }
-    .not-found-card h1 { font-size: 4rem; margin-bottom: 8px; }
-    .not-found-card p { color: var(--text-secondary); margin-bottom: 20px; }
+
+    .not-found-card h1 {
+      font-size: 4rem;
+      margin-bottom: 8px;
+    }
+
+    .not-found-card p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -33,9 +42,8 @@
     <section class="not-found-card">
       <h1>404</h1>
       <p>页面不存在，你可以返回首页继续浏览。</p>
-      <a class="btn btn-primary" href="index.html">立即返回首页</a>
+      <a class="btn btn-primary" href="/">立即返回首页</a>
     </section>
   </main>
 </body>
 </html>
-

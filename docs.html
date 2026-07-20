@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -67,15 +67,15 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="index.html" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
+        <a href="/" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
         <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav id="main-nav">
-          <a href="index.html">首页</a>
-          <a href="docs.html" class="active" aria-current="page">文档</a>
-          <a href="huodong.html">活动</a>
-          <a href="team.html">团队</a>
-          <a href="status.html">服务器状态</a>
-          <a href="note.html">最新动态</a>
+          <a href="/">首页</a>
+          <a href="docs" class="active" aria-current="page">文档</a>
+          <a href="huodong">活动</a>
+          <a href="team">团队</a>
+          <a href="status">服务器状态</a>
+          <a href="note">最新动态</a>
           <button class="docs-search-btn" type="button" onclick="openDocsSearch()">搜索</button>
         </nav>
       </div>
@@ -85,13 +85,13 @@
   <main class="docs-layout">
     <aside class="docs-sidebar">
       <h3>目录</h3>
-      <a class="active" href="docs.html">文档首页</a>
-      <a href="docs-overview.html">概览</a>
-      <a href="docs-server-info.html">服务器信息</a>
-      <a href="docs-command-guide.html">指令说明</a>
-      <a href="docs-rules.html">玩家守则</a>
-      <a href="docs-guide.html">新手指南</a>
-      <a href="docs-faq.html">常见问题</a>
+      <a class="active" href="docs">文档首页</a>
+      <a href="docs-overview">概览</a>
+      <a href="docs-server-info">服务器信息</a>
+      <a href="docs-command-guide">指令说明</a>
+      <a href="docs-rules">玩家守则</a>
+      <a href="docs-guide">新手指南</a>
+      <a href="docs-faq">常见问题</a>
     </aside>
 
     <section class="docs-content">
@@ -109,32 +109,32 @@
       </div>
 
       <div class="docs-links" id="docs-links">
-        <a class="docs-link-card" href="docs-overview.html" data-keywords="概览 快速了解 介绍">
+        <a class="docs-link-card" href="docs-overview" data-keywords="概览 快速了解 介绍">
           <h3>概览</h3>
           <p>快速了解服务器与文档结构。</p>
           <span class="meta">Overview</span>
         </a>
-        <a class="docs-link-card" href="docs-server-info.html" data-keywords="服务器信息 ip 版本 模式">
+        <a class="docs-link-card" href="docs-server-info" data-keywords="服务器信息 ip 版本 模式">
           <h3>服务器信息</h3>
           <p>查看服务器地址、版本、模式等信息。</p>
           <span class="meta">Info</span>
         </a>
-        <a class="docs-link-card" href="docs-command-guide.html" data-keywords="指令 说明 命令">
+        <a class="docs-link-card" href="docs-command-guide" data-keywords="指令 说明 命令">
           <h3>指令说明</h3>
           <p>整理常用指令与权限说明。</p>
           <span class="meta">Commands</span>
         </a>
-        <a class="docs-link-card" href="docs-rules.html" data-keywords="玩家守则 规则 纪律">
+        <a class="docs-link-card" href="docs-rules" data-keywords="玩家守则 规则 纪律">
           <h3>玩家守则</h3>
           <p>服务器内的行为规范和注意事项。</p>
           <span class="meta">Rules</span>
         </a>
-        <a class="docs-link-card" href="docs-guide.html" data-keywords="新手 指南 入服 教程">
+        <a class="docs-link-card" href="docs-guide" data-keywords="新手 指南 入服 教程">
           <h3>新手指南</h3>
           <p>新玩家入服流程与基础说明。</p>
           <span class="meta">Guide</span>
         </a>
-        <a class="docs-link-card" href="docs-faq.html" data-keywords="常见问题 faq 问答">
+        <a class="docs-link-card" href="docs-faq" data-keywords="常见问题 faq 问答">
           <h3>常见问题</h3>
           <p>常见疑问和快速解答。</p>
           <span class="meta">FAQ</span>
@@ -146,15 +146,15 @@
       <h3>快捷入口</h3>
       <div class="mini-card">
         <div class="label">文档首页</div>
-        <div class="value"><a href="docs.html">返回文档中心</a></div>
+        <div class="value"><a href="docs">返回文档中心</a></div>
       </div>
       <div class="mini-card">
         <div class="label">服务器状态</div>
-        <div class="value"><a href="status.html">查看实时状态</a></div>
+        <div class="value"><a href="status">查看实时状态</a></div>
       </div>
       <div class="mini-card">
         <div class="label">活动公告</div>
-        <div class="value"><a href="huodong.html">查看活动页</a></div>
+        <div class="value"><a href="huodong">查看活动页</a></div>
       </div>
     </aside>
   </main>
@@ -210,12 +210,12 @@
     const docsModalInput = document.getElementById('docs-modal-input');
     const docsModalResults = document.getElementById('docs-modal-results');
     const docsPages = [
-      { title: '概览', href: 'docs-overview.html', desc: '快速了解服务器与文档结构。', keywords: '概览 快速了解 介绍' },
-      { title: '服务器信息', href: 'docs-server-info.html', desc: '查看服务器地址、版本、模式等信息。', keywords: '服务器信息 ip 版本 模式' },
-      { title: '指令说明', href: 'docs-command-guide.html', desc: '整理常用指令与权限说明。', keywords: '指令 说明 命令' },
-      { title: '玩家守则', href: 'docs-rules.html', desc: '服务器内的行为规范和注意事项。', keywords: '玩家守则 规则 纪律' },
-      { title: '新手指南', href: 'docs-guide.html', desc: '新玩家入服流程与基础说明。', keywords: '新手 指南 入服 教程' },
-      { title: '常见问题', href: 'docs-faq.html', desc: '常见疑问和快速解答。', keywords: '常见问题 faq 问答' },
+      { title: '概览', href: 'docs-overview', desc: '快速了解服务器与文档结构。', keywords: '概览 快速了解 介绍' },
+      { title: '服务器信息', href: 'docs-server-info', desc: '查看服务器地址、版本、模式等信息。', keywords: '服务器信息 ip 版本 模式' },
+      { title: '指令说明', href: 'docs-command-guide', desc: '整理常用指令与权限说明。', keywords: '指令 说明 命令' },
+      { title: '玩家守则', href: 'docs-rules', desc: '服务器内的行为规范和注意事项。', keywords: '玩家守则 规则 纪律' },
+      { title: '新手指南', href: 'docs-guide', desc: '新玩家入服流程与基础说明。', keywords: '新手 指南 入服 教程' },
+      { title: '常见问题', href: 'docs-faq', desc: '常见疑问和快速解答。', keywords: '常见问题 faq 问答' },
     ];
 
     function renderDocsResults(query) {
