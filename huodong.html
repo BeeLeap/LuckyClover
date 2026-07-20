@@ -3,22 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="查看 LuckyClover 最新活动公告，了解节日活动、报名方式与参与说明。">
+  <meta name="description" content="查看 LuckyClover 最新活动公告，了解活动安排、报名方式与历史活动记录。">
   <title>活动 - LuckyClover</title>
   <link rel="stylesheet" href="assets/css/modern-fixed.css">
   <link rel="icon" href="images/cd.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .page-wrap { padding: 120px 24px 64px; max-width: 980px; margin: 0 auto; }
-    .hero-card { padding: 32px; border-radius: 28px; background: linear-gradient(135deg, rgba(108,92,231,.18), rgba(26,26,46,.92)); border: 1px solid rgba(162,155,254,.2); box-shadow: 0 16px 50px rgba(0,0,0,.28); }
-    .hero-card h1 { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 12px; }
-    .hero-card p { color: var(--text-secondary); line-height: 1.8; }
-    .announce-grid { display: grid; gap: 18px; margin-top: 24px; }
-    .announce-item { padding: 22px; border-radius: 20px; background: var(--bg-card); border: 1px solid var(--border-color); }
-    .announce-item h2 { font-size: 1.25rem; margin-bottom: 10px; }
-    .announce-item p { color: var(--text-secondary); line-height: 1.85; margin: 0; white-space: pre-line; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-    .tag { padding: 8px 12px; border-radius: 999px; background: rgba(162,155,254,.12); color: var(--accent-secondary); font-size: .875rem; font-weight: 600; }
+    .page-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 120px 24px 72px;
+    }
+
+    .hero-card,
+    .announce-item {
+      border: 1px solid rgba(255, 159, 10, 0.34);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .hero-card {
+      border-radius: 30px;
+      padding: clamp(28px, 5vw, 46px);
+      text-align: center;
+    }
+
+    .hero-card h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      letter-spacing: -0.05em;
+    }
+
+    .hero-card p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 159, 10, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 159, 10, 0.08);
+      color: var(--accent-secondary);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .announce-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .announce-item {
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .announce-item h2 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+    }
+
+    .announce-item p {
+      margin: 0;
+      color: var(--text-secondary);
+      line-height: 1.85;
+    }
+
+    .history-detail {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .history-detail h3 {
+      margin: 0 0 6px;
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .section-title {
+      margin: 56px 0 18px;
+      text-align: center;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+    }
+
+    .empty-state {
+      margin-top: 24px;
+      border-color: rgba(132, 140, 255, 0.38);
+    }
+
+    .history-list {
+      opacity: 0.82;
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding: 96px 18px 56px;
+      }
+
+      .hero-card,
+      .announce-item {
+        border-radius: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -45,34 +144,41 @@
   <main class="page-wrap">
     <section class="hero-card">
       <div class="tag-row">
-        <span class="tag">劳动节活动</span>
-        <span class="tag">建筑大赛</span>
-        <span class="tag">每日奖励</span>
+        <span class="tag">当前状态</span>
+        <span class="tag">暂无活动</span>
+        <span class="tag">等待下一期</span>
       </div>
-      <h1>🎉【劳动节活动公告】🎉</h1>
-      <p>欢迎参与 LuckyClover 劳动节特别活动。活动期间将开放建筑挑战、登录奖励与限定称号，快来一起热闹过节。</p>
+      <h1>当前暂无活动</h1>
+      <p>近期服务器暂时没有正在进行的活动。后续活动会在这里和群公告同步发布，欢迎常回来看看。</p>
     </section>
 
     <section class="announce-grid">
-      <article class="announce-item">
-        <h2>🏗️ 建筑大赛</h2>
- 暂定5月2日举办活动，在主服务器内输入/huodong即可加入活动服务器（当前不可加入，请等待活动开启）</p>
-        <p><a href="https://docs.qq.com/form/page/sequence/DR0xGR3VSYWZVTHVp" style="display:inline-flex;align-items:center;gap:8px;padding:12px 18px;margin-top:12px;border-radius:999px;background:linear-gradient(135deg, rgba(108,92,231,0.95), rgba(162,155,254,0.95));border:1px solid rgba(255,255,255,0.12);color:#ffffff !important;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px;text-decoration-color:rgba(255,255,255,0.95);box-shadow:0 10px 24px rgba(108,92,231,0.35);">点击此处报名</a></p>
+      <article class="announce-item empty-state">
+        <h2>暂无进行中的活动</h2>
+        <p>管理组正在准备后续玩法和活动安排。活动开启后，本页会更新活动时间、参与方式、奖励说明和注意事项。</p>
       </article>
+    </section>
 
+    <h2 class="section-title">历史活动</h2>
+    <section class="announce-grid history-list" aria-label="历史活动">
       <article class="announce-item">
-        <h2>💰 登录奖励上线</h2>
-        <p>活动期间每日登录领取 500资产 💵（现已上线）</p>
-      </article>
+        <h2>劳动节活动公告</h2>
+        <p>LuckyClover 曾开放劳动节特别活动，包含建筑挑战、登录奖励与节日玩法说明。</p>
 
-      <article class="announce-item">
-        <h2>📢 注意</h2>
-        <p>请在指定区域建造，禁止抄袭</p>
-      </article>
-
-      <article class="announce-item">
-        <h2>✨ 温馨提示</h2>
-        <p>快来参加，一起过个热闹的劳动节！</p>
+        <div class="history-detail">
+          <div>
+            <h3>建筑大赛</h3>
+            <p>曾计划在 5 月举办建筑活动，玩家可通过主服务器内的 /huodong 指令加入活动服务器。</p>
+          </div>
+          <div>
+            <h3>登录奖励上线</h3>
+            <p>活动期间每日登录可领取 500 资产奖励，鼓励玩家在节日期间回到服务器一起游玩。</p>
+          </div>
+          <div>
+            <h3>注意事项</h3>
+            <p>活动要求玩家在指定区域建造，禁止抄袭或恶意破坏，共同维护公平友好的活动环境。</p>
+          </div>
+        </div>
       </article>
     </section>
   </main>
@@ -84,7 +190,6 @@
           <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
           <p>© 2026 LuckyClover. All Rights Reserved.</p>
         </div>
-        
       </div>
     </div>
   </footer>
@@ -96,6 +201,7 @@
       const isActive = nav.classList.toggle('active');
       button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     }
+
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
