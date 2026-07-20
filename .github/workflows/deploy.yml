@@ -20,12 +20,12 @@ jobs:
 
       - name: Configure SSH
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST || '64.90.0.12' }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '22' }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
           set -euo pipefail
-          : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
+          : "${DEPLOY_HOST:?Missing DEPLOY_HOST}"
           : "${DEPLOY_SSH_KEY:?Missing GitHub secret DEPLOY_SSH_KEY}"
           DEPLOY_PORT="${DEPLOY_PORT:-22}"
           mkdir -p ~/.ssh
@@ -36,29 +36,29 @@ jobs:
 
       - name: Ensure remote directory exists
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST || '64.90.0.12' }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '22' }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER || 'root' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH || '/www/wwwroot/lcy.beeeeeawa.top' }}
         run: |
           set -euo pipefail
-          : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
-          : "${DEPLOY_USER:?Missing GitHub secret DEPLOY_USER}"
-          : "${DEPLOY_PATH:?Missing GitHub secret DEPLOY_PATH}"
+          : "${DEPLOY_HOST:?Missing DEPLOY_HOST}"
+          : "${DEPLOY_USER:?Missing DEPLOY_USER}"
+          : "${DEPLOY_PATH:?Missing DEPLOY_PATH}"
           DEPLOY_PORT="${DEPLOY_PORT:-22}"
           ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
 
       - name: Sync files
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST || '64.90.0.12' }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '22' }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER || 'root' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH || '/www/wwwroot/lcy.beeeeeawa.top' }}
         run: |
           set -euo pipefail
-          : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
-          : "${DEPLOY_USER:?Missing GitHub secret DEPLOY_USER}"
-          : "${DEPLOY_PATH:?Missing GitHub secret DEPLOY_PATH}"
+          : "${DEPLOY_HOST:?Missing DEPLOY_HOST}"
+          : "${DEPLOY_USER:?Missing DEPLOY_USER}"
+          : "${DEPLOY_PATH:?Missing DEPLOY_PATH}"
           DEPLOY_PORT="${DEPLOY_PORT:-22}"
           rsync -az --delete \
             -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT" \
