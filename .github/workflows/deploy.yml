@@ -20,8 +20,8 @@ jobs:
 
       - name: Configure SSH
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
           set -euo pipefail
@@ -36,10 +36,10 @@ jobs:
 
       - name: Ensure remote directory exists
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH }}
         run: |
           set -euo pipefail
           : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
@@ -50,10 +50,10 @@ jobs:
 
       - name: Sync files
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH }}
         run: |
           set -euo pipefail
           : "${DEPLOY_HOST:?Missing GitHub secret DEPLOY_HOST}"
