@@ -81,6 +81,67 @@
       line-height: 1.85;
     }
 
+    .event-detail {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .event-detail h3 {
+      margin: 0 0 8px;
+      color: var(--accent-secondary);
+      font-size: 1.05rem;
+    }
+
+    .event-detail ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+    }
+
+    .event-detail li {
+      margin: 4px 0;
+    }
+
+    .reward-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .reward-card {
+      border: 2px solid #111;
+      background: rgba(10, 21, 16, 0.72);
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.32);
+      padding: 14px;
+    }
+
+    .reward-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-secondary);
+    }
+
+    .signup-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 12px 18px;
+      border: 3px solid #111;
+      background: var(--accent-gradient);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.35);
+      color: #102018;
+      font-weight: 900;
+    }
+
+    .signup-link:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+    }
+
     .history-detail {
       display: grid;
       gap: 16px;
@@ -144,18 +205,85 @@
   <main class="page-wrap">
     <section class="hero-card">
       <div class="tag-row">
-        <span class="tag">当前状态</span>
-        <span class="tag">暂无活动</span>
-        <span class="tag">等待下一期</span>
+        <span class="tag">当前活动</span>
+        <span class="tag">LuckyCup</span>
+        <span class="tag">刀战 PVP</span>
       </div>
-      <h1>当前暂无活动</h1>
-      <p>近期服务器暂时没有正在进行的活动。后续活动会在这里和群公告同步发布，欢迎常回来看看。</p>
+      <h1>首届 LuckyCup 刀战 PVP 大赛</h1>
+      <p>报名现已开启。荣耀属于最强者，期待与你在竞技场相见！</p>
     </section>
 
     <section class="announce-grid">
-      <article class="announce-item empty-state">
-        <h2>暂无进行中的活动</h2>
-        <p>管理组正在准备后续玩法和活动安排。活动开启后，本页会更新活动时间、参与方式、奖励说明和注意事项。</p>
+      <article class="announce-item">
+        <h2>LuckyClover 服务器首届 LuckyCup 刀战 PVP 大赛报名开启！</h2>
+        <p>公平装备、双败淘汰、冠军留名。准备好证明自己的刀战实力了吗？</p>
+
+        <div class="event-detail">
+          <div>
+            <h3>活动时间</h3>
+            <ul>
+              <li>第一场：待定，预计 2026 年 ** 月 ** 日 19 时 30 分。</li>
+              <li>第二场：待定，具体时间另行通知。</li>
+              <li>每场大约 1 小时。</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>参与方式</h3>
+            <ul>
+              <li>在服务器中输入 /huodong，即可传送至活动服务器。</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>比赛装备</h3>
+            <ul>
+              <li>所有工具均附魔经验修补。</li>
+              <li>下界合金头盔、胸甲、护腿、靴子均附魔「保护 IV」。</li>
+              <li>下界合金剑、下界合金斧均附魔「锋利 III」。</li>
+              <li>弓附魔「力量 III」。</li>
+              <li>装备以群内公告配图为准。</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>报名方式</h3>
+            <ul>
+              <li>填写报名表即可，也可以查看群待办。</li>
+              <li>报名截止：活动开始前 15 分钟。</li>
+            </ul>
+            <a class="signup-link" href="https://docs.qq.com/form/page/sequence/DR0FnU0FDVVVneVJu" target="_blank" rel="noopener noreferrer">打开第一场报名表</a>
+          </div>
+
+          <div>
+            <h3>比赛规则</h3>
+            <ul>
+              <li>双败淘汰赛，每位玩家有两次机会。</li>
+              <li>全员统一装备，公平竞技。</li>
+              <li>决赛采用三局两胜。</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>活动奖励（每场）</h3>
+            <div class="reward-grid">
+              <div class="reward-card"><strong>冠军</strong>50000 金币 +「LuckyCup 冠军」限定称号 + 冠军榜永久留名</div>
+              <div class="reward-card"><strong>亚军</strong>25000 金币</div>
+              <div class="reward-card"><strong>季军</strong>10000 金币</div>
+              <div class="reward-card"><strong>参与奖</strong>3000 金币</div>
+            </div>
+          </div>
+
+          <div>
+            <h3>注意事项</h3>
+            <ul>
+              <li>请提前到场，并听从管理员安排。</li>
+              <li>严禁作弊、开挂、恶意利用漏洞等违规行为。</li>
+              <li>如遇服务器异常，本局将重新开始。</li>
+              <li>本活动最终解释权归 LuckyClover BE 管理组所有。</li>
+            </ul>
+          </div>
+        </div>
       </article>
     </section>
 
