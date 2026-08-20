@@ -4,10 +4,10 @@
  */
 $page_title = "概览 - LuckyClover Docs";
 $page_desc = "查看 LuckyClover 服务器概览，快速了解文档结构、基础玩法与入服信息。";
-$active_nav = "docs.php";
+$active_nav = "docs";
 $docs_search = true;
-$active_doc = "docs-overview.php";
-$extra_css = <<<CSS
+$active_doc = "docs-overview";
+$extra_css = <<<'CSS'
 .docs-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; padding: 120px 24px 48px; max-width: 1440px; margin: 0 auto; }
     .docs-sidebar, .docs-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
     .docs-sidebar { padding: 24px; position: sticky; top: 96px; height: fit-content; }
@@ -32,13 +32,13 @@ require __DIR__ . '/includes/header.php';
 <main class="docs-layout">
     <aside class="docs-sidebar">
       <h3>目录</h3>
-      <a class="active" href="docs-overview.php">概览</a>
-      <a href="docs-server-info.php">服务器信息</a>
-      <a href="docs-command-guide.php">指令说明</a>
-      <a href="docs-rules.php">玩家守则</a>
-      <a href="docs-guide.php">新手指南</a>
-      <a href="docs-faq.php">常见问题</a>
-      <a href="docs.php">返回文档首页</a>
+      <a class="active" href="docs-overview">概览</a>
+      <a href="docs-server-info">服务器信息</a>
+      <a href="docs-command-guide">指令说明</a>
+      <a href="docs-rules">玩家守则</a>
+      <a href="docs-guide">新手指南</a>
+      <a href="docs-faq">常见问题</a>
+      <a href="docs">返回文档首页</a>
     </aside>
     <section class="docs-content">
       <h1>欢迎来到 LuckyClover 文档</h1>
@@ -55,7 +55,7 @@ require __DIR__ . '/includes/header.php';
   <div class="docs-search-modal" id="docs-search-modal" aria-hidden="true"><div class="docs-search-panel"><input id="docs-modal-input" type="text" placeholder="搜索文档，按 Ctrl + K"><div class="docs-search-results" id="docs-modal-results"></div></div></div>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu(){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');const isActive=nav.classList.toggle('active');button.setAttribute('aria-expanded',isActive?'true':'false')}document.querySelectorAll('#main-nav a').forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth<=768){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');nav.classList.remove('active');button.setAttribute('aria-expanded','false')}}));const docsModal=document.getElementById('docs-search-modal');const docsModalInput=document.getElementById('docs-modal-input');const docsModalResults=document.getElementById('docs-modal-results');const docsPages=[{title:'概览',href:'docs-overview',desc:'快速了解服务器与文档结构。',keywords:'概览 快速了解 介绍'},{title:'服务器信息',href:'docs-server-info',desc:'查看服务器地址、版本、模式等信息。',keywords:'服务器信息 ip 版本 模式'},{title:'指令说明',href:'docs-command-guide',desc:'整理常用指令与权限说明。',keywords:'指令 说明 命令'},{title:'玩家守则',href:'docs-rules',desc:'服务器内的行为规范和注意事项。',keywords:'玩家守则 规则 纪律'},{title:'新手指南',href:'docs-guide',desc:'新玩家入服流程与基础说明。',keywords:'新手 指南 入服 教程'},{title:'常见问题',href:'docs-faq',desc:'常见疑问和快速解答。',keywords:'常见问题 faq 问答'}];function renderDocsResults(query){const text=query.trim().toLowerCase();const items=docsPages.filter(page=>`${page.title} ${page.desc} ${page.keywords}`.toLowerCase().includes(text));docsModalResults.innerHTML=items.map(page=>`<a class="docs-search-result" href="${page.href}"><strong>${page.title}</strong><span>${page.desc}</span></a>`).join('')||'<div class="docs-search-result"><strong>没有结果</strong><span>试试别的关键词</span></div>';}function openDocsSearch(){docsModal.classList.add('active');docsModal.setAttribute('aria-hidden','false');docsModalInput.value='';renderDocsResults('');setTimeout(()=>docsModalInput.focus(),0);}function closeDocsSearch(){docsModal.classList.remove('active');docsModal.setAttribute('aria-hidden','true');}docsModalInput.addEventListener('input',()=>renderDocsResults(docsModalInput.value));docsModal.addEventListener('click',event=>{if(event.target===docsModal)closeDocsSearch()});document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();openDocsSearch()}if(event.key==='Escape')closeDocsSearch()});
 JS;
 require __DIR__ . '/includes/footer.php';

@@ -4,10 +4,10 @@
  */
 $page_title = "文档 - LuckyClover";
 $page_desc = "LuckyClover 文档中心，集中查看服务器概览、规则、指令说明、新手指南和常见问题。";
-$active_nav = "docs.php";
+$active_nav = "docs";
 $docs_search = true;
-$active_doc = "docs.php";
-$extra_css = <<<CSS
+$active_doc = "docs";
+$extra_css = <<<'CSS'
 .docs-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr) 260px; gap: 24px; padding: 120px 24px 48px; max-width: 1440px; margin: 0 auto; }
     .docs-sidebar, .docs-aside, .docs-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
     .docs-sidebar, .docs-aside { padding: 24px; position: sticky; top: 96px; height: fit-content; }
@@ -67,13 +67,13 @@ require __DIR__ . '/includes/header.php';
 <main class="docs-layout">
     <aside class="docs-sidebar">
       <h3>目录</h3>
-      <a class="active" href="docs.php">文档首页</a>
-      <a href="docs-overview.php">概览</a>
-      <a href="docs-server-info.php">服务器信息</a>
-      <a href="docs-command-guide.php">指令说明</a>
-      <a href="docs-rules.php">玩家守则</a>
-      <a href="docs-guide.php">新手指南</a>
-      <a href="docs-faq.php">常见问题</a>
+      <a class="active" href="docs">文档首页</a>
+      <a href="docs-overview">概览</a>
+      <a href="docs-server-info">服务器信息</a>
+      <a href="docs-command-guide">指令说明</a>
+      <a href="docs-rules">玩家守则</a>
+      <a href="docs-guide">新手指南</a>
+      <a href="docs-faq">常见问题</a>
     </aside>
 
     <section class="docs-content">
@@ -91,32 +91,32 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="docs-links" id="docs-links">
-        <a class="docs-link-card" href="docs-overview.php" data-keywords="概览 快速了解 介绍">
+        <a class="docs-link-card" href="docs-overview" data-keywords="概览 快速了解 介绍">
           <h3>概览</h3>
           <p>快速了解服务器与文档结构。</p>
           <span class="meta">Overview</span>
         </a>
-        <a class="docs-link-card" href="docs-server-info.php" data-keywords="服务器信息 ip 版本 模式">
+        <a class="docs-link-card" href="docs-server-info" data-keywords="服务器信息 ip 版本 模式">
           <h3>服务器信息</h3>
           <p>查看服务器地址、版本、模式等信息。</p>
           <span class="meta">Info</span>
         </a>
-        <a class="docs-link-card" href="docs-command-guide.php" data-keywords="指令 说明 命令">
+        <a class="docs-link-card" href="docs-command-guide" data-keywords="指令 说明 命令">
           <h3>指令说明</h3>
           <p>整理常用指令与权限说明。</p>
           <span class="meta">Commands</span>
         </a>
-        <a class="docs-link-card" href="docs-rules.php" data-keywords="玩家守则 规则 纪律">
+        <a class="docs-link-card" href="docs-rules" data-keywords="玩家守则 规则 纪律">
           <h3>玩家守则</h3>
           <p>服务器内的行为规范和注意事项。</p>
           <span class="meta">Rules</span>
         </a>
-        <a class="docs-link-card" href="docs-guide.php" data-keywords="新手 指南 入服 教程">
+        <a class="docs-link-card" href="docs-guide" data-keywords="新手 指南 入服 教程">
           <h3>新手指南</h3>
           <p>新玩家入服流程与基础说明。</p>
           <span class="meta">Guide</span>
         </a>
-        <a class="docs-link-card" href="docs-faq.php" data-keywords="常见问题 faq 问答">
+        <a class="docs-link-card" href="docs-faq" data-keywords="常见问题 faq 问答">
           <h3>常见问题</h3>
           <p>常见疑问和快速解答。</p>
           <span class="meta">FAQ</span>
@@ -128,15 +128,15 @@ require __DIR__ . '/includes/header.php';
       <h3>快捷入口</h3>
       <div class="mini-card">
         <div class="label">文档首页</div>
-        <div class="value"><a href="docs.php">返回文档中心</a></div>
+        <div class="value"><a href="docs">返回文档中心</a></div>
       </div>
       <div class="mini-card">
         <div class="label">服务器状态</div>
-        <div class="value"><a href="status.php">查看实时状态</a></div>
+        <div class="value"><a href="status">查看实时状态</a></div>
       </div>
       <div class="mini-card">
         <div class="label">活动公告</div>
-        <div class="value"><a href="huodong.php">查看活动页</a></div>
+        <div class="value"><a href="huodong">查看活动页</a></div>
       </div>
     </aside>
   </main>
@@ -151,7 +151,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');

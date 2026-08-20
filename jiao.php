@@ -4,7 +4,7 @@
  */
 $page_title = "如何加入服务器 - LuckyClover";
 $page_desc = "查看 LuckyClover 加入方式，了解客户端准备、交流群入口与入服流程。";
-$extra_css = <<<CSS
+$extra_css = <<<'CSS'
 .steps { max-width: 700px; margin: 0 auto; }
     .step-card { display: flex; gap: 24px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: 20px; }
     .step-number { width: 48px; height: 48px; background: var(--accent-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; flex-shrink: 0; }
@@ -58,7 +58,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');

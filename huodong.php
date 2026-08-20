@@ -4,8 +4,8 @@
  */
 $page_title = "活动 - LuckyClover";
 $page_desc = "查看 LuckyClover 最新活动公告，了解活动安排、报名方式与历史活动记录。";
-$active_nav = "huodong.php";
-$extra_css = <<<CSS
+$active_nav = "huodong";
+$extra_css = <<<'CSS'
 .page-wrap {
       max-width: 980px;
       margin: 0 auto;
@@ -290,7 +290,7 @@ require __DIR__ . '/includes/header.php';
   </main>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');

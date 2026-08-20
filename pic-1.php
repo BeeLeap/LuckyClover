@@ -4,7 +4,7 @@
  */
 $page_title = "服内风景 - LuckyClover";
 $page_desc = "浏览 LuckyClover 服内风景截图，查看玩家建筑与服务器内景观展示。";
-$extra_css = <<<CSS
+$extra_css = <<<'CSS'
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .gallery-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease; }
     .gallery-item:hover { transform: translateY(-4px); border-color: var(--border-hover); }
@@ -41,7 +41,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');

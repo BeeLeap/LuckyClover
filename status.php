@@ -4,8 +4,8 @@
  */
 $page_title = "服务器状态 - LuckyClover";
 $page_desc = "查看 LuckyClover 服务器状态，了解在线人数、版本、游戏模式与运行情况。";
-$active_nav = "status.php";
-$extra_css = <<<CSS
+$active_nav = "status";
+$extra_css = <<<'CSS'
 .status-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 48px; text-align: center; max-width: 760px; margin: 0 auto; }
     .status-server-ip { font-size: 1.5rem; font-weight: 600; margin: 16px 0; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md); }
     .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 210, 106, 0.1); color: #00d26a; border-radius: 50px; font-weight: 500; }
@@ -151,7 +151,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 async function updateServerStatus() {
       try {
         const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=30081&stype=auto&_=${Date.now()}`, { cache: 'no-store' });

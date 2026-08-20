@@ -4,8 +4,8 @@
  */
 $page_title = "最新动态 - LuckyClover";
 $page_desc = "查看 LuckyClover 最新动态，获取公告、更新记录和社区通知。";
-$active_nav = "note.php";
-$extra_css = <<<CSS
+$active_nav = "note";
+$extra_css = <<<'CSS'
 .news-list { max-width: 900px; margin: 0 auto; display: grid; gap: 20px; }
     .news-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; }
     .news-date { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 10px; }
@@ -50,7 +50,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');

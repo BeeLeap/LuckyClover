@@ -3,8 +3,8 @@
  * team.php
  */
 $page_desc = "了解 LuckyClover 管理团队，查看服务器核心成员与各自负责的工作。";
-$active_nav = "team.php";
-$extra_css = <<<CSS
+$active_nav = "team";
+$extra_css = <<<'CSS'
 .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
     .team-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; text-align: center; transition: all 0.3s ease; }
     .team-card:hover { transform: translateY(-4px); border-color: var(--border-hover); box-shadow: var(--shadow-card); }
@@ -43,7 +43,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');

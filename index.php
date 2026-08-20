@@ -4,7 +4,7 @@
  */
 $page_desc = "LuckyClover Minecraft 服务器官网，查看服务器状态、活动公告、加入方式与玩家文档。";
 $active_nav = "/";
-$extra_css = <<<CSS
+$extra_css = <<<'CSS'
 .home-deco {
       position: fixed;
       inset: 0;
@@ -381,8 +381,8 @@ require __DIR__ . '/includes/header.php';
         </div>
 
         <div class="hero-buttons">
-          <a href="jiao.php" class="btn btn-primary">立即加入</a>
-          <a href="status.php" class="btn btn-secondary">查看服务器状态</a>
+          <a href="jiao" class="btn btn-primary">立即加入</a>
+          <a href="status" class="btn btn-secondary">查看服务器状态</a>
         </div>
       </div>
     </div>
@@ -404,28 +404,28 @@ require __DIR__ . '/includes/header.php';
         <p>快速访问服务器常用页面。</p>
       </div>
       <div class="links-grid">
-        <a href="docs.php" class="link-card">
+        <a href="docs" class="link-card">
           <div class="icon">📚</div>
           <div class="info">
             <h4>玩家文档</h4>
             <p>查看规则、指令、新手指南和常见问题。</p>
           </div>
         </a>
-        <a href="status.php" class="link-card">
+        <a href="status" class="link-card">
           <div class="icon">📊</div>
           <div class="info">
             <h4>服务器状态</h4>
             <p>实时查看在线人数、版本和 MOTD。</p>
           </div>
         </a>
-        <a href="huodong.php" class="link-card">
+        <a href="huodong" class="link-card">
           <div class="icon">🎉</div>
           <div class="info">
             <h4>活动页面</h4>
             <p>查看当前活动和历史活动记录。</p>
           </div>
         </a>
-        <a href="team.php" class="link-card">
+        <a href="team" class="link-card">
           <div class="icon">👥</div>
           <div class="info">
             <h4>管理团队</h4>
@@ -575,14 +575,14 @@ require __DIR__ . '/includes/header.php';
           <li>如有问题请联系管理员处理。</li>
         </ul>
         <div class="hero-buttons">
-          <a href="jiao.php" class="btn btn-primary">申请加入</a>
+          <a href="jiao" class="btn btn-primary">申请加入</a>
         </div>
       </div>
     </div>
   </section>
 
 <?php
-$extra_js = <<<JS
+$extra_js = <<<'JS'
 window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       header.classList.toggle('scrolled', window.scrollY > 50);

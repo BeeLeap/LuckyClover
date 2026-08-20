@@ -17,22 +17,22 @@ return [
     // 导航菜单
     'nav' => [
         ['url' => '/',          'label' => '首页'],
-        ['url' => 'docs.php',   'label' => '文档'],
-        ['url' => 'huodong.php','label' => '活动'],
-        ['url' => 'team.php',   'label' => '团队'],
-        ['url' => 'status.php', 'label' => '服务器状态'],
-        ['url' => 'note.php',   'label' => '最新动态'],
+        ['url' => 'docs',       'label' => '文档'],
+        ['url' => 'huodong',    'label' => '活动'],
+        ['url' => 'team',       'label' => '团队'],
+        ['url' => 'status',     'label' => '服务器状态'],
+        ['url' => 'note',       'label' => '最新动态'],
     ],
 
     // 文档侧边栏
     'docs_nav' => [
-        ['url' => 'docs.php',              'label' => '文档首页'],
-        ['url' => 'docs-overview.php',     'label' => '概览'],
-        ['url' => 'docs-server-info.php',  'label' => '服务器信息'],
-        ['url' => 'docs-command-guide.php','label' => '指令说明'],
-        ['url' => 'docs-rules.php',        'label' => '玩家守则'],
-        ['url' => 'docs-guide.php',        'label' => '新手指南'],
-        ['url' => 'docs-faq.php',          'label' => '常见问题'],
+        ['url' => 'docs',              'label' => '文档首页'],
+        ['url' => 'docs-overview',     'label' => '概览'],
+        ['url' => 'docs-server-info',  'label' => '服务器信息'],
+        ['url' => 'docs-command-guide','label' => '指令说明'],
+        ['url' => 'docs-rules',        'label' => '玩家守则'],
+        ['url' => 'docs-guide',        'label' => '新手指南'],
+        ['url' => 'docs-faq',          'label' => '常见问题'],
     ],
 
     // 服务器列表
