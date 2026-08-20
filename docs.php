@@ -1,0 +1,218 @@
+﻿<?php
+/**
+ * docs.php
+ */
+$page_title = "文档 - LuckyClover";
+$page_desc = "LuckyClover 文档中心，集中查看服务器概览、规则、指令说明、新手指南和常见问题。";
+$active_nav = "docs.php";
+$docs_search = true;
+$active_doc = "docs.php";
+$extra_css = <<<CSS
+.docs-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr) 260px; gap: 24px; padding: 120px 24px 48px; max-width: 1440px; margin: 0 auto; }
+    .docs-sidebar, .docs-aside, .docs-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
+    .docs-sidebar, .docs-aside { padding: 24px; position: sticky; top: 96px; height: fit-content; }
+    .docs-sidebar h3, .docs-aside h3 { font-size: 1rem; margin-bottom: 16px; color: var(--text-primary); }
+    .docs-sidebar a { display: block; padding: 12px 14px; border-radius: 10px; color: var(--text-secondary); margin-bottom: 8px; transition: all 0.25s ease; }
+    .docs-sidebar a:hover, .docs-sidebar a.active { background: rgba(108, 92, 231, 0.14); color: var(--text-primary); }
+    .docs-content { padding: 32px; min-width: 0; }
+    .docs-content h1 { font-size: 2.5rem; margin-bottom: 14px; }
+    .docs-content h2 { font-size: 1.4rem; margin: 28px 0 14px; }
+    .docs-content p { color: var(--text-secondary); line-height: 1.85; margin-bottom: 16px; }
+    .docs-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+    .docs-card { padding: 18px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-color); }
+    .docs-card .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .docs-card .value { font-size: 1rem; color: var(--text-primary); font-weight: 600; word-break: break-word; }
+    .docs-block { padding: 18px 18px 18px 20px; border-left: 3px solid var(--accent-secondary); background: rgba(162, 155, 254, 0.08); border-radius: 0 14px 14px 0; margin: 18px 0; }
+    .docs-list { display: grid; gap: 12px; margin: 16px 0 0; }
+    .docs-list .item { padding: 14px 16px; border-radius: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary); }
+    .docs-aside .mini-card { padding: 14px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 12px; }
+    .docs-aside .mini-card .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+    .docs-aside .mini-card .value { color: var(--text-primary); font-weight: 600; }
+    .docs-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+    .docs-topbar .tag { padding: 8px 12px; border-radius: 999px; background: rgba(108, 92, 231, 0.14); color: var(--accent-secondary); font-size: 0.875rem; font-weight: 600; }
+    .docs-search-btn { padding: 10px 14px; border-radius: 999px; background: rgba(162, 155, 254, 0.12); border: 1px solid rgba(162, 155, 254, 0.2); color: var(--text-primary); cursor: pointer; font-weight: 600; }
+    .docs-search-btn:hover { background: rgba(162, 155, 254, 0.18); }
+    .docs-search-modal { position: fixed; inset: 0; display: none; align-items: flex-start; justify-content: center; padding: 120px 16px 24px; background: rgba(7, 10, 18, 0.72); backdrop-filter: blur(10px); z-index: 200; }
+    .docs-search-modal.active { display: flex; }
+    .docs-search-panel { width: min(760px, 100%); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; box-shadow: var(--shadow-card); overflow: hidden; }
+    .docs-search-panel input { width: 100%; padding: 18px 20px; border: 0; background: var(--bg-secondary); color: var(--text-primary); outline: none; font-size: 1rem; }
+    .docs-search-panel input::placeholder { color: var(--text-muted); }
+    .docs-search-results { max-height: 420px; overflow: auto; padding: 12px; display: grid; gap: 10px; }
+    .docs-search-result { display: block; padding: 14px 16px; border-radius: 14px; background: var(--bg-secondary); border: 1px solid var(--border-color); }
+    .docs-search-result strong { display: block; margin-bottom: 6px; color: var(--text-primary); }
+    .docs-search-result span { color: var(--text-secondary); font-size: 0.92rem; }
+    .docs-search { display: flex; gap: 12px; align-items: center; margin: 22px 0 10px; }
+    .docs-search input { flex: 1; min-width: 0; padding: 14px 16px; border-radius: 999px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); outline: none; }
+    .docs-search input::placeholder { color: var(--text-muted); }
+    .docs-search .hint { white-space: nowrap; font-size: 0.85rem; color: var(--text-muted); }
+    .docs-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 18px; }
+    .docs-link-card { display: block; padding: 18px; border-radius: 18px; background: var(--bg-secondary); border: 1px solid var(--border-color); transition: all 0.25s ease; }
+    .docs-link-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--shadow-card); }
+    .docs-link-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text-primary); }
+    .docs-link-card p { margin: 0; font-size: 0.95rem; color: var(--text-secondary); }
+    .docs-link-card .meta { display: inline-flex; margin-top: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(162, 155, 254, 0.12); color: var(--accent-secondary); font-size: 0.8rem; }
+    @media (max-width: 1100px) {
+      .docs-layout { grid-template-columns: 220px minmax(0, 1fr); }
+      .docs-aside { grid-column: 1 / -1; position: static; }
+    }
+    @media (max-width: 768px) {
+      .docs-layout { grid-template-columns: 1fr; padding-top: 96px; }
+      .docs-sidebar, .docs-aside, .docs-content { position: static; }
+      .docs-content h1 { font-size: 2rem; }
+    }
+CSS;
+require __DIR__ . '/includes/header.php';
+?>
+
+<main class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>目录</h3>
+      <a class="active" href="docs.php">文档首页</a>
+      <a href="docs-overview.php">概览</a>
+      <a href="docs-server-info.php">服务器信息</a>
+      <a href="docs-command-guide.php">指令说明</a>
+      <a href="docs-rules.php">玩家守则</a>
+      <a href="docs-guide.php">新手指南</a>
+      <a href="docs-faq.php">常见问题</a>
+    </aside>
+
+    <section class="docs-content">
+      <div class="docs-topbar">
+        <div class="tag">LuckyClover Docs</div>
+        <div class="tag">Minecraft Bedrock</div>
+      </div>
+
+      <h1>文档中心</h1>
+      <p>这里把 LuckyClover 的文档拆成多个独立页面，方便按主题查看。</p>
+
+      <div class="docs-search">
+        <input id="docs-search-input" type="text" placeholder="搜索文档，按 Ctrl + K 聚焦">
+        <div class="hint">Ctrl + K</div>
+      </div>
+
+      <div class="docs-links" id="docs-links">
+        <a class="docs-link-card" href="docs-overview.php" data-keywords="概览 快速了解 介绍">
+          <h3>概览</h3>
+          <p>快速了解服务器与文档结构。</p>
+          <span class="meta">Overview</span>
+        </a>
+        <a class="docs-link-card" href="docs-server-info.php" data-keywords="服务器信息 ip 版本 模式">
+          <h3>服务器信息</h3>
+          <p>查看服务器地址、版本、模式等信息。</p>
+          <span class="meta">Info</span>
+        </a>
+        <a class="docs-link-card" href="docs-command-guide.php" data-keywords="指令 说明 命令">
+          <h3>指令说明</h3>
+          <p>整理常用指令与权限说明。</p>
+          <span class="meta">Commands</span>
+        </a>
+        <a class="docs-link-card" href="docs-rules.php" data-keywords="玩家守则 规则 纪律">
+          <h3>玩家守则</h3>
+          <p>服务器内的行为规范和注意事项。</p>
+          <span class="meta">Rules</span>
+        </a>
+        <a class="docs-link-card" href="docs-guide.php" data-keywords="新手 指南 入服 教程">
+          <h3>新手指南</h3>
+          <p>新玩家入服流程与基础说明。</p>
+          <span class="meta">Guide</span>
+        </a>
+        <a class="docs-link-card" href="docs-faq.php" data-keywords="常见问题 faq 问答">
+          <h3>常见问题</h3>
+          <p>常见疑问和快速解答。</p>
+          <span class="meta">FAQ</span>
+        </a>
+      </div>
+    </section>
+
+    <aside class="docs-aside">
+      <h3>快捷入口</h3>
+      <div class="mini-card">
+        <div class="label">文档首页</div>
+        <div class="value"><a href="docs.php">返回文档中心</a></div>
+      </div>
+      <div class="mini-card">
+        <div class="label">服务器状态</div>
+        <div class="value"><a href="status.php">查看实时状态</a></div>
+      </div>
+      <div class="mini-card">
+        <div class="label">活动公告</div>
+        <div class="value"><a href="huodong.php">查看活动页</a></div>
+      </div>
+    </aside>
+  </main>
+
+  
+
+  <div class="docs-search-modal" id="docs-search-modal" aria-hidden="true">
+    <div class="docs-search-panel">
+      <input id="docs-modal-input" type="text" placeholder="搜索文档，按 Ctrl + K">
+      <div class="docs-search-results" id="docs-modal-results"></div>
+    </div>
+  </div>
+
+<?php
+$extra_js = <<<JS
+function toggleMenu() {
+      const nav = document.getElementById('main-nav');
+      const button = document.querySelector('.mobile-menu-btn');
+      const isActive = nav.classList.toggle('active');
+      button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    }
+    document.querySelectorAll('#main-nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) { const nav = document.getElementById('main-nav'); const button = document.querySelector('.mobile-menu-btn'); nav.classList.remove('active'); button.setAttribute('aria-expanded', 'false'); } }); });
+
+    const searchInput = document.getElementById('docs-search-input');
+    const cards = Array.from(document.querySelectorAll('#docs-links .docs-link-card'));
+
+    function filterDocs() {
+      const query = searchInput.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const text = `${card.textContent} ${card.dataset.keywords || ''}`.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterDocs);
+    document.addEventListener('keydown', (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        openDocsSearch();
+      }
+    });
+
+    const docsModal = document.getElementById('docs-search-modal');
+    const docsModalInput = document.getElementById('docs-modal-input');
+    const docsModalResults = document.getElementById('docs-modal-results');
+    const docsPages = [
+      { title: '概览', href: 'docs-overview', desc: '快速了解服务器与文档结构。', keywords: '概览 快速了解 介绍' },
+      { title: '服务器信息', href: 'docs-server-info', desc: '查看服务器地址、版本、模式等信息。', keywords: '服务器信息 ip 版本 模式' },
+      { title: '指令说明', href: 'docs-command-guide', desc: '整理常用指令与权限说明。', keywords: '指令 说明 命令' },
+      { title: '玩家守则', href: 'docs-rules', desc: '服务器内的行为规范和注意事项。', keywords: '玩家守则 规则 纪律' },
+      { title: '新手指南', href: 'docs-guide', desc: '新玩家入服流程与基础说明。', keywords: '新手 指南 入服 教程' },
+      { title: '常见问题', href: 'docs-faq', desc: '常见疑问和快速解答。', keywords: '常见问题 faq 问答' },
+    ];
+
+    function renderDocsResults(query) {
+      const text = query.trim().toLowerCase();
+      const items = docsPages.filter(page => `${page.title} ${page.desc} ${page.keywords}`.toLowerCase().includes(text));
+      docsModalResults.innerHTML = items.map(page => `<a class="docs-search-result" href="${page.href}"><strong>${page.title}</strong><span>${page.desc}</span></a>`).join('') || '<div class="docs-search-result"><strong>没有结果</strong><span>试试别的关键词</span></div>';
+    }
+
+    function openDocsSearch() {
+      docsModal.classList.add('active');
+      docsModal.setAttribute('aria-hidden', 'false');
+      docsModalInput.value = '';
+      renderDocsResults('');
+      setTimeout(() => docsModalInput.focus(), 0);
+    }
+
+    function closeDocsSearch() {
+      docsModal.classList.remove('active');
+      docsModal.setAttribute('aria-hidden', 'true');
+    }
+
+    docsModalInput.addEventListener('input', () => renderDocsResults(docsModalInput.value));
+    docsModal.addEventListener('click', (event) => { if (event.target === docsModal) closeDocsSearch(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDocsSearch(); });
+JS;
+require __DIR__ . '/includes/footer.php';
+?>

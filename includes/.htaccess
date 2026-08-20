@@ -1,0 +1,10 @@
+# 禁止直接访问 includes 目录下的文件
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^.*$ - [F,L]
+</IfModule>
+
+# Apache 2.4+
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>

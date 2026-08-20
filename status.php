@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="查看 LuckyClover 服务器状态，了解在线人数、版本、游戏模式与运行情况。">
-  <title>服务器状态 - LuckyClover</title>
-  <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="icon" href="images/cd.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    .status-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 48px; text-align: center; max-width: 760px; margin: 0 auto; }
+﻿<?php
+/**
+ * status.php
+ */
+$page_title = "服务器状态 - LuckyClover";
+$page_desc = "查看 LuckyClover 服务器状态，了解在线人数、版本、游戏模式与运行情况。";
+$active_nav = "status.php";
+$extra_css = <<<CSS
+.status-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 48px; text-align: center; max-width: 760px; margin: 0 auto; }
     .status-server-ip { font-size: 1.5rem; font-weight: 600; margin: 16px 0; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md); }
     .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 210, 106, 0.1); color: #00d26a; border-radius: 50px; font-weight: 500; }
     .status-badge .dot { width: 8px; height: 8px; background: #00d26a; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
@@ -22,27 +19,11 @@
     .status-detail .label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
     .status-detail .value { font-size: 1rem; font-weight: 500; }
     @media (max-width: 600px) { .status-details { grid-template-columns: 1fr; } }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="/" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
-        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
-        <nav id="main-nav">
-          <a href="/">首页</a>
-          <a href="docs">文档</a>
-          <a href="huodong">活动</a>
-          <a href="team">团队</a>
-          <a href="status" class="active" aria-current="page">服务器状态</a>
-          <a href="note">最新动态</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+CSS;
+require __DIR__ . '/includes/header.php';
+?>
 
-  <section class="page-header">
+<section class="page-header">
     <div class="container">
       <h1>服务器<span style="color: var(--accent-secondary);">状态</span></h1>
       <p>实时查看 LuckyClover 运行情况</p>
@@ -169,20 +150,9 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2026 LuckyClover. All Rights Reserved.</p>
-        </div>
-        
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    async function updateServerStatus() {
+<?php
+$extra_js = <<<JS
+async function updateServerStatus() {
       try {
         const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=30081&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
@@ -325,6 +295,6 @@
       button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     }
     document.querySelectorAll('#main-nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) { const nav = document.getElementById('main-nav'); const button = document.querySelector('.mobile-menu-btn'); nav.classList.remove('active'); button.setAttribute('aria-expanded', 'false'); } }); });
-  </script>
-</body>
-</html>
+JS;
+require __DIR__ . '/includes/footer.php';
+?>

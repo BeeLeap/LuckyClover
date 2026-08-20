@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LuckyClover Minecraft 服务器官网，查看服务器状态、活动公告、加入方式与玩家文档。">
-  <meta name="keywords" content="LuckyClover, Minecraft, 我的世界, 基岩版服务器, Java服务器">
-  <title>LuckyClover | 官方网站</title>
-  <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="icon" href="images/cd.ico">
-  <style>
-    .home-deco {
+﻿<?php
+/**
+ * index.php
+ */
+$page_desc = "LuckyClover Minecraft 服务器官网，查看服务器状态、活动公告、加入方式与玩家文档。";
+$active_nav = "/";
+$extra_css = <<<CSS
+.home-deco {
       position: fixed;
       inset: 0;
       overflow: hidden;
@@ -298,30 +294,13 @@
       from { transform: translateY(0); }
       to { transform: translateY(-10px); }
     }
-  </style>
-</head>
-<body>
-  <div class="home-deco" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+CSS;
+require __DIR__ . '/includes/header.php';
+?>
 
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="/" class="logo">
-          <div class="logo-icon">🍀</div>
-          <span>LuckyClover</span>
-        </a>
-        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
-        <nav id="main-nav">
-          <a href="/" class="active" aria-current="page">首页</a>
-          <a href="docs">文档</a>
-          <a href="huodong">活动</a>
-          <a href="team">团队</a>
-          <a href="status">服务器状态</a>
-          <a href="note">最新动态</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+<div class="home-deco" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+  
 
   <section class="hero" id="home">
     <div class="container">
@@ -402,8 +381,8 @@
         </div>
 
         <div class="hero-buttons">
-          <a href="jiao" class="btn btn-primary">立即加入</a>
-          <a href="status" class="btn btn-secondary">查看服务器状态</a>
+          <a href="jiao.php" class="btn btn-primary">立即加入</a>
+          <a href="status.php" class="btn btn-secondary">查看服务器状态</a>
         </div>
       </div>
     </div>
@@ -425,28 +404,28 @@
         <p>快速访问服务器常用页面。</p>
       </div>
       <div class="links-grid">
-        <a href="docs" class="link-card">
+        <a href="docs.php" class="link-card">
           <div class="icon">📚</div>
           <div class="info">
             <h4>玩家文档</h4>
             <p>查看规则、指令、新手指南和常见问题。</p>
           </div>
         </a>
-        <a href="status" class="link-card">
+        <a href="status.php" class="link-card">
           <div class="icon">📊</div>
           <div class="info">
             <h4>服务器状态</h4>
             <p>实时查看在线人数、版本和 MOTD。</p>
           </div>
         </a>
-        <a href="huodong" class="link-card">
+        <a href="huodong.php" class="link-card">
           <div class="icon">🎉</div>
           <div class="info">
             <h4>活动页面</h4>
             <p>查看当前活动和历史活动记录。</p>
           </div>
         </a>
-        <a href="team" class="link-card">
+        <a href="team.php" class="link-card">
           <div class="icon">👥</div>
           <div class="info">
             <h4>管理团队</h4>
@@ -596,25 +575,15 @@
           <li>如有问题请联系管理员处理。</li>
         </ul>
         <div class="hero-buttons">
-          <a href="jiao" class="btn btn-primary">申请加入</a>
+          <a href="jiao.php" class="btn btn-primary">申请加入</a>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2026 LuckyClover. All Rights Reserved.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    window.addEventListener('scroll', () => {
+<?php
+$extra_js = <<<JS
+window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       header.classList.toggle('scrolled', window.scrollY > 50);
     });
@@ -749,6 +718,6 @@
     updateServerStatusJava();
     updateServerStatusSurvival();
     updateServerStatusTest();
-  </script>
-</body>
-</html>
+JS;
+require __DIR__ . '/includes/footer.php';
+?>

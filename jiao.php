@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="查看 LuckyClover 加入方式，了解客户端准备、交流群入口与入服流程。">
-  <title>如何加入服务器 - LuckyClover</title>
-  <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="icon" href="images/cd.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    .steps { max-width: 700px; margin: 0 auto; }
+﻿<?php
+/**
+ * jiao.php
+ */
+$page_title = "如何加入服务器 - LuckyClover";
+$page_desc = "查看 LuckyClover 加入方式，了解客户端准备、交流群入口与入服流程。";
+$extra_css = <<<CSS
+.steps { max-width: 700px; margin: 0 auto; }
     .step-card { display: flex; gap: 24px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: 20px; }
     .step-number { width: 48px; height: 48px; background: var(--accent-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; flex-shrink: 0; }
     .step-content h3 { font-size: 1.25rem; margin-bottom: 12px; }
@@ -18,27 +14,11 @@
     .page-header { text-align: center; padding: 120px 24px 60px; }
     .page-header h1 { font-size: 3rem; margin-bottom: 16px; }
     .page-header p { font-size: 1.125rem; color: var(--text-secondary); }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="/" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
-        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
-        <nav id="main-nav">
-          <a href="/">首页</a>
-          <a href="docs">文档</a>
-          <a href="huodong">活动</a>
-          <a href="team">团队</a>
-          <a href="status">服务器状态</a>
-          <a href="note">最新动态</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+CSS;
+require __DIR__ . '/includes/header.php';
+?>
 
-  <section class="page-header">
+<section class="page-header">
     <div class="container">
       <h1>如何<span style="color: var(--accent-secondary);">加入</span></h1>
       <p>三步快速进入 LuckyClover</p>
@@ -77,27 +57,15 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2026 LuckyClover. All Rights Reserved.</p>
-        </div>
-        
-      </div>
-    </div>
-  </footer>
-  <script>
-    function toggleMenu() {
+<?php
+$extra_js = <<<JS
+function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');
       const isActive = nav.classList.toggle('active');
       button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     }
     document.querySelectorAll('#main-nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) { const nav = document.getElementById('main-nav'); const button = document.querySelector('.mobile-menu-btn'); nav.classList.remove('active'); button.setAttribute('aria-expanded', 'false'); } }); });
-  </script>
-</body>
-</html>
-
-
+JS;
+require __DIR__ . '/includes/footer.php';
+?>

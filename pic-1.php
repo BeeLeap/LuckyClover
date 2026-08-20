@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="浏览 LuckyClover 服内风景截图，查看玩家建筑与服务器内景观展示。">
-  <title>服内风景 - LuckyClover</title>
-  <link rel="stylesheet" href="assets/css/modern-fixed.css">
-  <link rel="icon" href="images/cd.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+﻿<?php
+/**
+ * pic-1.php
+ */
+$page_title = "服内风景 - LuckyClover";
+$page_desc = "浏览 LuckyClover 服内风景截图，查看玩家建筑与服务器内景观展示。";
+$extra_css = <<<CSS
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .gallery-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease; }
     .gallery-item:hover { transform: translateY(-4px); border-color: var(--border-hover); }
     .gallery-item img { width: 100%; height: 250px; object-fit: cover; }
@@ -19,27 +15,11 @@
     .page-header { text-align: center; padding: 120px 24px 60px; }
     .page-header h1 { font-size: 3rem; margin-bottom: 16px; }
     .page-header p { font-size: 1.125rem; color: var(--text-secondary); }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="/" class="logo"><div class="logo-icon">🍀</div><span>LuckyClover</span></a>
-        <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
-        <nav id="main-nav">
-          <a href="/">首页</a>
-          <a href="docs">文档</a>
-          <a href="huodong">活动</a>
-          <a href="team">团队</a>
-          <a href="status">服务器状态</a>
-          <a href="note">最新动态</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+CSS;
+require __DIR__ . '/includes/header.php';
+?>
 
-  <section class="page-header">
+<section class="page-header">
     <div class="container">
       <h1>服内<span style="color: var(--accent-secondary);">风景</span></h1>
       <p>玩家日常建造与探索截图</p>
@@ -60,27 +40,15 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
-          <p>© 2026 LuckyClover. All Rights Reserved.</p>
-        </div>
-        
-      </div>
-    </div>
-  </footer>
-  <script>
-    function toggleMenu() {
+<?php
+$extra_js = <<<JS
+function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');
       const isActive = nav.classList.toggle('active');
       button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     }
     document.querySelectorAll('#main-nav a').forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) { const nav = document.getElementById('main-nav'); const button = document.querySelector('.mobile-menu-btn'); nav.classList.remove('active'); button.setAttribute('aria-expanded', 'false'); } }); });
-  </script>
-</body>
-</html>
-
-
+JS;
+require __DIR__ . '/includes/footer.php';
+?>
