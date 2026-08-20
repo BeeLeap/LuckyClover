@@ -385,6 +385,22 @@
           </div>
         </div>
 
+        <div class="server-row-title">Java版生存服</div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-value" id="online-test">--</div>
+            <div class="stat-label">在线玩家</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="version-test">--</div>
+            <div class="stat-label">版本</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="status-test">检测中</div>
+            <div class="stat-label">状态</div>
+          </div>
+        </div>
+
         <div class="hero-buttons">
           <a href="jiao" class="btn btn-primary">立即加入</a>
           <a href="status" class="btn btn-secondary">查看服务器状态</a>
@@ -704,11 +720,35 @@
     setInterval(updateServerStatus, 30000);
     setInterval(updateServerStatusJava, 30000);
     setInterval(updateServerStatusSurvival, 30000);
+
+    async function updateServerStatusTest() {
+      try {
+        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=30025&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+        const data = await response.json();
+
+        if (data.status === 'online') {
+          document.getElementById('online-test').textContent = `${data.players.online}/${data.players.max}`;
+          document.getElementById('version-test').textContent = data.version || '--';
+          document.getElementById('status-test').textContent = '在线';
+        } else {
+          document.getElementById('online-test').textContent = '离线';
+          document.getElementById('version-test').textContent = '--';
+          document.getElementById('status-test').textContent = '离线';
+        }
+      } catch (error) {
+        document.getElementById('online-test').textContent = '--';
+        document.getElementById('version-test').textContent = '--';
+        document.getElementById('status-test').textContent = '查询失败';
+      }
+    }
+
+    setInterval(updateServerStatusTest, 30000);
     updateUptime();
     updateUptimeJava();
     updateServerStatus();
     updateServerStatusJava();
     updateServerStatusSurvival();
+    updateServerStatusTest();
   </script>
 </body>
 </html>
