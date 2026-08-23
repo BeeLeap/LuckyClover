@@ -67,4 +67,17 @@ return [
     'assets' => [
         'css' => 'assets/css/modern-fixed.css',
     ],
+
+    // MySQL 与后台配置。生产环境请通过环境变量设置数据库和管理员密码。
+    'database' => [
+        'host'     => getenv('LUCKYCLOVER_DB_HOST') ?: '127.0.0.1',
+        'port'     => getenv('LUCKYCLOVER_DB_PORT') ?: '3306',
+        'name'     => getenv('LUCKYCLOVER_DB_NAME') ?: 'luckyclover',
+        'user'     => getenv('LUCKYCLOVER_DB_USER') ?: 'luckyclover',
+        'password' => getenv('LUCKYCLOVER_DB_PASSWORD') ?: '',
+    ],
+    'admin' => [
+        'username' => getenv('LUCKYCLOVER_ADMIN_USER') ?: 'admin',
+        'password' => getenv('LUCKYCLOVER_ADMIN_PASSWORD') ?: 'change-me-now',
+    ],
 ];

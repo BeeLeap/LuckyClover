@@ -5,6 +5,8 @@
 $page_title = "最新动态 - LuckyClover";
 $page_desc = "查看 LuckyClover 最新动态，获取公告、更新记录和社区通知。";
 $active_nav = "note";
+require __DIR__ . '/includes/bootstrap.php';
+$news = $db->query("SELECT title, content, created_at FROM news WHERE status = 'published' ORDER BY created_at DESC")->fetchAll();
 $extra_css = <<<'CSS'
 .news-list { max-width: 900px; margin: 0 auto; display: grid; gap: 20px; }
     .news-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; }
@@ -27,25 +29,7 @@ require __DIR__ . '/includes/header.php';
 
   <section class="section">
     <div class="container">
-      <div class="news-list">
-        <article class="news-item">
-          <div class="news-date">2026-04-28</div>
-          <h3>官网页面维护完成</h3>
-          <p>本次更新修复了页面乱码、导航异常和脚本错误，同时统一了站点页脚与移动端菜单体验。</p>
-        </article>
-
-        <article class="news-item">
-          <div class="news-date">2026-04-20</div>
-          <h3>新成员入服说明优化</h3>
-          <p>加入流程页面新增了更清晰的三步引导，减少新玩家第一次进入时的配置成本。</p>
-        </article>
-
-        <article class="news-item">
-          <div class="news-date">2026-04-10</div>
-          <h3>社区建议征集</h3>
-          <p>欢迎在群内反馈你想要的玩法活动。我们会持续优化服务器体验与规则细节。</p>
-        </article>
-      </div>
+      <div class="news-list"><?php foreach ($news as $item): ?><article class="news-item"><div class="news-date"><?php echo e(substr($item['created_at'], 0, 10)); ?></div><h3><?php echo e($item['title']); ?></h3><p><?php echo nl2br(e($item['content'])); ?></p></article><?php endforeach; ?></div>
     </div>
   </section>
 
