@@ -15,6 +15,7 @@ LuckyClover Minecraft 服务器官网，使用原生 PHP + MySQL，包含前台�
 - PHP 7.4+，启用 `pdo_mysql` 扩展。
 - 在宝塔 MySQL 中创建数据库和独立数据库用户，并授予该数据库的完整权限。
 - 设置 `LUCKYCLOVER_DB_HOST`、`LUCKYCLOVER_DB_PORT`、`LUCKYCLOVER_DB_NAME`、`LUCKYCLOVER_DB_USER`、`LUCKYCLOVER_DB_PASSWORD`。
+- 也可以复制 `includes/config.local.example.php` 为 `includes/config.local.php`，填写服务器配置；该文件不会被 Git 提交。
 - Apache 需要启用 `.htaccess` 和 `mod_rewrite`，也可以直接访问 `.php` 文件。
 - 首次访问时会自动创建 `news` 表和一条示例新闻，数据库本身需要提前在宝塔创建。
 

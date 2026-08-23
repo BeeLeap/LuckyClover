@@ -3,7 +3,7 @@
  * LuckyClover 站点配置
  */
 
-return [
+$config = [
     // 站点信息
     'site' => [
         'name'        => 'LuckyClover',
@@ -81,3 +81,14 @@ return [
         'password' => getenv('LUCKYCLOVER_ADMIN_PASSWORD') ?: 'change-me-now',
     ],
 ];
+
+// Server-only settings live in config.local.php and are never committed.
+$localConfigPath = __DIR__ . '/config.local.php';
+if (is_file($localConfigPath)) {
+    $localConfig = require $localConfigPath;
+    if (is_array($localConfig)) {
+        $config = array_replace_recursive($config, $localConfig);
+    }
+}
+
+return $config;
