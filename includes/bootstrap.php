@@ -43,8 +43,8 @@ function require_admin(): void { if (!admin_logged_in()) { header('Location: log
 function host_metrics(): array {
     $load = function_exists('sys_getloadavg') ? sys_getloadavg() : [0, 0, 0];
     $memoryTotal = 0; $memoryAvailable = 0;
-    if (is_readable('/proc/meminfo')) {
-        $info = file_get_contents('/proc/meminfo');
+    if (@is_readable('/proc/meminfo')) {
+        $info = @file_get_contents('/proc/meminfo');
         preg_match('/MemTotal:\s+(\d+)/', $info, $total);
         preg_match('/MemAvailable:\s+(\d+)/', $info, $available);
         $memoryTotal = (int) ($total[1] ?? 0) * 1024;
