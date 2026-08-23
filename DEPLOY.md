@@ -79,3 +79,13 @@ cat ~/.ssh/luckyclover_deploy
 ```
 
 After that, every push to `main` deploys the website automatically. You can also run it manually from the GitHub Actions tab.
+
+## Local configuration
+
+The deployment uses `rsync --delete`, so server-only files must be explicitly excluded from synchronization. The workflow preserves:
+
+```text
+includes/config.local.php
+```
+
+Create that file on the server from `includes/config.local.example.php` and fill in the MySQL and administrator settings. Do not commit `config.local.php`; it is listed in `.gitignore` and excluded from the deployment workflow.

@@ -68,4 +68,5 @@ jobs:
             --exclude ".vs/" \
             --exclude ".claude/" \
             --exclude ".user.ini" \
+            --exclude "includes/config.local.php" \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
