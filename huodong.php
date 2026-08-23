@@ -5,6 +5,8 @@
 $page_title = "活动 - LuckyClover";
 $page_desc = "查看 LuckyClover 最新活动公告，了解活动安排、报名方式与历史活动记录。";
 $active_nav = "huodong";
+require __DIR__ . '/includes/bootstrap.php';
+$activities = $db->query("SELECT * FROM activities WHERE status = 'published' ORDER BY created_at DESC")->fetchAll();
 $extra_css = <<<'CSS'
 .page-wrap {
       max-width: 980px;
@@ -18,6 +20,8 @@ $extra_css = <<<'CSS'
       background: transparent;
       box-shadow: none;
     }
+
+    .legacy-activity { display: none; }
 
     .hero-card {
       border-radius: 30px;
@@ -181,7 +185,18 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <main class="page-wrap">
-    <section class="hero-card">
+    <section class="announce-grid">
+      <?php if (!$activities): ?><article class="announce-item"><h2>暂无已发布活动</h2><p>管理员可以在后台创建并发布活动。</p></article><?php endif; ?>
+      <?php foreach ($activities as $activity): ?>
+      <article class="announce-item">
+        <div class="tag-row"><span class="tag"><?php echo e($activity['start_at'] ?: substr($activity['created_at'], 0, 10)); ?></span><span class="tag"><?php echo e($activity['tags']); ?></span></div>
+        <h2><?php echo e($activity['title']); ?></h2>
+        <p><?php echo e($activity['summary']); ?></p>
+        <div class="event-detail" style="white-space: pre-line;"><?php echo e($activity['content']); ?></div>
+      </article>
+      <?php endforeach; ?>
+    </section>
+    <section class="hero-card legacy-activity">
       <div class="tag-row">
         <span class="tag">当前活动</span>
         <span class="tag">LuckyCup</span>

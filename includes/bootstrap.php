@@ -28,6 +28,43 @@ $db->exec('CREATE TABLE IF NOT EXISTS news (
     updated_at DATETIME NOT NULL,
     INDEX idx_news_status_created (status, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+$db->exec('CREATE TABLE IF NOT EXISTS servers (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    slug VARCHAR(80) NOT NULL UNIQUE,
+    name VARCHAR(120) NOT NULL,
+    type VARCHAR(80) NOT NULL,
+    host VARCHAR(255) NOT NULL,
+    port INT UNSIGNED NOT NULL,
+    enabled TINYINT(1) NOT NULL DEFAULT 1,
+    sort_order INT NOT NULL DEFAULT 0,
+    updated_at DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+$serverCount = (int) $db->query('SELECT COUNT(*) FROM servers')->fetchColumn();
+if ($serverCount === 0) {
+    $seedServer = $db->prepare('INSERT INTO servers (slug, name, type, host, port, enabled, sort_order, updated_at) VALUES (?, ?, ?, ?, ?, 1, ?, ?)');
+    $now = date('Y-m-d H:i:s');
+    foreach ($appConfig['servers'] as $slug => $server) {
+        $seedServer->execute([$slug, $server['name'], $server['type'], $server['ip'], $server['port'], count($appConfig['servers']), $now]);
+    }
+}
+$db->exec('CREATE TABLE IF NOT EXISTS activities (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    summary VARCHAR(500) NOT NULL DEFAULT "",
+    tags VARCHAR(500) NOT NULL DEFAULT "",
+    content TEXT NOT NULL,
+    start_at VARCHAR(120) NOT NULL DEFAULT "",
+    status ENUM("draft", "published") NOT NULL DEFAULT "published",
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    INDEX idx_activities_status_created (status, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+$activityCount = (int) $db->query('SELECT COUNT(*) FROM activities')->fetchColumn();
+if ($activityCount === 0) {
+    $seedActivity = $db->prepare('INSERT INTO activities (title, summary, tags, content, start_at, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, "published", ?, ?)');
+    $now = date('Y-m-d H:i:s');
+    $seedActivity->execute(['LuckyCup 刀战 PVP 大赛', '报名现已开启，荣耀属于最强者。', '当前活动,LuckyCup,刀战 PVP', "活动详情请以管理员最新公告为准。\n\n报名方式：在服务器中输入 /huodong。\n\n请遵守比赛规则，严禁作弊。", '时间待定', $now, $now]);
+}
 $count = (int) $db->query('SELECT COUNT(*) FROM news')->fetchColumn();
 if ($count === 0) {
     $seed = $db->prepare('INSERT INTO news (title, content, status, created_at, updated_at) VALUES (?, ?, "published", ?, ?)');
