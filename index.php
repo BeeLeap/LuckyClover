@@ -621,7 +621,7 @@ window.addEventListener('scroll', () => {
 
     async function updateServerStatus() {
       try {
-        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=30081&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+         const response = await fetch(`api/server-status.php?slug=bedrock&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
 
         if (data.status === 'online') {
@@ -639,7 +639,7 @@ window.addEventListener('scroll', () => {
 
     async function updateServerStatusJava() {
       try {
-        const response = await fetch(`https://motd.minebbs.com/api/status?ip=node4.yunmc.vip&port=10140&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+         const response = await fetch(`api/server-status.php?slug=java&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
 
         if (data.status === 'online') {
@@ -665,7 +665,7 @@ window.addEventListener('scroll', () => {
 
     async function updateServerStatusSurvival() {
       try {
-        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=30122&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+         const response = await fetch(`api/server-status.php?slug=survival&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
 
         if (data.status === 'online') {
@@ -692,7 +692,7 @@ window.addEventListener('scroll', () => {
 
     async function updateServerStatusTest() {
       try {
-        const response = await fetch(`https://motd.minebbs.com/api/status?ip=play.beeeeeawa.top&port=30025&stype=auto&_=${Date.now()}`, { cache: 'no-store' });
+         const response = await fetch(`api/server-status.php?slug=java_survival&_=${Date.now()}`, { cache: 'no-store' });
         const data = await response.json();
 
         if (data.status === 'online') {
