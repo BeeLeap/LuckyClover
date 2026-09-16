@@ -1,1 +1,8 @@
 /includes/config.local.php
+
+# IDE / 本地工具（与项目无关）
+.idea/
+.vs/
+.claude/
+.agents/
+.codex/

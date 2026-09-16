@@ -2,6 +2,10 @@
 /**
  * index.php
  */
+require __DIR__ . '/includes/bootstrap.php';
+$servers = $db->query("SELECT slug, name, type FROM servers WHERE enabled = 1 ORDER BY sort_order ASC, id ASC")->fetchAll();
+$homeNews = $db->query("SELECT title, content, created_at FROM news WHERE status = 'published' ORDER BY created_at DESC LIMIT 3")->fetchAll();
+$homeActivities = $db->query("SELECT title, summary, start_at FROM activities WHERE status = 'published' ORDER BY created_at DESC LIMIT 2")->fetchAll();
 $page_desc = "LuckyClover Minecraft 服务器官网，查看服务器状态、活动公告、加入方式与玩家文档。";
 $active_nav = "/";
 $extra_css = <<<'CSS'
@@ -310,75 +314,29 @@ require __DIR__ . '/includes/header.php';
         </div>
         <div class="hero-badge">
           <span class="dot"></span>
-          <span>基岩版 / Java 版 / 新生存服</span>
+          <span><?php echo e(implode(' / ', array_column($servers, 'name')) ?: '服务器列表为空'); ?></span>
         </div>
         <h1>探索 <span>LuckyClover</span></h1>
         <p id="uptime">服务器运行中...</p>
         <p>稳定、友好、长期运营的 Minecraft 社区。服务器已加入 <a href="https://mscpo.top/" target="_blank" rel="noopener noreferrer">mscpo 服务器集体宣传组织</a>。</p>
 
-        <div class="server-row-title">基岩版</div>
-        <div class="hero-stats">
+        <?php foreach ($servers as $server): ?>
+        <div class="server-row-title"><?php echo e($server['name']); ?></div>
+        <div class="hero-stats" data-home-server="<?php echo e($server['slug']); ?>">
           <div class="stat-item">
-            <div class="stat-value" id="online">--</div>
+            <div class="stat-value" data-home-online>--</div>
             <div class="stat-label">在线玩家</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value" id="version">--</div>
+            <div class="stat-value" data-home-version>--</div>
             <div class="stat-label">版本</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value" id="days">--</div>
-            <div class="stat-label">运行天数</div>
-          </div>
-        </div>
-
-        <div class="server-row-title">Java 版</div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-value" id="online-java">--</div>
-            <div class="stat-label">在线玩家</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="version-java">--</div>
-            <div class="stat-label">版本</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="days-java">--</div>
-            <div class="stat-label">运行天数</div>
-          </div>
-        </div>
-
-        <div class="server-row-title">新生存服</div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-value" id="online-survival">--</div>
-            <div class="stat-label">在线玩家</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="version-survival">--</div>
-            <div class="stat-label">版本</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="status-survival">检测中</div>
+            <div class="stat-value" data-home-status>检测中</div>
             <div class="stat-label">状态</div>
           </div>
         </div>
-
-        <div class="server-row-title">Java版生存服</div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-value" id="online-test">--</div>
-            <div class="stat-label">在线玩家</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="version-test">--</div>
-            <div class="stat-label">版本</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="status-test">检测中</div>
-            <div class="stat-label">状态</div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
         <div class="hero-buttons">
           <a href="jiao" class="btn btn-primary">立即加入</a>
@@ -392,7 +350,17 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="announcement-card">
         <h2>服务器公告</h2>
+        <?php if (!$homeNews && !$homeActivities): ?>
         <p>目前暂无正在进行的活动。后续活动、维护与更新会在网站和群公告同步发布。</p>
+        <?php else: ?>
+        <?php foreach ($homeActivities as $act): ?>
+        <p style="margin:8px 0"><strong><?php echo e($act['title']); ?></strong><?php if ($act['summary'] !== ''): ?> — <?php echo e($act['summary']); ?><?php endif; ?><?php if ($act['start_at'] !== ''): ?>（<?php echo e($act['start_at']); ?>）<?php endif; ?></p>
+        <?php endforeach; ?>
+        <?php foreach ($homeNews as $item): ?>
+        <p style="margin:8px 0"><strong><?php echo e($item['title']); ?></strong><br><span style="opacity:.85"><?php echo nl2br(e(mb_substr($item['content'], 0, 160))); ?><?php if (mb_strlen($item['content']) > 160) echo '…'; ?></span></p>
+        <?php endforeach; ?>
+        <p style="margin-top:16px;opacity:.8"><a href="note" style="color:var(--accent-secondary)">查看更多动态 →</a></p>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -582,7 +550,9 @@ require __DIR__ . '/includes/header.php';
   </section>
 
 <?php
-$extra_js = <<<'JS'
+$serverSlugs = array_column($servers, 'slug');
+$serverSlugsJson = json_encode($serverSlugs, JSON_UNESCAPED_UNICODE);
+$extra_js = <<<JS
 window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       header.classList.toggle('scrolled', window.scrollY > 50);
@@ -614,110 +584,40 @@ window.addEventListener('scroll', () => {
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('uptime').textContent = `LuckyClover 已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
-      document.getElementById('days').textContent = days;
-    }
-
-    async function updateServerStatus() {
-      try {
-         const response = await fetch(`api/server-status.php?slug=bedrock&_=${Date.now()}`, { cache: 'no-store' });
-        const data = await response.json();
-
-        if (data.status === 'online') {
-          document.getElementById('online').textContent = `${data.players.online}/${data.players.max}`;
-          document.getElementById('version').textContent = data.version || '--';
-        } else {
-          document.getElementById('online').textContent = '离线';
-          document.getElementById('version').textContent = '--';
-        }
-      } catch (error) {
-        document.getElementById('online').textContent = '--';
-        document.getElementById('version').textContent = '--';
+      const uptimeEl = document.getElementById('uptime');
+      if (uptimeEl) {
+        uptimeEl.textContent = `LuckyClover 已运行 \${days} 天 \${hours} 小时 \${minutes} 分 \${seconds} 秒`;
       }
     }
 
-    async function updateServerStatusJava() {
-      try {
-         const response = await fetch(`api/server-status.php?slug=java&_=${Date.now()}`, { cache: 'no-store' });
-        const data = await response.json();
+    const homeServerSlugs = $serverSlugsJson;
 
-        if (data.status === 'online') {
-          document.getElementById('online-java').textContent = `${data.players.online}/${data.players.max}`;
-          document.getElementById('version-java').textContent = data.version || '--';
-        } else {
-          document.getElementById('online-java').textContent = '离线';
-          document.getElementById('version-java').textContent = '--';
+    async function updateHomeServers() {
+      for (const slug of homeServerSlugs) {
+        const block = document.querySelector(`[data-home-server="\${slug}"]`);
+        if (!block) continue;
+        const onlineEl = block.querySelector('[data-home-online]');
+        const versionEl = block.querySelector('[data-home-version]');
+        const statusEl = block.querySelector('[data-home-status]');
+        try {
+          const response = await fetch(`api/server-status.php?slug=\${encodeURIComponent(slug)}&_\${Date.now()}`, { cache: 'no-store' });
+          const data = await response.json();
+          const online = data.status === 'online';
+          if (onlineEl) onlineEl.textContent = online && data.players ? `\${data.players.online}/\${data.players.max}` : '离线';
+          if (versionEl) versionEl.textContent = online ? (data.version || '--') : '--';
+          if (statusEl) statusEl.textContent = online ? '在线' : '离线';
+        } catch (error) {
+          if (onlineEl) onlineEl.textContent = '--';
+          if (versionEl) versionEl.textContent = '--';
+          if (statusEl) statusEl.textContent = '查询失败';
         }
-      } catch (error) {
-        document.getElementById('online-java').textContent = '--';
-        document.getElementById('version-java').textContent = '--';
-      }
-    }
-
-    function updateUptimeJava() {
-      const startDateJava = new Date('2026-06-02T00:00:00+08:00');
-      const now = new Date();
-      const diff = now - startDateJava;
-      const daysJava = Math.floor(diff / (1000 * 60 * 60 * 24));
-      document.getElementById('days-java').textContent = daysJava;
-    }
-
-    async function updateServerStatusSurvival() {
-      try {
-         const response = await fetch(`api/server-status.php?slug=survival&_=${Date.now()}`, { cache: 'no-store' });
-        const data = await response.json();
-
-        if (data.status === 'online') {
-          document.getElementById('online-survival').textContent = `${data.players.online}/${data.players.max}`;
-          document.getElementById('version-survival').textContent = data.version || '--';
-          document.getElementById('status-survival').textContent = '在线';
-        } else {
-          document.getElementById('online-survival').textContent = '离线';
-          document.getElementById('version-survival').textContent = '--';
-          document.getElementById('status-survival').textContent = '离线';
-        }
-      } catch (error) {
-        document.getElementById('online-survival').textContent = '--';
-        document.getElementById('version-survival').textContent = '--';
-        document.getElementById('status-survival').textContent = '查询失败';
       }
     }
 
     setInterval(updateUptime, 1000);
-    setInterval(updateUptimeJava, 1000);
-    setInterval(updateServerStatus, 30000);
-    setInterval(updateServerStatusJava, 30000);
-    setInterval(updateServerStatusSurvival, 30000);
-
-    async function updateServerStatusTest() {
-      try {
-         const response = await fetch(`api/server-status.php?slug=java_survival&_=${Date.now()}`, { cache: 'no-store' });
-        const data = await response.json();
-
-        if (data.status === 'online') {
-          document.getElementById('online-test').textContent = `${data.players.online}/${data.players.max}`;
-          document.getElementById('version-test').textContent = data.version || '--';
-          document.getElementById('status-test').textContent = '在线';
-        } else {
-          document.getElementById('online-test').textContent = '离线';
-          document.getElementById('version-test').textContent = '--';
-          document.getElementById('status-test').textContent = '离线';
-        }
-      } catch (error) {
-        document.getElementById('online-test').textContent = '--';
-        document.getElementById('version-test').textContent = '--';
-        document.getElementById('status-test').textContent = '查询失败';
-      }
-    }
-
-    setInterval(updateServerStatusTest, 30000);
+    setInterval(updateHomeServers, 30000);
     updateUptime();
-    updateUptimeJava();
-    updateServerStatus();
-    updateServerStatusJava();
-    updateServerStatusSurvival();
-    updateServerStatusTest();
+    updateHomeServers();
 JS;
 require __DIR__ . '/includes/footer.php';
 ?>

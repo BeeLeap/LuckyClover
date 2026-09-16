@@ -59,12 +59,7 @@ $db->exec('CREATE TABLE IF NOT EXISTS activities (
     updated_at DATETIME NOT NULL,
     INDEX idx_activities_status_created (status, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
-$count = (int) $db->query('SELECT COUNT(*) FROM news')->fetchColumn();
-if ($count === 0) {
-    $seed = $db->prepare('INSERT INTO news (title, content, status, created_at, updated_at) VALUES (?, ?, "published", ?, ?)');
-    $now = date('Y-m-d H:i:s');
-    $seed->execute(['官网动态管理已启用', '现在可以在后台发布公告、活动和版本更新，前台会自动显示已发布内容。', $now, $now]);
-}
+// 不在 news 为空时自动补种，否则后台删光公告后会被静默重建。
 
 function e(string $value): string { return htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); }
 function csrf_token(): string { if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(24)); return $_SESSION['csrf']; }
