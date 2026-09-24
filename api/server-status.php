@@ -1,5 +1,7 @@
 <?php
 require dirname(__DIR__) . '/includes/bootstrap.php';
+// JSON 接口不能把 Warning/Notice 打进响应，否则前端 response.json() 会失败。
+ini_set('display_errors', '0');
 header('Content-Type: application/json; charset=utf-8');
 
 $slug = trim((string) ($_GET['slug'] ?? ''));
@@ -28,13 +30,37 @@ if (!is_array($data)) {
     exit;
 }
 
+// MineBBS 对部分 Java 服会把 motd/version 等字段返回成数组，强转会触发 Warning 并污染 JSON。
+$to_text = static function ($value): string {
+    if (is_array($value)) {
+        if (isset($value['text'])) {
+            return (string) $value['text'];
+        }
+        $parts = [];
+        foreach ($value as $item) {
+            if (is_array($item)) {
+                $parts[] = (string) ($item['text'] ?? '');
+            } elseif (is_scalar($item)) {
+                $parts[] = (string) $item;
+            }
+        }
+        return implode("\n", $parts);
+    }
+    return is_scalar($value) ? (string) $value : '';
+};
+
+$onlineMax = $data['players'] ?? [];
+if (!is_array($onlineMax)) {
+    $onlineMax = [];
+}
+
 echo json_encode([
     'status' => ($data['status'] ?? '') === 'online' ? 'online' : 'offline',
     'players' => [
-        'online' => (int) ($data['players']['online'] ?? 0),
-        'max' => (int) ($data['players']['max'] ?? 0),
+        'online' => (int) ($onlineMax['online'] ?? 0),
+        'max' => (int) ($onlineMax['max'] ?? 0),
     ],
-    'version' => (string) ($data['version'] ?? ''),
-    'gamemode' => (string) ($data['gamemode'] ?? ''),
-    'motd' => (string) ($data['motd'] ?? ''),
+    'version' => $to_text($data['version'] ?? ''),
+    'gamemode' => $to_text($data['gamemode'] ?? ''),
+    'motd' => $to_text($data['motd'] ?? ''),
 ], JSON_UNESCAPED_UNICODE);
