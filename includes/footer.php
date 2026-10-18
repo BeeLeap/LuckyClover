@@ -13,7 +13,7 @@ $site = $config['site'];
     <div class="container">
       <div class="footer-content">
         <div class="footer-left">
-          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🍀</div>
+          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">B</div>
           <p><?php echo htmlspecialchars($site['copyright'], ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
       </div>

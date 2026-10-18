@@ -6,32 +6,31 @@
 $config = [
     // 站点信息
     'site' => [
-        'name'        => 'LuckyClover',
-        'title'       => 'LuckyClover | 官方网站',
-        'description' => 'LuckyClover Minecraft 服务器官网，查看服务器状态、活动公告、加入方式与玩家文档。',
-        'keywords'    => 'LuckyClover, Minecraft, 我的世界, 基岩版服务器, Java服务器',
+        'name'        => 'BeeLeap',
+        'title'       => 'BeeLeap | Minecraft 开源生态',
+        'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、资源包、运维工具与 LuckyClover 服务器生态。',
+        'keywords'    => 'BeeLeap, LuckyClover, Minecraft, LeviLamina, BDS, 插件, 资源包',
         'favicon'     => 'images/cd.ico',
-        'copyright'   => '© 2026 LuckyClover. All Rights Reserved.',
+        'copyright'   => '© 2026 BeeLeap · Built for Minecraft communities.',
     ],
 
     // 导航菜单
     'nav' => [
         ['url' => '/',          'label' => '首页'],
-        ['url' => 'docs',       'label' => '文档'],
-        ['url' => 'huodong',    'label' => '活动'],
-        ['url' => 'team',       'label' => '团队'],
-        ['url' => 'status',     'label' => '服务器状态'],
-        ['url' => 'note',       'label' => '最新动态'],
+        ['url' => 'projects',   'label' => '项目'],
+        ['url' => 'status',     'label' => 'LuckyClover'],
+        ['url' => 'docs',       'label' => '插件文档'],
+        ['url' => 'team',       'label' => '关于 BeeLeap'],
     ],
 
     // 文档侧边栏
     'docs_nav' => [
         ['url' => 'docs',              'label' => '文档首页'],
-        ['url' => 'docs-overview',     'label' => '概览'],
-        ['url' => 'docs-server-info',  'label' => '服务器信息'],
-        ['url' => 'docs-command-guide','label' => '指令说明'],
-        ['url' => 'docs-rules',        'label' => '玩家守则'],
-        ['url' => 'docs-guide',        'label' => '新手指南'],
+        ['url' => 'docs-overview',     'label' => '生态概览'],
+        ['url' => 'docs-server-info',  'label' => 'LuckyClover 服务器'],
+        ['url' => 'docs-command-guide','label' => '插件与指令'],
+        ['url' => 'docs-rules',        'label' => '服务端规范'],
+        ['url' => 'docs-guide',        'label' => '部署指南'],
         ['url' => 'docs-faq',          'label' => '常见问题'],
     ],
 

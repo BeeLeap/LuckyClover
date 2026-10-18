@@ -116,10 +116,12 @@ a {
 }
 
 header {
-  position: fixed;
+  position: sticky;
   inset: 0 0 auto;
   z-index: 100;
-  padding: 18px 0;
+  padding: 0;
+  background: #102018;
+  border-bottom: 3px solid #0a120d;
 }
 
 .header-content {
@@ -127,11 +129,8 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 12px 16px;
-  background: rgba(16, 32, 24, 0.78);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: var(--shadow-block);
-  backdrop-filter: blur(12px);
+  min-height: 76px;
+  padding: 12px 0;
 }
 
 .logo,
@@ -143,7 +142,9 @@ header {
 }
 
 .logo span {
-  font-size: 1.12rem;
+  font-family: "Minecraft", "Microsoft YaHei", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
 }
 
 .logo-icon {
@@ -179,6 +180,10 @@ nav a[aria-current="page"] {
   background: var(--accent-secondary);
   border-color: #111;
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+header nav a {
+  border-radius: 0;
 }
 
 .mobile-menu-btn {

@@ -43,8 +43,8 @@ $active = isset($active_nav) ? $active_nav : '';
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="/" class="logo">
-          <div class="logo-icon">🍀</div>
+        <a href="/" class="logo" aria-label="BeeLeap 首页">
+          <div class="logo-icon">B</div>
           <span><?php echo htmlspecialchars($site['name'], ENT_QUOTES, 'UTF-8'); ?></span>
         </a>
         <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false">
@@ -57,9 +57,7 @@ $active = isset($active_nav) ? $active_nav : '';
           ?>
           <a href="<?php echo $item['url']; ?>"<?php echo $attrs; ?>><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
           <?php endforeach; ?>
-          <?php if (!empty($docs_search)) : ?>
-          <button class="docs-search-btn" type="button" onclick="openDocsSearch()">搜索</button>
-          <?php endif; ?>
+          <a href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </nav>
       </div>
     </div>
