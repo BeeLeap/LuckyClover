@@ -32,7 +32,7 @@ require __DIR__ . '/includes/header.php';
         <div class="team-card">
           <div class="team-avatar">⚒</div>
           <h3>我们的方向</h3>
-          <p>围绕 BDS、LeviLamina 与 LegacyScriptEngine，制作可独立部署的插件、资源包和运维工具。</p>
+          <p>围绕 BDS、LeviLamina 与 LegacyScriptEngine，制作可独立部署的插件和运维工具。</p>
         </div>
         <div class="team-card">
           <div class="team-avatar">◈</div>

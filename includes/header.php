@@ -44,7 +44,7 @@ $active = isset($active_nav) ? $active_nav : '';
     <div class="container">
       <div class="header-content">
         <a href="/" class="logo" aria-label="BeeLeap 首页">
-          <div class="logo-icon">B</div>
+          <div class="logo-icon logo-image"><img src="<?php echo e($config['site']['favicon']); ?>" alt="BeeLeap"></div>
           <span><?php echo htmlspecialchars($site['name'], ENT_QUOTES, 'UTF-8'); ?></span>
         </a>
         <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false">

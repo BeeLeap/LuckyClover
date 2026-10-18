@@ -13,7 +13,7 @@ $site = $config['site'];
     <div class="container">
       <div class="footer-content">
         <div class="footer-left">
-          <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">B</div>
+          <div class="logo-icon logo-image" style="width:32px;height:32px;font-size:1rem;"><img src="<?php echo e($config['site']['favicon']); ?>" alt="BeeLeap"></div>
           <p><?php echo htmlspecialchars($site['copyright'], ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
       </div>

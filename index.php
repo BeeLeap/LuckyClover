@@ -2,9 +2,8 @@
 require __DIR__ . '/includes/bootstrap.php';
 
 $servers = $db->query("SELECT slug, name, type FROM servers WHERE enabled = 1 ORDER BY sort_order ASC, id ASC")->fetchAll();
-$news = $db->query("SELECT title, content, created_at FROM news WHERE status = 'published' ORDER BY created_at DESC LIMIT 3")->fetchAll();
 $page_title = 'BeeLeap';
-$page_desc = 'BeeLeap：面向 Minecraft 基岩版服务器的插件、资源包、运维工具与 LuckyClover 社区。';
+$page_desc = 'BeeLeap：面向 Minecraft 基岩版服务器的插件、运维工具与 LuckyClover 社区。';
 $active_nav = '/';
 $extra_css = <<<'CSS'
 .beeleap-hero { min-height: 680px; display:grid; align-items:center; padding:92px 0 78px; }
@@ -56,7 +55,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="eyebrow">BeeLeap / Minecraft ecosystem</div>
         <h1>Build the <span>next</span> block.</h1>
-        <p class="hero-copy">BeeLeap 是一个面向 Minecraft 基岩版社区的开源组织。我们制作插件、资源包、运维工具，也维护 LuckyClover 服务器，把复杂的服务端能力变成可以独立部署、长期维护的模块。</p>
+        <p class="hero-copy">BeeLeap 是一个面向 Minecraft 基岩版社区的开源组织。我们制作插件和运维工具，也维护 LuckyClover 服务器，把复杂的服务端能力变成可以独立部署、长期维护的模块。</p>
         <div class="hero-actions"><a class="pixel-button" href="projects">浏览项目</a><a class="pixel-button secondary" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">访问 GitHub ↗</a></div>
       </div>
       <div class="hero-board" aria-label="BeeLeap 项目概览">
@@ -72,6 +71,5 @@ require __DIR__ . '/includes/header.php';
     <a class="project-card" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer"><div class="project-icon">GH</div><h3>Open Source</h3><p>源码、配置、迁移说明和构建脚本都跟随项目公开，欢迎一起改进。</p><span class="card-link">打开组织主页 ↗</span></a>
   </div></div></section>
   <section class="home-section"><div class="container"><div class="server-strip"><div><span class="pixel-tag">02 / LuckyClover</span><h2>进入我们的服务器世界</h2><p class="hero-copy">查看当前服务器状态、版本与在线人数，获取加入方式和玩家文档。</p></div><div class="server-list"><?php foreach ($servers as $server): ?><a href="status"><strong><?php echo e($server['name']); ?></strong><span><?php echo e($server['type']); ?> →</span></a><?php endforeach; ?><?php if (!$servers): ?><a href="status"><strong>LuckyClover</strong><span>查看状态 →</span></a><?php endif; ?></div></div></div></section>
-  <?php if ($news): ?><section class="home-section alt"><div class="container"><div class="section-heading"><div><span class="pixel-tag">03 / Changelog</span><h2>最近动态</h2></div><p>来自 BeeLeap 和 LuckyClover 的更新。</p></div><div class="news-list"><?php foreach ($news as $item): ?><article class="news-card"><small><?php echo e(substr($item['created_at'], 0, 10)); ?></small><h3><?php echo e($item['title']); ?></h3><p><?php echo e($item['content']); ?></p></article><?php endforeach; ?></div></div></section><?php endif; ?>
 </main>
 <?php require __DIR__ . '/includes/footer.php'; ?>

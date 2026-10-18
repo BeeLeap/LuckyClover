@@ -158,6 +158,9 @@ header {
   color: #102018;
 }
 
+.logo-image { overflow: hidden; padding: 0; background: #fff; }
+.logo-image img { width: 100%; height: 100%; display: block; object-fit: contain; }
+
 nav {
   display: flex;
   align-items: center;

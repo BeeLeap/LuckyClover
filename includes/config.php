@@ -8,9 +8,9 @@ $config = [
     'site' => [
         'name'        => 'BeeLeap',
         'title'       => 'BeeLeap | Minecraft 开源生态',
-        'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、资源包、运维工具与 LuckyClover 服务器生态。',
-        'keywords'    => 'BeeLeap, LuckyClover, Minecraft, LeviLamina, BDS, 插件, 资源包',
-        'favicon'     => 'images/cd.ico',
+        'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、运维工具与 LuckyClover 服务器生态。',
+        'keywords'    => 'BeeLeap, LuckyClover, Minecraft, LeviLamina, BDS, 插件, 运维工具',
+        'favicon'     => 'images/beeleap.png',
         'copyright'   => '© 2026 BeeLeap · Built for Minecraft communities.',
     ],
 
