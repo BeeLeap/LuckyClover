@@ -7,6 +7,7 @@ $config = [
     // 站点信息
     'site' => [
         'name'        => 'BeeLeap',
+        'main_url'    => 'https://beeleap.top',
         'title'       => 'BeeLeap | Minecraft 开源生态',
         'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、运维工具与 LuckyClover 服务器生态。',
         'keywords'    => 'BeeLeap, LuckyClover, Minecraft, LeviLamina, BDS, 插件, 运维工具',

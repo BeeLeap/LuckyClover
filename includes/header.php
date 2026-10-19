@@ -20,6 +20,12 @@ $title = isset($page_title) && $page_title !== ''
 
 $desc = isset($page_desc) ? $page_desc : $site['description'];
 $active = isset($active_nav) ? $active_nav : '';
+$currentHost = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+$currentHost = preg_replace('/:\\d+$/', '', $currentHost);
+$mainHost = strtolower((string) (parse_url($site['main_url'] ?? '', PHP_URL_HOST) ?: 'beeleap.top'));
+$isMainSite = $currentHost === $mainHost || $currentHost === 'www.' . $mainHost;
+$navPrefix = $isMainSite ? '' : rtrim((string) ($site['main_url'] ?? ''), '/');
+$homeUrl = $navPrefix !== '' ? $navPrefix . '/' : '/';
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -43,7 +49,7 @@ $active = isset($active_nav) ? $active_nav : '';
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="/" class="logo" aria-label="BeeLeap 首页">
+        <a href="<?php echo htmlspecialchars($homeUrl, ENT_QUOTES, 'UTF-8'); ?>" class="logo" aria-label="BeeLeap 首页">
           <div class="logo-icon logo-image" style="width:42px;height:42px;flex:0 0 42px;overflow:hidden;"><img src="<?php echo htmlspecialchars($config['site']['favicon'], ENT_QUOTES, 'UTF-8'); ?>" alt="BeeLeap" width="42" height="42" style="display:block;width:42px;height:42px;max-width:none;object-fit:contain;"></div>
           <span><?php echo htmlspecialchars($site['name'], ENT_QUOTES, 'UTF-8'); ?></span>
         </a>
@@ -55,7 +61,13 @@ $active = isset($active_nav) ? $active_nav : '';
               $isActive = ($active === $item['url']);
               $attrs = $isActive ? ' class="active" aria-current="page"' : '';
           ?>
-          <a href="<?php echo $item['url']; ?>"<?php echo $attrs; ?>><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
+          <?php
+              $itemUrl = $item['url'];
+              if ($navPrefix !== '') {
+                  $itemUrl = $itemUrl === '/' ? $homeUrl : $navPrefix . '/' . ltrim($itemUrl, '/');
+              }
+          ?>
+          <a href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?>><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
           <?php endforeach; ?>
           <a href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </nav>
