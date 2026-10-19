@@ -1,75 +1,27 @@
 <?php
 require __DIR__ . '/includes/bootstrap.php';
-
 $servers = $db->query("SELECT slug, name, type FROM servers WHERE enabled = 1 ORDER BY sort_order ASC, id ASC")->fetchAll();
 $page_title = 'BeeLeap';
-$page_desc = 'BeeLeap：面向 Minecraft 基岩版服务器的插件、运维工具与 LuckyClover 社区。';
+$page_desc = 'BeeLeap：为 Minecraft 基岩版服务器制作插件、工具与可持续运营的社区基础设施。';
 $active_nav = '/';
 $extra_css = <<<'CSS'
-.beeleap-hero { min-height: 680px; display:grid; align-items:center; padding:92px 0 78px; }
-.hero-grid { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr); gap:56px; align-items:center; }
-.eyebrow, .pixel-tag { display:inline-flex; align-items:center; gap:8px; padding:7px 11px; border:2px solid #111; background:var(--accent-secondary); color:#102018; box-shadow:3px 3px 0 #111; font-size:.78rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; }
-.beeleap-hero h1 { max-width:760px; margin:22px 0 18px; font-family:"Minecraft","Microsoft YaHei",sans-serif; font-size:clamp(3.2rem,8vw,7.4rem); line-height:.94; letter-spacing:.03em; text-shadow:7px 7px 0 rgba(0,0,0,.35); }
-.beeleap-hero h1 span { color:var(--accent-secondary); }
-.hero-copy { max-width:650px; color:var(--text-secondary); font-size:1.12rem; line-height:1.9; }
-.hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
-.pixel-button { display:inline-flex; align-items:center; justify-content:center; padding:13px 18px; border:3px solid #111; background:var(--accent-primary); color:#102018; box-shadow:5px 5px 0 #111; font-weight:900; }
-.pixel-button:hover { transform:translate(2px,2px); box-shadow:3px 3px 0 #111; }
-.pixel-button.secondary { background:transparent; color:var(--text-primary); border-color:var(--accent-secondary); }
-.hero-board { padding:26px; border:4px solid #111; background:rgba(16,32,24,.84); box-shadow:10px 10px 0 rgba(0,0,0,.38); transform:rotate(2deg); }
-.hero-board-top { display:flex; justify-content:space-between; gap:14px; border-bottom:2px solid rgba(255,255,255,.18); padding-bottom:16px; color:var(--accent-secondary); font-weight:900; }
-.hero-board h2 { margin:24px 0 10px; font-size:1.8rem; }
-.hero-board p { color:var(--text-secondary); }
-.board-row { display:flex; justify-content:space-between; gap:18px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.1); color:var(--text-secondary); }
-.board-row strong { color:var(--text-primary); }
-.section-heading { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:28px; }
-.section-heading h2 { font-family:"Minecraft","Microsoft YaHei",sans-serif; font-size:clamp(2rem,5vw,3.4rem); line-height:1; }
-.section-heading p { max-width:540px; color:var(--text-secondary); }
-.home-section { padding:78px 0; }
-.home-section.alt { background:rgba(6,18,11,.34); border-block:2px solid rgba(255,255,255,.06); }
-.project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-.project-card { min-height:260px; display:flex; flex-direction:column; padding:24px; border:3px solid #111; background:var(--bg-card); box-shadow:var(--shadow-block); }
-.project-card:hover { transform:translate(2px,2px); border-color:var(--accent-secondary); }
-.project-card .project-icon { width:54px; height:54px; display:grid; place-items:center; margin-bottom:24px; border:3px solid #111; background:var(--accent-gradient); color:#102018; font-family:"Minecraft"; font-size:1.3rem; }
-.project-card h3 { margin-bottom:10px; font-size:1.35rem; }
-.project-card p { color:var(--text-secondary); line-height:1.75; }
-.project-card .card-link { margin-top:auto; padding-top:22px; color:var(--accent-secondary); font-weight:900; }
-.server-strip { display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center; padding:30px; border:3px solid #111; background:linear-gradient(120deg,rgba(90,189,60,.24),rgba(255,223,94,.08)); box-shadow:var(--shadow-block); }
-.server-strip h2 { margin:10px 0; font-size:2rem; }
-.server-list { display:grid; gap:10px; }
-.server-list a { display:flex; justify-content:space-between; gap:18px; padding:14px 16px; background:rgba(10,21,16,.62); border:2px solid rgba(255,255,255,.12); }
-.server-list a:hover { border-color:var(--accent-secondary); }
-.news-list { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-.news-card { padding:22px; border-left:5px solid var(--accent-primary); background:rgba(16,32,24,.72); }
-.news-card small { color:var(--accent-secondary); }
-.news-card h3 { margin:12px 0 8px; }
-.news-card p { color:var(--text-secondary); }
-@media(max-width:850px){.hero-grid,.server-strip{grid-template-columns:1fr}.hero-board{transform:none}.project-grid,.news-list{grid-template-columns:1fr}.section-heading{display:block}.section-heading p{margin-top:12px}}
+.portal-hero{padding:112px 0 96px}.portal-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.8fr);gap:72px;align-items:center}.portal-hero h1{max-width:820px;margin:22px 0;font-family:"Minecraft",sans-serif;font-size:clamp(3.5rem,8vw,7.4rem);line-height:.9;letter-spacing:-.05em}.portal-hero h1 span{color:var(--accent-secondary)}.portal-lead{max-width:650px;color:var(--text-secondary);font-size:1.16rem;line-height:1.9}.portal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.portal-code{overflow:hidden;border:1px solid var(--border-color);border-radius:16px;background:#0d1713;box-shadow:var(--shadow-card)}.code-tabs{display:flex;gap:5px;padding:12px;border-bottom:1px solid var(--border-color)}.code-tabs span{padding:7px 10px;border-radius:7px;color:var(--text-muted);font-size:.82rem}.code-tabs span:first-child{background:rgba(168,230,63,.13);color:var(--accent-secondary)}.code-body{padding:26px;min-height:260px;color:#c5d9c9;font-family:Consolas,monospace;font-size:.84rem;line-height:1.8;white-space:pre-wrap}.code-body .green{color:var(--accent-secondary)}.portal-kicker{display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.85rem}.portal-kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent-primary);box-shadow:0 0 18px var(--accent-primary)}.portal-section{padding:92px 0}.portal-section.tinted{background:rgba(4,10,8,.34);border-block:1px solid var(--border-color)}.portal-section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:38px}.portal-section-head h2{margin-top:14px;font-family:"Minecraft";font-size:clamp(2.3rem,5vw,4.4rem);line-height:.95;letter-spacing:-.04em}.portal-section-head p{max-width:510px;color:var(--text-secondary);line-height:1.8}.portal-projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.portal-project{display:flex;flex-direction:column;min-height:260px;padding:24px;border:1px solid var(--border-color);border-radius:16px;background:var(--bg-card);transition:transform .2s,border-color .2s}.portal-project:hover{transform:translateY(-5px);border-color:var(--border-hover)}.portal-project .kind{margin-bottom:30px;color:var(--accent-secondary);font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.portal-project h3{font-size:1.45rem;margin-bottom:10px}.portal-project p{color:var(--text-secondary);line-height:1.75}.portal-project a{margin-top:auto;padding-top:22px;color:var(--accent-secondary);font-weight:800}.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.why-item{padding-top:18px;border-top:2px solid var(--accent-primary)}.why-item h3{margin-bottom:10px}.why-item p{color:var(--text-secondary);line-height:1.75}.portal-server{display:grid;grid-template-columns:1fr .8fr;gap:38px;align-items:center}.portal-server h2{margin:14px 0;font-family:"Minecraft";font-size:clamp(2.2rem,5vw,4rem);line-height:.96}.portal-server p{max-width:650px;color:var(--text-secondary);line-height:1.85}.server-links{display:grid;gap:10px}.server-links a{display:flex;justify-content:space-between;gap:20px;padding:15px 17px;border:1px solid var(--border-color);border-radius:10px;background:rgba(17,29,24,.75)}.server-links a:hover{border-color:var(--border-hover)}.community-box{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:34px;border:1px solid var(--border-color);border-radius:18px;background:linear-gradient(120deg,rgba(168,230,63,.11),rgba(17,29,24,.82))}.community-box h2{font-family:"Minecraft";font-size:clamp(2rem,4vw,3.6rem);line-height:1}.community-box p{margin-top:12px;color:var(--text-secondary)}@media(max-width:900px){.portal-hero-grid,.portal-server{grid-template-columns:1fr}.portal-projects{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.portal-section-head{display:block}.portal-section-head p{margin-top:16px}}@media(max-width:600px){.portal-projects,.why-grid{grid-template-columns:1fr}.community-box{display:block}.community-box .portal-actions{margin-top:24px}}
 CSS;
 require __DIR__ . '/includes/header.php';
 ?>
-
 <main>
-  <section class="beeleap-hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">BeeLeap / Minecraft ecosystem</div>
-        <h1>Build the <span>next</span> block.</h1>
-        <p class="hero-copy">BeeLeap 是一个面向 Minecraft 基岩版社区的开源组织。我们制作插件和运维工具，也维护 LuckyClover 服务器，把复杂的服务端能力变成可以独立部署、长期维护的模块。</p>
-        <div class="hero-actions"><a class="pixel-button" href="projects">浏览项目</a><a class="pixel-button secondary" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">访问 GitHub ↗</a></div>
-      </div>
-      <div class="hero-board" aria-label="BeeLeap 项目概览">
-        <div class="hero-board-top"><span>BEELEAP_STATUS</span><span>● ONLINE</span></div>
-        <h2>工具，玩法，社区。</h2><p>从一个插件，到一整套可持续运营的基岩版服务器生态。</p>
-        <div class="board-row"><span>Runtime</span><strong>BDS + LeviLamina</strong></div><div class="board-row"><span>Projects</span><strong>Plugins / Packs / Tools</strong></div><div class="board-row"><span>Community</span><strong>LuckyClover</strong></div>
-      </div>
-    </div>
-  </section>
-  <section class="home-section alt"><div class="container"><div class="section-heading"><div><span class="pixel-tag">01 / Projects</span><h2>正在建造的东西</h2></div><p>每个项目都可以独立使用，也可以组合成一套完整的服务器基础设施。</p></div><div class="project-grid">
-    <a class="project-card" href="projects"><div class="project-icon">LC</div><h3>LuckyClover</h3><p>BeeLeap 的 Minecraft 服务器社区，承载我们的玩法、活动和玩家文档。</p><span class="card-link">查看服务器 →</span></a>
-    <a class="project-card" href="docs"><div class="project-icon">PL</div><h3>Server Plugins</h3><p>面向 LeviLamina / LegacyScriptEngine 的独立插件、管理能力和玩法模块。</p><span class="card-link">阅读插件文档 →</span></a>
-    <a class="project-card" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer"><div class="project-icon">GH</div><h3>Open Source</h3><p>源码、配置、迁移说明和构建脚本都跟随项目公开，欢迎一起改进。</p><span class="card-link">打开组织主页 ↗</span></a>
-  </div></div></section>
-  <section class="home-section"><div class="container"><div class="server-strip"><div><span class="pixel-tag">02 / LuckyClover</span><h2>进入我们的服务器世界</h2><p class="hero-copy">查看当前服务器状态、版本与在线人数，获取加入方式和玩家文档。</p></div><div class="server-list"><?php foreach ($servers as $server): ?><a href="status"><strong><?php echo e($server['name']); ?></strong><span><?php echo e($server['type']); ?> →</span></a><?php endforeach; ?><?php if (!$servers): ?><a href="status"><strong>LuckyClover</strong><span>查看状态 →</span></a><?php endif; ?></div></div></div></section>
+  <section class="portal-hero"><div class="container portal-hero-grid"><div><div class="portal-kicker">Open source Minecraft Bedrock ecosystem</div><h1>Build your <span>server</span> your way.</h1><p class="portal-lead">BeeLeap 为 Minecraft 基岩版服务器制作插件、管理工具和社区基础设施。把复杂的运营能力拆成清晰、可部署、可维护的模块。</p><div class="portal-actions"><a class="pixel-button" href="projects">查看项目</a><a class="pixel-button secondary" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="portal-code"><div class="code-tabs"><span>plugin.js</span><span>server.json</span><span>api</span></div><div class="code-body"><span class="green">// BeeLeap modules are built to work together</span>
+const filtered = LuckyCloverModeration
+  .filterText(input);
+
+if (filtered !== input) {
+  player.sendMessage(<span class="green">'Text was filtered.'</span>);
+}
+
+// Small modules. Clear contracts. Real servers.</div></div></div></section>
+  <section class="portal-section tinted"><div class="container"><div class="portal-section-head"><div><span class="pixel-tag">ECOSYSTEM</span><h2>Our projects.</h2></div><p>从真实运行的 LuckyClover 服务器，到可以被其他社区复用的服务端插件，BeeLeap 的项目围绕基岩版服务器生态展开。</p></div><div class="portal-projects"><article class="portal-project"><span class="kind">Community / Server</span><h3>LuckyClover</h3><p>BeeLeap 维护的 Minecraft 基岩版社区服务器，用来承载玩法、活动和插件组合。</p><a href="status">服务器介绍 →</a></article><article class="portal-project"><span class="kind">Native plugin</span><h3>LuckyClover-Moderation</h3><p>适用于 LeviLamina 的原生文本输入过滤插件，覆盖聊天、书籍、铁砧和告示牌。</p><a href="https://github.com/BeeLeap/LuckyClover-Moderation" target="_blank" rel="noopener noreferrer">GitHub ↗</a></article><article class="portal-project"><span class="kind">Operations</span><h3>Server tooling</h3><p>围绕服务器状态、配置、管理和日常运营构建的小型工具与可复用模块。</p><a href="docs">阅读文档 →</a></article></div></div></section>
+  <section class="portal-section"><div class="container"><div class="portal-section-head"><div><span class="pixel-tag">WHY BEELEAP</span><h2>Build better<br>communities.</h2></div><p>我们关注的不只是“能不能运行”，也关注插件能否独立缺失、配置能否迁移、文档能否跟上代码。</p></div><div class="why-grid"><article class="why-item"><h3>Modular</h3><p>核心能力按职责拆开，单个模块缺失不会拖垮整个服务器。</p></article><article class="why-item"><h3>Deployable</h3><p>插件、配置和工具以独立部署为目标，适配真实服务器运维。</p></article><article class="why-item"><h3>Open source</h3><p>源码、构建脚本和问题记录公开在 GitHub，方便复用和协作。</p></article><article class="why-item"><h3>Documented</h3><p>每个项目都记录配置、接口、迁移方式和已知限制。</p></article></div></div></section>
+  <section class="portal-section tinted"><div class="container portal-server"><div><span class="pixel-tag">LUCKYCLOVER SERVER</span><h2>See it in action.</h2><p>LuckyClover 是 BeeLeap 生态的实际运行环境。查看服务器介绍、实时状态和加入方式。</p><div class="portal-actions"><a class="pixel-button" href="status">查看服务器</a><a class="pixel-button secondary" href="jiao">加入社区</a></div></div><div class="server-links"><?php foreach ($servers as $server): ?><a href="status"><strong><?php echo e($server['name']); ?></strong><span><?php echo e($server['type']); ?> ↗</span></a><?php endforeach; ?><?php if (!$servers): ?><a href="status"><strong>LuckyClover</strong><span>Server status ↗</span></a><?php endif; ?></div></div></section>
+  <section class="portal-section"><div class="container"><div class="community-box"><div><span class="pixel-tag">JOIN THE COMMUNITY</span><h2>Build with us.</h2><p>查看公开项目、提交问题，或者直接来 LuckyClover 体验正在建设的服务器生态。</p></div><div class="portal-actions"><a class="pixel-button" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div></div></div></section>
 </main>
 <?php require __DIR__ . '/includes/footer.php'; ?>
