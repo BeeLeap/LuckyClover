@@ -2,6 +2,15 @@
 $page_title = '蜜蜂园服务器';
 $page_desc = '蜜蜂园 Minecraft 服务器介绍、特色玩法与实时状态。';
 $active_nav = 'status';
+$siteConfig = require __DIR__ . '/includes/config.php';
+$serverUrl = rtrim((string) ($siteConfig['site']['server_url'] ?? ''), '/');
+$serverHost = strtolower((string) (parse_url($serverUrl, PHP_URL_HOST) ?: 'lcy.beeleap.top'));
+$requestHost = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+$requestHost = preg_replace('/:\\d+$/', '', $requestHost);
+if ($serverUrl !== '' && $requestHost !== '' && $requestHost !== $serverHost) {
+    header('Location: ' . $serverUrl . '/', true, 301);
+    exit;
+}
 require __DIR__ . '/includes/bootstrap.php';
 $servers = $db->query('SELECT slug, name, type, host, port FROM servers WHERE enabled = 1 ORDER BY sort_order ASC, id ASC')->fetchAll();
 $serverImage = 'images/luckyclover.png';

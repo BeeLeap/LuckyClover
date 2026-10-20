@@ -26,6 +26,7 @@ $mainHost = strtolower((string) (parse_url($site['main_url'] ?? '', PHP_URL_HOST
 $isMainSite = $currentHost === $mainHost || $currentHost === 'www.' . $mainHost;
 $navPrefix = $isMainSite ? '' : rtrim((string) ($site['main_url'] ?? ''), '/');
 $homeUrl = $navPrefix !== '' ? $navPrefix . '/' : '/';
+$serverUrl = rtrim((string) ($site['server_url'] ?? ''), '/');
 $assetUrl = static function (string $path): string {
     $file = dirname(__DIR__) . '/' . ltrim($path, '/');
     return is_file($file) ? $path . '?v=' . filemtime($file) : $path;
@@ -69,7 +70,9 @@ $faviconUrl = $assetUrl($site['favicon']);
           ?>
           <?php
               $itemUrl = $item['url'];
-              if ($navPrefix !== '') {
+              if ($itemUrl === 'status' && $serverUrl !== '') {
+                  $itemUrl = $serverUrl . '/';
+              } elseif ($navPrefix !== '') {
                   $itemUrl = $itemUrl === '/' ? $homeUrl : $navPrefix . '/' . ltrim($itemUrl, '/');
               }
           ?>
