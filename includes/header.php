@@ -26,6 +26,12 @@ $mainHost = strtolower((string) (parse_url($site['main_url'] ?? '', PHP_URL_HOST
 $isMainSite = $currentHost === $mainHost || $currentHost === 'www.' . $mainHost;
 $navPrefix = $isMainSite ? '' : rtrim((string) ($site['main_url'] ?? ''), '/');
 $homeUrl = $navPrefix !== '' ? $navPrefix . '/' : '/';
+$assetUrl = static function (string $path): string {
+    $file = dirname(__DIR__) . '/' . ltrim($path, '/');
+    return is_file($file) ? $path . '?v=' . filemtime($file) : $path;
+};
+$cssUrl = $assetUrl($config['assets']['css']);
+$faviconUrl = $assetUrl($site['favicon']);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -35,8 +41,8 @@ $homeUrl = $navPrefix !== '' ? $navPrefix . '/' : '/';
   <meta name="description" content="<?php echo htmlspecialchars($desc, ENT_QUOTES, 'UTF-8'); ?>">
   <meta name="keywords" content="<?php echo htmlspecialchars($site['keywords'], ENT_QUOTES, 'UTF-8'); ?>">
   <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></title>
-  <link rel="stylesheet" href="<?php echo $config['assets']['css']; ?>">
-  <link rel="icon" href="<?php echo $site['favicon']; ?>">
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($cssUrl, ENT_QUOTES, 'UTF-8'); ?>">
+  <link rel="icon" href="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <?php if (!empty($extra_css)) : ?>
   <style>
@@ -50,7 +56,7 @@ $homeUrl = $navPrefix !== '' ? $navPrefix . '/' : '/';
     <div class="container">
       <div class="header-content">
         <a href="<?php echo htmlspecialchars($homeUrl, ENT_QUOTES, 'UTF-8'); ?>" class="logo" aria-label="BeeLeap 首页">
-          <div class="logo-icon logo-image" style="width:42px;height:42px;flex:0 0 42px;overflow:hidden;"><img src="<?php echo htmlspecialchars($config['site']['favicon'], ENT_QUOTES, 'UTF-8'); ?>" alt="BeeLeap" width="42" height="42" style="display:block;width:42px;height:42px;max-width:none;object-fit:contain;"></div>
+          <div class="logo-icon logo-image" style="width:42px;height:42px;flex:0 0 42px;overflow:hidden;"><img src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>" alt="BeeLeap" width="42" height="42" style="display:block;width:42px;height:42px;max-width:none;object-fit:contain;"></div>
           <span><?php echo htmlspecialchars($site['name'], ENT_QUOTES, 'UTF-8'); ?></span>
         </a>
         <button class="mobile-menu-btn" type="button" onclick="toggleMenu()" aria-label="切换菜单" aria-controls="main-nav" aria-expanded="false">
