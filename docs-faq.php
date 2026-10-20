@@ -2,8 +2,8 @@
 /**
  * docs-faq.php
  */
-$page_title = "常见问题 - LuckyClover Docs";
-$page_desc = "查看 LuckyClover 常见问题与解答，快速解决新玩家和日常游玩中的疑问。";
+$page_title = "常见问题 - 蜜蜂园 Docs";
+$page_desc = "查看蜜蜂园常见问题与解答，快速解决新玩家和日常游玩中的疑问。";
 $active_nav = "docs";
 $docs_search = true;
 $active_doc = "docs-faq";

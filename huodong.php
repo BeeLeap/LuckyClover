@@ -1,6 +1,6 @@
 <?php
-$page_title = '活动 - LuckyClover';
-$page_desc = '查看 LuckyClover 最新活动公告和历史活动记录。';
+$page_title = '活动 - 蜜蜂园';
+$page_desc = '查看蜜蜂园最新活动公告和历史活动记录。';
 $active_nav = 'huodong';
 require __DIR__ . '/includes/bootstrap.php';
 $activities = $db->query("SELECT * FROM activities WHERE status = 'published' ORDER BY created_at DESC")->fetchAll();

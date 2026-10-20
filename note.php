@@ -2,8 +2,8 @@
 /**
  * note.php
  */
-$page_title = "最新动态 - LuckyClover";
-$page_desc = "查看 LuckyClover 最新动态，获取公告、更新记录和社区通知。";
+$page_title = "最新动态 - 蜜蜂园";
+$page_desc = "查看蜜蜂园最新动态，获取公告、更新记录和社区通知。";
 $active_nav = "note";
 require __DIR__ . '/includes/bootstrap.php';
 $news = $db->query("SELECT title, content, created_at FROM news WHERE status = 'published' ORDER BY created_at DESC")->fetchAll();

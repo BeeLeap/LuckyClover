@@ -2,8 +2,8 @@
 /**
  * jiao.php
  */
-$page_title = "如何加入服务器 - LuckyClover";
-$page_desc = "查看 LuckyClover 加入方式，了解客户端准备、交流群入口与入服流程。";
+$page_title = "如何加入服务器 - 蜜蜂园";
+$page_desc = "查看蜜蜂园加入方式，了解客户端准备、交流群入口与入服流程。";
 $extra_css = <<<'CSS'
 .steps { max-width: 700px; margin: 0 auto; }
     .step-card { display: flex; gap: 24px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: 20px; }
@@ -21,7 +21,7 @@ require __DIR__ . '/includes/header.php';
 <section class="page-header">
     <div class="container">
       <h1>如何<span style="color: var(--accent-secondary);">加入</span></h1>
-      <p>三步快速进入 LuckyClover</p>
+      <p>三步快速进入蜜蜂园</p>
     </div>
   </section>
 
@@ -42,7 +42,7 @@ require __DIR__ . '/includes/header.php';
           <div class="step-content">
             <h3>加入 QQ 群</h3>
             <p>点击下方按钮加入交流群，获取服务器地址与白名单申请方式。</p>
-            <a href="https://qm.qq.com/q/VpseZW3KO6" class="btn btn-primary" target="_blank" rel="noopener noreferrer">加入交流群</a>
+            <a href="<?php echo htmlspecialchars($config['site']['community_url'], ENT_QUOTES, 'UTF-8'); ?>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">加入交流群</a>
           </div>
         </div>
         <div class="step-card">

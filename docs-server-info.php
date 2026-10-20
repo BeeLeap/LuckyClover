@@ -2,8 +2,8 @@
 /**
  * docs-server-info.php
  */
-$page_title = "服务器信息 - LuckyClover Docs";
-$page_desc = "查看 LuckyClover 服务器信息，包括平台支持、入服方式和基础运行说明。";
+$page_title = "服务器信息 - 蜜蜂园 Docs";
+$page_desc = "查看蜜蜂园服务器信息，包括平台支持、入服方式和基础运行说明。";
 $active_nav = "docs";
 $docs_search = true;
 $active_doc = "docs-server-info";

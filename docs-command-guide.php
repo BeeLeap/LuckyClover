@@ -2,8 +2,8 @@
 /**
  * docs-command-guide.php
  */
-$page_title = "指令说明 - LuckyClover Docs";
-$page_desc = "查看 LuckyClover 常用指令说明，了解服务器内可用命令与使用方式。";
+$page_title = "指令说明 - 蜜蜂园 Docs";
+$page_desc = "查看蜜蜂园常用指令说明，了解服务器内可用命令与使用方式。";
 $active_nav = "docs";
 $docs_search = true;
 $active_doc = "docs-command-guide";

@@ -2,8 +2,8 @@
 /**
  * pic-1.php
  */
-$page_title = "服内风景 - LuckyClover";
-$page_desc = "浏览 LuckyClover 服内风景截图，查看玩家建筑与服务器内景观展示。";
+$page_title = "服内风景 - 蜜蜂园";
+$page_desc = "浏览蜜蜂园服内风景截图，查看玩家建筑与服务器内景观展示。";
 $extra_css = <<<'CSS'
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .gallery-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease; }
@@ -30,7 +30,7 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="images/pic63.png" alt="LuckyClover 服内截图">
+          <img src="images/pic63.png" alt="蜜蜂园服内截图">
           <div class="info">
             <h3>DreamXbox1961</h3>
             <p>来自服务器内的建筑景观截图。</p>

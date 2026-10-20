@@ -2,8 +2,8 @@
 /**
  * docs-overview.php
  */
-$page_title = "概览 - LuckyClover Docs";
-$page_desc = "查看 LuckyClover 服务器概览，快速了解文档结构、基础玩法与入服信息。";
+$page_title = "概览 - 蜜蜂园 Docs";
+$page_desc = "查看蜜蜂园服务器概览，快速了解文档结构、基础玩法与入服信息。";
 $active_nav = "docs";
 $docs_search = true;
 $active_doc = "docs-overview";
@@ -41,7 +41,7 @@ require __DIR__ . '/includes/header.php';
       <a href="docs">返回文档首页</a>
     </aside>
     <section class="docs-content">
-      <h1>欢迎来到 LuckyClover 文档</h1>
+          <h1>欢迎来到蜜蜂园文档</h1>
       <p>这里整理了服务器的关键信息与常用玩法说明，帮助新玩家更快上手，也方便老玩家随时查阅。</p>
       <div class="docs-card-grid">
         <div class="docs-card"><div class="label">服务器地址</div><div class="value">加群获取</div></div>

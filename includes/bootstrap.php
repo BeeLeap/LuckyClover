@@ -47,6 +47,11 @@ if ($serverCount === 0) {
         $seedServer->execute([$slug, $server['name'], $server['type'], $server['ip'], $server['port'], count($appConfig['servers']), $now]);
     }
 }
+// 服务器更名迁移：只更新仍使用旧名称的主基岩版服务器，保留后台后续自定义名称。
+if (!empty($appConfig['servers']['bedrock']['name'])) {
+    $renameServer = $db->prepare('UPDATE servers SET name=? WHERE slug=? AND name=?');
+    $renameServer->execute([$appConfig['servers']['bedrock']['name'], 'bedrock', 'LuckyClover']);
+}
 $db->exec('CREATE TABLE IF NOT EXISTS activities (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,

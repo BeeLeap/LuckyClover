@@ -2,8 +2,8 @@
 /**
  * 404.php
  */
-$page_title = "404 - LuckyClover";
-$page_desc = "LuckyClover 页面未找到提示页，可返回首页继续浏览其他内容。";
+$page_title = "404 - 蜜蜂园";
+$page_desc = "蜜蜂园页面未找到提示页，可返回首页继续浏览其他内容。";
 $extra_css = <<<'CSS'
 .not-found {
       min-height: 100vh;

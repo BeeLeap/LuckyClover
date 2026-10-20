@@ -1,6 +1,6 @@
 <?php
 /**
- * LuckyClover 站点配置
+ * BeeLeap 站点配置
  */
 
 $config = [
@@ -9,8 +9,9 @@ $config = [
         'name'        => 'BeeLeap',
         'main_url'    => 'https://beeleap.top',
         'title'       => 'BeeLeap | Minecraft 开源生态',
-        'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、运维工具与 LuckyClover 服务器生态。',
-        'keywords'    => 'BeeLeap, LuckyClover, Minecraft, LeviLamina, BDS, 插件, 运维工具',
+        'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、运维工具与蜜蜂园服务器生态。',
+        'keywords'    => 'BeeLeap, 蜜蜂园, Minecraft, LeviLamina, BDS, 插件, 运维工具',
+        'community_url'=> 'https://qm.qq.com/q/bt6f8jP0Gs',
         'favicon'     => 'images/beeleap.png',
         'copyright'   => '© 2026 BeeLeap · Built for Minecraft communities.',
     ],
@@ -19,7 +20,7 @@ $config = [
     'nav' => [
         ['url' => '/',          'label' => '首页'],
         ['url' => 'projects',   'label' => '项目'],
-        ['url' => 'status',     'label' => 'LuckyClover'],
+        ['url' => 'status',     'label' => '蜜蜂园'],
         ['url' => 'docs',       'label' => '插件文档'],
         ['url' => 'team',       'label' => '关于 BeeLeap'],
     ],
@@ -28,7 +29,7 @@ $config = [
     'docs_nav' => [
         ['url' => 'docs',              'label' => '文档首页'],
         ['url' => 'docs-overview',     'label' => '生态概览'],
-        ['url' => 'docs-server-info',  'label' => 'LuckyClover 服务器'],
+        ['url' => 'docs-server-info',  'label' => '蜜蜂园服务器'],
         ['url' => 'docs-command-guide','label' => '插件与指令'],
         ['url' => 'docs-rules',        'label' => '服务端规范'],
         ['url' => 'docs-guide',        'label' => '部署指南'],
@@ -38,7 +39,7 @@ $config = [
     // 服务器列表
     'servers' => [
         'bedrock' => [
-            'name'    => 'LuckyClover',
+            'name'    => '蜜蜂园',
             'type'    => 'Minecraft Bedrock',
             'ip'      => 'play.beeeeeawa.top',
             'port'    => 30081,

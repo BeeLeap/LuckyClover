@@ -2,8 +2,8 @@
 /**
  * docs-guide.php
  */
-$page_title = "新手指南 - LuckyClover Docs";
-$page_desc = "LuckyClover 新手指南，帮助新玩家快速完成入服、熟悉规则并开始游玩。";
+$page_title = "新手指南 - 蜜蜂园 Docs";
+$page_desc = "蜜蜂园新手指南，帮助新玩家快速完成入服、熟悉规则并开始游玩。";
 $active_nav = "docs";
 $docs_search = true;
 $active_doc = "docs-guide";

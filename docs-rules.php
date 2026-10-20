@@ -2,8 +2,8 @@
 /**
  * docs-rules.php
  */
-$page_title = "玩家守则 - LuckyClover Docs";
-$page_desc = "查看 LuckyClover 玩家守则，了解服务器中的行为规范与注意事项。";
+$page_title = "玩家守则 - 蜜蜂园 Docs";
+$page_desc = "查看蜜蜂园玩家守则，了解服务器中的行为规范与注意事项。";
 $active_nav = "docs";
 $docs_search = true;
 $active_doc = "docs-rules";
