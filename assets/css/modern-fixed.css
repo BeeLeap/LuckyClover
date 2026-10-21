@@ -876,3 +876,59 @@ nav a:hover, nav a.active, nav a[aria-current="page"] {
     padding-top: 118px;
   }
 }
+
+/* Pixel landscape layer: keeps the open space lively without competing with content. */
+main {
+  position: relative;
+  isolation: isolate;
+}
+
+main::before,
+main::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+main::before {
+  top: 10rem;
+  right: clamp(-7rem, -4vw, -2rem);
+  width: clamp(12rem, 25vw, 24rem);
+  height: clamp(12rem, 25vw, 24rem);
+  opacity: .2;
+  background:
+    linear-gradient(90deg, transparent 0 18%, rgba(200, 255, 99, .65) 18% 82%, transparent 82%) 0 44% / 100% 12% no-repeat,
+    linear-gradient(30deg, transparent 0 39%, rgba(200, 255, 99, .65) 39% 61%, transparent 61%) 0 0 / 100% 100% no-repeat,
+    linear-gradient(150deg, transparent 0 39%, rgba(200, 255, 99, .65) 39% 61%, transparent 61%) 0 0 / 100% 100% no-repeat;
+  clip-path: polygon(25% 4%, 75% 4%, 98% 50%, 75% 96%, 25% 96%, 2% 50%);
+  transform: rotate(12deg);
+}
+
+main::after {
+  left: clamp(-5rem, -2vw, -1rem);
+  bottom: 4rem;
+  width: 14rem;
+  height: 8rem;
+  opacity: .2;
+  background:
+    linear-gradient(var(--accent-secondary), var(--accent-secondary)) 2rem 2.2rem / 7rem 1.2rem no-repeat,
+    linear-gradient(var(--accent-secondary), var(--accent-secondary)) 4rem 1rem / 4rem 1.2rem no-repeat,
+    linear-gradient(var(--accent-primary), var(--accent-primary)) 0 3.4rem / 11rem 1.2rem no-repeat,
+    linear-gradient(135deg, transparent 0 47%, var(--accent-primary) 47% 53%, transparent 53%) 0 4.5rem / 14rem 3.5rem no-repeat;
+  filter: drop-shadow(0 0 18px rgba(168, 230, 63, .28));
+}
+
+@media (max-width: 640px) {
+  main::before {
+    top: 7rem;
+    right: -5rem;
+    opacity: .12;
+  }
+
+  main::after {
+    left: -5rem;
+    bottom: 2rem;
+    opacity: .1;
+  }
+}
