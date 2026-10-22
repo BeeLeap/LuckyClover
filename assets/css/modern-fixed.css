@@ -1,12 +1,14 @@
 @font-face {
   font-family: "MinecraftTen";
-  src: url("../fonts/MinecraftTen.ttf") format("truetype");
+  src: url("../fonts/MinecraftTen.woff2") format("woff2"),
+       url("../fonts/MinecraftTen.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Minecraft";
-  src: url("../fonts/Minecraft.ttf") format("truetype");
+  src: url("../fonts/Minecraft.woff2") format("woff2"),
+       url("../fonts/Minecraft.ttf") format("truetype");
   font-display: swap;
 }
 
