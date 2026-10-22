@@ -80,7 +80,8 @@ $config = [
     ],
     'admin' => [
         'username' => getenv('LUCKYCLOVER_ADMIN_USER') ?: 'admin',
-        'password' => getenv('LUCKYCLOVER_ADMIN_PASSWORD') ?: 'change-me-now',
+        // 未配置密码时禁止登录，避免把默认凭据带到生产环境。
+        'password' => getenv('LUCKYCLOVER_ADMIN_PASSWORD') ?: '',
     ],
 ];
 

@@ -13,7 +13,7 @@ sudo mkdir -p /var/www/luckyclover
 sudo chown -R "$USER:$USER" /var/www/luckyclover
 ```
 
-Example Nginx config:
+Example Nginx + PHP-FPM config:
 
 ```nginx
 server {
@@ -21,62 +21,40 @@ server {
     server_name lcy.beeeeeawa.top;
 
     root /www/wwwroot/lcy.beeeeeawa.top;
-    index index.html;
-
-    error_page 404 /404.html;
-
-    location = /404.html {
-    }
-
-    location = /index.html {
-        return 301 /;
-    }
-
-    location = / {
-        try_files /index.html =404;
-    }
+    index index.php;
 
     location / {
-        try_files $uri $uri.html $uri/ /404.html;
+        try_files $uri $uri/ $uri.php /index.php?$query_string;
     }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    }
+
+    location ~ /\. { deny all; }
 }
 ```
 
-In BaoTa, open the site config for `lcy.beeeeeawa.top`, replace the old extensionless URL rules with this block, then reload Nginx.
+在宝塔/1Panel 中确认 PHP-FPM 版本和 `fastcgi_pass` socket 路径与服务器一致，然后 reload Nginx。生产环境还需要设置数据库和 `LUCKYCLOVER_ADMIN_PASSWORD` 环境变量，或部署不提交的 `includes/config.local.php`。
 
 ## GitHub Secrets
 
-Add these in `Settings -> Secrets and variables -> Actions -> New repository secret`:
+当前 workflow 使用 SSH 密码登录。请在 `Settings -> Secrets and variables -> Actions` 中配置：
 
 ```text
 DEPLOY_HOST=your.server.ip.or.domain
 DEPLOY_USER=your-ssh-user
 DEPLOY_PORT=22
 DEPLOY_PATH=/var/www/luckyclover
-DEPLOY_SSH_KEY=the-private-key-used-for-deploy
+DEPLOY_PASSWORD=the-SSH-password-used-for-deploy
 ```
 
 `DEPLOY_PORT` can stay `22` unless your server uses a custom SSH port.
 
 ## SSH key
 
-Create a deploy key on your computer:
-
-```bash
-ssh-keygen -t ed25519 -C "luckyclover-deploy" -f ~/.ssh/luckyclover_deploy
-```
-
-Put the public key on the server:
-
-```bash
-ssh-copy-id -i ~/.ssh/luckyclover_deploy.pub your-ssh-user@your.server.ip
-```
-
-Put the private key content into the GitHub secret `DEPLOY_SSH_KEY`:
-
-```bash
-cat ~/.ssh/luckyclover_deploy
-```
+The current workflow authenticates with an SSH password, so configure `DEPLOY_PASSWORD` in GitHub Actions secrets. If you later switch the workflow to key-based authentication, update this section and the workflow together.
 
 After that, every push to `main` deploys the website automatically. You can also run it manually from the GitHub Actions tab.
 

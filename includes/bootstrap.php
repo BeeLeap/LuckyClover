@@ -6,6 +6,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start([
         'cookie_httponly' => true,
         'cookie_samesite' => 'Lax',
+        'cookie_secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+        'use_strict_mode' => true,
     ]);
 }
 
@@ -19,6 +21,8 @@ $db = new PDO($dsn, $database['user'], $database['password'], [
 ]);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+$schemaTableCount = (int) $db->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name IN ('news', 'servers', 'activities')")->fetchColumn();
+if ($schemaTableCount < 3) {
 $db->exec('CREATE TABLE IF NOT EXISTS news (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -39,6 +43,7 @@ $db->exec('CREATE TABLE IF NOT EXISTS servers (
     sort_order INT NOT NULL DEFAULT 0,
     updated_at DATETIME NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+}
 $serverCount = (int) $db->query('SELECT COUNT(*) FROM servers')->fetchColumn();
 if ($serverCount === 0) {
     $seedServer = $db->prepare('INSERT INTO servers (slug, name, type, host, port, enabled, sort_order, updated_at) VALUES (?, ?, ?, ?, ?, 1, ?, ?)');
@@ -52,6 +57,7 @@ if (!empty($appConfig['servers']['bedrock']['name'])) {
     $renameServer = $db->prepare('UPDATE servers SET name=? WHERE slug=? AND name=?');
     $renameServer->execute([$appConfig['servers']['bedrock']['name'], 'bedrock', 'LuckyClover']);
 }
+if ($schemaTableCount < 3) {
 $db->exec('CREATE TABLE IF NOT EXISTS activities (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -64,6 +70,7 @@ $db->exec('CREATE TABLE IF NOT EXISTS activities (
     updated_at DATETIME NOT NULL,
     INDEX idx_activities_status_created (status, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+}
 // 不在 news 为空时自动补种，否则后台删光公告后会被静默重建。
 
 function e(string $value): string { return htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); }
@@ -71,6 +78,28 @@ function csrf_token(): string { if (empty($_SESSION['csrf'])) $_SESSION['csrf'] 
 function verify_csrf(): void { if (!hash_equals($_SESSION['csrf'] ?? '', $_POST['csrf'] ?? '')) { http_response_code(419); exit('请求已过期，请返回重试。'); } }
 function admin_logged_in(): bool { return !empty($_SESSION['admin_user']); }
 function require_admin(): void { if (!admin_logged_in()) { header('Location: login'); exit; } }
+function admin_login_is_throttled(): bool {
+    $until = (int) ($_SESSION['admin_login_blocked_until'] ?? 0);
+    return $until > time();
+}
+function record_admin_login_failure(): void {
+    $now = time();
+    $windowStart = (int) ($_SESSION['admin_login_window_start'] ?? 0);
+    $failures = (int) ($_SESSION['admin_login_failures'] ?? 0);
+    if ($windowStart === 0 || $now - $windowStart >= 300) {
+        $windowStart = $now;
+        $failures = 0;
+    }
+    $failures++;
+    $_SESSION['admin_login_window_start'] = $windowStart;
+    $_SESSION['admin_login_failures'] = $failures;
+    if ($failures >= 5) {
+        $_SESSION['admin_login_blocked_until'] = $now + 60;
+    }
+}
+function clear_admin_login_failures(): void {
+    unset($_SESSION['admin_login_window_start'], $_SESSION['admin_login_failures'], $_SESSION['admin_login_blocked_until']);
+}
 function host_metrics(): array {
     $load = function_exists('sys_getloadavg') ? sys_getloadavg() : [0, 0, 0];
     $memoryTotal = 0; $memoryAvailable = 0;
