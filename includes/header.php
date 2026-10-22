@@ -81,7 +81,7 @@ $minecraftUrl = $assetUrl('assets/fonts/Minecraft.woff2');
           ?>
           <a href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?>><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
           <?php endforeach; ?>
-          <a href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>
     </div>
