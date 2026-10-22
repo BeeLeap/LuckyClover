@@ -39,7 +39,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST || '154.37.212.221' }}
           DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '22' }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER || 'root' }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH || '/www/wwwroot/beeleap.top' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH || '/opt/1panel/www/sites/beeleap.top/index' }}
           SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
         run: |
           set -euo pipefail
@@ -54,7 +54,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST || '154.37.212.221' }}
           DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '22' }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER || 'root' }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH || '/www/wwwroot/beeleap.top' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || vars.DEPLOY_PATH || '/opt/1panel/www/sites/beeleap.top/index' }}
           SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
         run: |
           set -euo pipefail
