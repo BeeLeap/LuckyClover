@@ -8,7 +8,8 @@ $extra_css = <<<'CSS'
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .gallery-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease; }
     .gallery-item:hover { transform: translateY(-4px); border-color: var(--border-hover); }
-    .gallery-item img { width: 100%; height: 250px; object-fit: cover; }
+    .gallery-item picture { display: block; }
+    .gallery-item img { display: block; width: 100%; height: 250px; object-fit: cover; }
     .gallery-item .info { padding: 20px; }
     .gallery-item h3 { font-size: 1.125rem; margin-bottom: 8px; }
     .gallery-item p { color: var(--text-secondary); font-size: 0.875rem; }
@@ -30,7 +31,10 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="images/pic63.png" alt="蜜蜂园服内截图">
+          <picture>
+            <source srcset="images/pic63.webp" type="image/webp">
+            <img src="images/pic63.png" alt="蜜蜂园服内截图" loading="lazy" decoding="async" width="1804" height="1346">
+          </picture>
           <div class="info">
             <h3>DreamXbox1961</h3>
             <p>来自服务器内的建筑景观截图。</p>

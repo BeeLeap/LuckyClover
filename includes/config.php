@@ -13,7 +13,7 @@ $config = [
         'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、运维工具与蜜蜂园服务器生态。',
         'keywords'    => 'BeeLeap, 蜜蜂园, Minecraft, LeviLamina, BDS, 插件, 运维工具',
         'community_url'=> 'https://qm.qq.com/q/bt6f8jP0Gs',
-        'favicon'     => 'images/beeleap.png',
+        'favicon'     => 'images/beeleap.webp',
         'copyright'   => '© 2026 BeeLeap · Built for Minecraft communities.',
     ],
 
