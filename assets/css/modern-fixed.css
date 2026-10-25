@@ -229,7 +229,7 @@ header nav a {
 
 .projects-mega-menu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 2px);
   left: 50%;
   z-index: 120;
   display: none;

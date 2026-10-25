@@ -30,7 +30,7 @@ $config = [
         [
             'title' => '项目',
             'items' => [
-                ['url' => 'https://github.com/BeeLeap/LuckyClover-Moderation', 'label' => 'LuckyClover-Moderation', 'desc' => 'LeviLamina 原生文本过滤插件。', 'icon' => 'plugin', 'external' => true],
+                ['url' => 'docs', 'label' => 'LuckyClover-Moderation', 'desc' => 'LeviLamina 原生文本过滤插件。', 'icon' => 'plugin'],
             ],
         ],
     ],
