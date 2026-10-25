@@ -15,6 +15,5 @@ require __DIR__ . '/includes/header.php';
     <section class="docs-directory docs-directory-group"><h2>核心能力</h2><a href="docs-command-guide"><strong>配置文件</strong><span>开关、类别与路径 →</span></a><a href="docs-rules"><strong>过滤范围</strong><span>聊天、书籍、告示牌与铁砧 →</span></a><a href="docs-guide"><strong>词库与白名单</strong><span>分类词库与文本归一化 →</span></a></section>
     <section class="docs-directory docs-directory-group"><h2>扩展与参考</h2><a href="docs-faq"><strong>LLSE API 与常见问题</strong><span>脚本桥接、迁移与排错 →</span></a><a href="https://github.com/BeeLeap/LuckyClover-Moderation" target="_blank" rel="noopener noreferrer"><strong>GitHub 源码</strong><span>构建、更新日志与 Issue ↗</span></a></section>
   </div></section>
-  <div class="docs-callout">文档只覆盖 LuckyClover-Moderation，不包含蜜蜂园服务器玩法、地址或运营规则。具体版本行为以 <a href="https://github.com/BeeLeap/LuckyClover-Moderation" target="_blank" rel="noopener noreferrer">仓库源码和 CHANGELOG</a> 为准。</div>
 </div></main>
 <?php require __DIR__ . '/includes/footer.php'; ?>

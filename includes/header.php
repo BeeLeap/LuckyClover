@@ -79,7 +79,25 @@ $docsCssUrl = $assetUrl('assets/css/docs.css');
                   $itemUrl = $itemUrl === '/' ? $homeUrl : $navPrefix . '/' . ltrim($itemUrl, '/');
               }
           ?>
+          <?php if ($item['url'] === 'projects' && !empty($config['project_groups'])) : ?>
+          <div class="nav-projects<?php echo $isActive ? ' is-active' : ''; ?>">
+            <a class="nav-project-trigger" href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?> onclick="toggleProjectsMenu(event)"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?><span class="nav-project-caret" aria-hidden="true">⌄</span></a>
+            <div class="projects-mega-menu" aria-label="项目分类">
+              <?php foreach ($config['project_groups'] as $group) : ?>
+              <section class="projects-mega-group"><h3><?php echo htmlspecialchars($group['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                <?php foreach ($group['items'] as $project) :
+                    $projectAttrs = !empty($project['external']) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                ?>
+                <a href="<?php echo htmlspecialchars($project['url'], ENT_QUOTES, 'UTF-8'); ?>"<?php echo $projectAttrs; ?>><strong><?php echo htmlspecialchars($project['label'], ENT_QUOTES, 'UTF-8'); ?></strong><span><?php echo htmlspecialchars($project['desc'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+                <?php endforeach; ?>
+              </section>
+              <?php endforeach; ?>
+              <a class="projects-mega-footer" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer"><strong>在 GitHub 查看全部仓库</strong><span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <?php else : ?>
           <a href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?>><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
+          <?php endif; ?>
           <?php endforeach; ?>
           <a href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>

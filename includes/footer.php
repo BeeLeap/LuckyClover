@@ -36,6 +36,16 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
       button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     }
 
+    function toggleProjectsMenu(event) {
+      if (window.innerWidth <= 900) {
+        const wrapper = event.currentTarget.closest('.nav-projects');
+        if (!wrapper.classList.contains('open')) {
+          event.preventDefault();
+          wrapper.classList.add('open');
+        }
+      }
+    }
+
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 900) {
