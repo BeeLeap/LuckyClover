@@ -524,6 +524,24 @@ header nav a {
   font-size: 1.8rem;
 }
 
+.ui-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  vertical-align: -0.14em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.team-avatar .ui-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
 .step-card {
   align-items: flex-start;
 }

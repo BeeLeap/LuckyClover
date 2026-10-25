@@ -31,17 +31,17 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="team-grid">
         <div class="team-card">
-          <div class="team-avatar">⚒</div>
+          <div class="team-avatar"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 5 5 5M12 7l5-5 5 5-5 5M3 21l8-8M8 16l-3-3 5-5 5 5-5 5Z"/></svg></div>
           <h3>我们的方向</h3>
           <p>围绕 BDS、LeviLamina 与 LegacyScriptEngine，制作可独立部署的插件和运维工具。</p>
         </div>
         <div class="team-card">
-          <div class="team-avatar">◈</div>
+          <div class="team-avatar"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 8 9-8 9-8-9 8-9Z"/><path d="m12 7 4 5-4 5-4-5 4-5Z"/></svg></div>
           <h3>模块化协作</h3>
           <p>核心能力按职责拆分，插件之间通过明确的接口契约协作，单个模块缺失也不影响其他功能。</p>
         </div>
         <div class="team-card">
-          <div class="team-avatar">↗</div>
+          <div class="team-avatar"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8"/><path d="M19 14v5H5V5h5"/></svg></div>
           <h3>开放源码</h3>
           <p>源码、配置、迁移说明和构建脚本跟随项目公开，欢迎通过 GitHub 参与改进。</p>
           <a class="btn btn-secondary" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">访问 GitHub ↗</a>
