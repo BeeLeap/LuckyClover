@@ -961,21 +961,32 @@ footer {
 
   nav .projects-mega-menu {
     position: static;
-    width: auto;
+    display: none !important;
+    width: 100% !important;
     grid-template-columns: 1fr;
     gap: 12px;
     margin-top: 0;
     padding: 0 16px 16px;
     box-shadow: none;
-    transform: none;
-    width: 100%;
+    transform: none !important;
     box-sizing: border-box;
     border: 0;
     background: transparent;
+    overflow: hidden;
   }
 
-  nav .projects-mega-menu.groups-1 {
-    width: 100%;
+  nav .nav-projects.open .projects-mega-menu {
+    display: grid !important;
+  }
+
+  nav .nav-projects:hover .projects-mega-menu,
+  nav .nav-projects:focus-within .projects-mega-menu {
+    display: none !important;
+  }
+
+  nav .nav-projects.open:hover .projects-mega-menu,
+  nav .nav-projects.open:focus-within .projects-mega-menu {
+    display: grid !important;
   }
 
   nav .projects-mega-group {
