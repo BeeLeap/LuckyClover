@@ -31,6 +31,13 @@
     });
   }
 
+  function updatePageStyles(nextDocument) {
+    var currentStyle = document.head.querySelector('[data-page-style]');
+    var nextStyle = nextDocument.head.querySelector('[data-page-style]');
+    if (currentStyle) currentStyle.remove();
+    if (nextStyle) document.head.appendChild(nextStyle.cloneNode(true));
+  }
+
   function runPageScripts(documentFragment) {
     documentFragment.querySelectorAll('script:not([src])').forEach(function (script) {
       var code = script.textContent.trim();
@@ -46,6 +53,7 @@
     if (!currentMain || !nextMain) throw new Error('页面缺少 main 内容区域');
 
     currentMain.replaceWith(nextMain);
+    updatePageStyles(nextDocument);
     document.title = nextDocument.title;
     updateActiveNavigation(url);
     window.scrollTo(0, 0);

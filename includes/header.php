@@ -45,7 +45,7 @@ $faviconUrl = $assetUrl($site['favicon']);
   <link rel="stylesheet" href="<?php echo htmlspecialchars($cssUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <link rel="icon" href="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <?php if (!empty($extra_css)) : ?>
-  <style>
+  <style data-page-style>
     <?php echo $extra_css; ?>
   </style>
   <?php endif; ?>
