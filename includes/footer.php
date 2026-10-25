@@ -73,6 +73,15 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
           wrapper.querySelector('.nav-project-trigger').setAttribute('aria-expanded', 'false');
         }
       });
+
+      if (window.innerWidth <= 900) {
+        const nav = document.getElementById('main-nav');
+        const button = document.querySelector('.mobile-menu-btn');
+        if (nav.classList.contains('active') && !nav.contains(event.target) && !button.contains(event.target)) {
+          nav.classList.remove('active');
+          button.setAttribute('aria-expanded', 'false');
+        }
+      }
     });
   </script>
 
