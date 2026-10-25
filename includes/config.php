@@ -20,7 +20,7 @@ $config = [
     // 导航菜单
     'nav' => [
         ['url' => '/',          'label' => '首页'],
-        ['url' => 'docs',       'label' => '项目'],
+        ['url' => 'docs-overview', 'label' => '项目'],
         ['url' => 'status',     'label' => '蜜蜂园'],
         ['url' => 'team',       'label' => '关于 BeeLeap'],
     ],
@@ -30,7 +30,7 @@ $config = [
         [
             'title' => '项目',
             'items' => [
-                ['url' => 'docs', 'label' => 'LuckyClover-Moderation', 'desc' => 'LeviLamina 原生文本过滤插件。', 'icon' => 'plugin'],
+                ['url' => 'docs-overview', 'label' => 'LuckyClover-Moderation', 'desc' => 'LeviLamina 原生文本过滤插件。', 'icon' => 'plugin'],
             ],
         ],
     ],
@@ -40,7 +40,6 @@ $config = [
         [
             'group' => '开始使用',
             'items' => [
-                ['url' => 'docs',          'label' => '文档首页'],
                 ['url' => 'docs-overview', 'label' => '插件概览'],
                 ['url' => 'docs-server-info', 'label' => '安装与依赖'],
             ],

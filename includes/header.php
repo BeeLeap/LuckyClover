@@ -68,7 +68,7 @@ $docsCssUrl = $assetUrl('assets/css/docs.css');
         </button>
         <nav id="main-nav">
           <?php foreach ($nav as $item) :
-              $isActive = ($active === $item['url']);
+              $isActive = ($active === $item['url']) || ($item['url'] === 'docs-overview' && $active === 'docs');
               $attrs = $isActive ? ' class="active" aria-current="page"' : '';
           ?>
           <?php
@@ -79,7 +79,7 @@ $docsCssUrl = $assetUrl('assets/css/docs.css');
                   $itemUrl = $itemUrl === '/' ? $homeUrl : $navPrefix . '/' . ltrim($itemUrl, '/');
               }
           ?>
-          <?php if ($item['url'] === 'docs' && !empty($config['project_groups'])) : ?>
+          <?php if ($item['url'] === 'docs-overview' && !empty($config['project_groups'])) : ?>
           <div class="nav-projects<?php echo $isActive ? ' is-active' : ''; ?>">
             <a class="nav-project-trigger" href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?> onclick="toggleProjectsMenu(event)"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?><span class="nav-project-caret" aria-hidden="true">⌄</span></a>
             <div class="projects-mega-menu groups-<?php echo count($config['project_groups']); ?>" aria-label="项目分类">
