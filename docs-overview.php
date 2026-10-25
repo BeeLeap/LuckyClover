@@ -1,62 +1,15 @@
-﻿<?php
-/**
- * docs-overview.php
- */
-$page_title = "概览 - 蜜蜂园 Docs";
-$page_desc = "查看蜜蜂园服务器概览，快速了解文档结构、基础玩法与入服信息。";
-$active_nav = "docs";
-$docs_search = true;
-$active_doc = "docs-overview";
-$extra_css = <<<'CSS'
-.docs-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; padding: 120px 24px 48px; max-width: 1440px; margin: 0 auto; }
-    .docs-sidebar, .docs-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
-    .docs-sidebar { padding: 24px; position: sticky; top: 96px; height: fit-content; }
-    .docs-sidebar h3 { font-size: 1rem; margin-bottom: 16px; color: var(--text-primary); }
-    .docs-sidebar a { display: block; padding: 12px 14px; border-radius: 10px; color: var(--text-secondary); margin-bottom: 8px; transition: all 0.25s ease; }
-    .docs-sidebar a:hover, .docs-sidebar a.active { background: rgba(108, 92, 231, 0.14); color: var(--text-primary); }
-    .docs-content { padding: 32px; min-width: 0; }
-    .docs-content h1 { font-size: 2.5rem; margin-bottom: 14px; }
-    .docs-content h2 { font-size: 1.4rem; margin: 28px 0 14px; }
-    .docs-content p { color: var(--text-secondary); line-height: 1.85; margin-bottom: 16px; }
-    .docs-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
-    .docs-card { padding: 18px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-color); }
-    .docs-card .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .docs-card .value { font-size: 1rem; color: var(--text-primary); font-weight: 600; word-break: break-word; }
-    .docs-block { padding: 18px 18px 18px 20px; border-left: 3px solid var(--accent-secondary); background: rgba(162, 155, 254, 0.08); border-radius: 0 14px 14px 0; margin: 18px 0; }
-    @media (max-width: 1100px) { .docs-layout { grid-template-columns: 1fr; } .docs-sidebar { position: static; } }
-    @media (max-width: 768px) { .docs-layout { padding-top: 96px; } .docs-content h1 { font-size: 2rem; } }
-CSS;
+<?php
+$page_title = '插件概览 - LuckyClover-Moderation';
+$page_desc = '了解 LuckyClover-Moderation 的过滤能力、处理入口和运行方式。';
+$active_nav = 'docs'; $active_doc = 'docs-overview'; $docs_page = true;
 require __DIR__ . '/includes/header.php';
 ?>
-
-<main class="docs-layout">
-    <aside class="docs-sidebar">
-      <h3>目录</h3>
-      <a class="active" href="docs-overview">概览</a>
-      <a href="docs-server-info">服务器信息</a>
-      <a href="docs-command-guide">指令说明</a>
-      <a href="docs-rules">玩家守则</a>
-      <a href="docs-guide">新手指南</a>
-      <a href="docs-faq">常见问题</a>
-      <a href="docs">返回文档首页</a>
-    </aside>
-    <section class="docs-content">
-          <h1>欢迎来到蜜蜂园文档</h1>
-      <p>这里整理了服务器的关键信息与常用玩法说明，帮助新玩家更快上手，也方便老玩家随时查阅。</p>
-      <div class="docs-card-grid">
-        <div class="docs-card"><div class="label">服务器地址</div><div class="value">加群获取</div></div>
-        <div class="docs-card"><div class="label">推荐版本</div><div class="value">请查看状态页</div></div>
-        <div class="docs-card"><div class="label">当前模式</div><div class="value">Survival</div></div>
-      </div>
-      <div class="docs-block"><p>文档按主题拆分为多个页面，你可以从左侧目录进入对应内容。</p></div>
-    </section>
-  </main>
-  
-  <div class="docs-search-modal" id="docs-search-modal" aria-hidden="true"><div class="docs-search-panel"><input id="docs-modal-input" type="text" placeholder="搜索文档，按 Ctrl + K"><div class="docs-search-results" id="docs-modal-results"></div></div></div>
-
-<?php
-$extra_js = <<<'JS'
-function toggleMenu(){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');const isActive=nav.classList.toggle('active');button.setAttribute('aria-expanded',isActive?'true':'false')}document.querySelectorAll('#main-nav a').forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth<=768){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');nav.classList.remove('active');button.setAttribute('aria-expanded','false')}}));const docsModal=document.getElementById('docs-search-modal');const docsModalInput=document.getElementById('docs-modal-input');const docsModalResults=document.getElementById('docs-modal-results');const docsPages=[{title:'概览',href:'docs-overview',desc:'快速了解服务器与文档结构。',keywords:'概览 快速了解 介绍'},{title:'服务器信息',href:'docs-server-info',desc:'查看服务器地址、版本、模式等信息。',keywords:'服务器信息 ip 版本 模式'},{title:'指令说明',href:'docs-command-guide',desc:'整理常用指令与权限说明。',keywords:'指令 说明 命令'},{title:'玩家守则',href:'docs-rules',desc:'服务器内的行为规范和注意事项。',keywords:'玩家守则 规则 纪律'},{title:'新手指南',href:'docs-guide',desc:'新玩家入服流程与基础说明。',keywords:'新手 指南 入服 教程'},{title:'常见问题',href:'docs-faq',desc:'常见疑问和快速解答。',keywords:'常见问题 faq 问答'}];function renderDocsResults(query){const text=query.trim().toLowerCase();const items=docsPages.filter(page=>`${page.title} ${page.desc} ${page.keywords}`.toLowerCase().includes(text));docsModalResults.innerHTML=items.map(page=>`<a class="docs-search-result" href="${page.href}"><strong>${page.title}</strong><span>${page.desc}</span></a>`).join('')||'<div class="docs-search-result"><strong>没有结果</strong><span>试试别的关键词</span></div>';}function openDocsSearch(){docsModal.classList.add('active');docsModal.setAttribute('aria-hidden','false');docsModalInput.value='';renderDocsResults('');setTimeout(()=>docsModalInput.focus(),0);}function closeDocsSearch(){docsModal.classList.remove('active');docsModal.setAttribute('aria-hidden','true');}docsModalInput.addEventListener('input',()=>renderDocsResults(docsModalInput.value));docsModal.addEventListener('click',event=>{if(event.target===docsModal)closeDocsSearch()});document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();openDocsSearch()}if(event.key==='Escape')closeDocsSearch()});
-JS;
-require __DIR__ . '/includes/footer.php';
-?>
+<main id="swup" class="docs-layout">
+  <?php require __DIR__ . '/includes/docs-sidebar.php'; ?>
+  <article class="docs-content"><span class="pixel-tag">开始使用 / 概览</span><h1>插件概览</h1><p class="docs-lead">LuckyClover-Moderation 在文本提交前检查并修改违禁内容，面向 LeviLamina 服务端提供原生实现。</p>
+    <h2>它解决什么问题？</h2><p>插件把过滤逻辑放在聊天、书籍、铁砧和告示牌文本真正提交之前，避免只在日志或显示层处理而让客户端仍然看到原文。</p>
+    <div class="docs-grid"><div class="docs-card"><h3>原生插件</h3><p>使用 C++ 构建，直接运行在 LeviLamina 环境中，不依赖 LLSE。</p></div><div class="docs-card"><h3>多入口过滤</h3><p>覆盖聊天、书籍、铁砧、普通告示牌和悬挂告示牌。</p></div><div class="docs-card"><h3>可配置词库</h3><p>支持分类词库、自定义词、白名单和替换文本。</p></div><div class="docs-card"><h3>脚本桥接</h3><p>可选安装 API 插件，让 LLSE 脚本复用同一套过滤逻辑。</p></div></div>
+    <div class="docs-callout"><strong>运行依赖：</strong>服务端需要安装与当前 LeviLamina ABI 匹配的 <code>iListenAttentively</code>。不需要单独下载 iListen SDK 或 LseExport。</div>
+  </article>
+</main>
+<?php require __DIR__ . '/includes/footer.php'; ?>

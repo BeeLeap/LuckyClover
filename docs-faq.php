@@ -1,23 +1,15 @@
-﻿<?php
-/**
- * docs-faq.php
- */
-$page_title = "常见问题 - 蜜蜂园 Docs";
-$page_desc = "查看蜜蜂园常见问题与解答，快速解决新玩家和日常游玩中的疑问。";
-$active_nav = "docs";
-$docs_search = true;
-$active_doc = "docs-faq";
-$extra_css = <<<'CSS'
-.docs-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;padding:120px 24px 48px;max-width:1440px;margin:0 auto}.docs-sidebar,.docs-content{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}.docs-sidebar{padding:24px;position:sticky;top:96px;height:fit-content}.docs-sidebar h3{font-size:1rem;margin-bottom:16px;color:var(--text-primary)}.docs-sidebar a{display:block;padding:12px 14px;border-radius:10px;color:var(--text-secondary);margin-bottom:8px;transition:all .25s ease}.docs-sidebar a:hover,.docs-sidebar a.active{background:rgba(108,92,231,.14);color:var(--text-primary)}.docs-content{padding:32px;min-width:0}.docs-content h1{font-size:2.5rem;margin-bottom:14px}.docs-content h2{font-size:1.4rem;margin:28px 0 14px}.docs-content p{color:var(--text-secondary);line-height:1.85;margin-bottom:16px}.docs-list{display:grid;gap:12px;margin:16px 0 0}.docs-list .item{padding:14px 16px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--border-color);color:var(--text-secondary)}@media (max-width:1100px){.docs-layout{grid-template-columns:1fr}.docs-sidebar{position:static}}@media (max-width:768px){.docs-layout{padding-top:96px}.docs-content h1{font-size:2rem}}
-CSS;
+<?php
+$page_title = 'LLSE API 与常见问题 - LuckyClover-Moderation';
+$page_desc = 'LuckyClover-Moderation API 桥接插件、迁移行为与常见问题。';
+$active_nav = 'docs'; $active_doc = 'docs-faq'; $docs_page = true;
 require __DIR__ . '/includes/header.php';
 ?>
-
-<main class="docs-layout"><aside class="docs-sidebar"><h3>目录</h3><a href="docs-overview">概览</a><a href="docs-server-info">服务器信息</a><a href="docs-command-guide">指令说明</a><a href="docs-rules">玩家守则</a><a href="docs-guide">新手指南</a><a class="active" href="docs-faq">常见问题</a><a href="docs">返回文档首页</a></aside><section class="docs-content"><h1>常见问题</h1><p>这里收集玩家常问的问题和答案。</p><div class="docs-list"><div class="item">Q：服务器地址在哪里？ A：请在 QQ 群公告获取。</div><div class="item">Q：支持什么客户端？ A：Minecraft 基岩版。</div><div class="item">Q：进不去怎么办？ A：先看状态页，再联系管理员。</div></div></section></main><div class="docs-search-modal" id="docs-search-modal" aria-hidden="true"><div class="docs-search-panel"><input id="docs-modal-input" type="text" placeholder="搜索文档，按 Ctrl + K"><div class="docs-search-results" id="docs-modal-results"></div></div></div>
-
-<?php
-$extra_js = <<<'JS'
-function toggleMenu(){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');const isActive=nav.classList.toggle('active');button.setAttribute('aria-expanded',isActive?'true':'false')}document.querySelectorAll('#main-nav a').forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth<=768){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');nav.classList.remove('active');button.setAttribute('aria-expanded','false')}}));const docsModal=document.getElementById('docs-search-modal');const docsModalInput=document.getElementById('docs-modal-input');const docsModalResults=document.getElementById('docs-modal-results');const docsPages=[{title:'概览',href:'docs-overview',desc:'快速了解服务器与文档结构。',keywords:'概览 快速了解 介绍'},{title:'服务器信息',href:'docs-server-info',desc:'查看服务器地址、版本、模式等信息。',keywords:'服务器信息 ip 版本 模式'},{title:'指令说明',href:'docs-command-guide',desc:'整理常用指令与权限说明。',keywords:'指令 说明 命令'},{title:'玩家守则',href:'docs-rules',desc:'服务器内的行为规范和注意事项。',keywords:'玩家守则 规则 纪律'},{title:'新手指南',href:'docs-guide',desc:'新玩家入服流程与基础说明。',keywords:'新手 指南 入服 教程'},{title:'常见问题',href:'docs-faq',desc:'常见疑问和快速解答。',keywords:'常见问题 faq 问答'}];function renderDocsResults(query){const text=query.trim().toLowerCase();const items=docsPages.filter(page=>`${page.title} ${page.desc} ${page.keywords}`.toLowerCase().includes(text));docsModalResults.innerHTML=items.map(page=>`<a class="docs-search-result" href="${page.href}"><strong>${page.title}</strong><span>${page.desc}</span></a>`).join('')||'<div class="docs-search-result"><strong>没有结果</strong><span>试试别的关键词</span></div>';}function openDocsSearch(){docsModal.classList.add('active');docsModal.setAttribute('aria-hidden','false');docsModalInput.value='';renderDocsResults('');setTimeout(()=>docsModalInput.focus(),0);}function closeDocsSearch(){docsModal.classList.remove('active');docsModal.setAttribute('aria-hidden','true');}docsModalInput.addEventListener('input',()=>renderDocsResults(docsModalInput.value));docsModal.addEventListener('click',event=>{if(event.target===docsModal)closeDocsSearch()});document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();openDocsSearch()}if(event.key==='Escape')closeDocsSearch()});
-JS;
-require __DIR__ . '/includes/footer.php';
-?>
+<main id="swup" class="docs-layout">
+  <?php require __DIR__ . '/includes/docs-sidebar.php'; ?>
+  <article class="docs-content"><span class="pixel-tag">扩展与参考 / API</span><h1>LLSE API 与常见问题</h1><p class="docs-lead">安装独立的 <code>LuckyClover-Moderation-API</code> 后，LLSE 脚本可以复用原生插件的过滤逻辑。</p>
+    <h2>API 方法</h2><table class="docs-table"><thead><tr><th>方法</th><th>用途</th></tr></thead><tbody><tr><td><code>LuckyCloverModeration.filterText(text)</code></td><td>返回过滤后的文本。</td></tr><tr><td><code>LuckyCloverModeration.containsBannedWord(text)</code></td><td>检查文本是否命中违禁词。</td></tr><tr><td><code>LuckyCloverModeration.reload()</code></td><td>重新读取配置和静态词库。</td></tr></tbody></table>
+    <h2>常见问题</h2><h3>必须安装 LseExport 吗？</h3><p>不需要。原生插件不依赖 LseExport；脚本桥接插件也只读取本插件的配置和静态词库。</p><h3>为什么日志显示过滤了，客户端仍看到原文？</h3><p>请确认使用的是 0.2.10 或更新版本，并检查聊天、书籍、铁砧和物品请求包的入口是否来自匹配版本的 LeviLamina。</p><h3>旧配置能直接迁移吗？</h3><p>如果首次启动时没有新插件配置，但检测到旧核心配置，会自动迁移 <code>LuckyClover-Plugin/config.json</code> 中的 <code>bannedWords</code> 设置。</p>
+    <div class="docs-callout">遇到问题时，请同时提供插件版本、LeviLamina 版本、iListenAttentively 版本和相关日志，便于在 GitHub Issue 中复现。</div>
+  </article>
+</main>
+<?php require __DIR__ . '/includes/footer.php'; ?>

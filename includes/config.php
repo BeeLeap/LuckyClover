@@ -26,15 +26,30 @@ $config = [
         ['url' => 'team',       'label' => '关于 BeeLeap'],
     ],
 
-    // 文档侧边栏
+    // LuckyClover-Moderation 文档导航
     'docs_nav' => [
-        ['url' => 'docs',              'label' => '文档首页'],
-        ['url' => 'docs-overview',     'label' => '生态概览'],
-        ['url' => 'docs-server-info',  'label' => '蜜蜂园服务器'],
-        ['url' => 'docs-command-guide','label' => '插件与指令'],
-        ['url' => 'docs-rules',        'label' => '服务端规范'],
-        ['url' => 'docs-guide',        'label' => '部署指南'],
-        ['url' => 'docs-faq',          'label' => '常见问题'],
+        [
+            'group' => '开始使用',
+            'items' => [
+                ['url' => 'docs',          'label' => '文档首页'],
+                ['url' => 'docs-overview', 'label' => '插件概览'],
+                ['url' => 'docs-server-info', 'label' => '安装与依赖'],
+            ],
+        ],
+        [
+            'group' => '核心能力',
+            'items' => [
+                ['url' => 'docs-command-guide', 'label' => '配置文件'],
+                ['url' => 'docs-rules',         'label' => '过滤范围'],
+                ['url' => 'docs-guide',         'label' => '词库与白名单'],
+            ],
+        ],
+        [
+            'group' => '扩展与参考',
+            'items' => [
+                ['url' => 'docs-faq', 'label' => 'LLSE API 与常见问题'],
+            ],
+        ],
     ],
 
     // 服务器列表

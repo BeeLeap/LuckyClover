@@ -1,23 +1,14 @@
-﻿<?php
-/**
- * docs-rules.php
- */
-$page_title = "玩家守则 - 蜜蜂园 Docs";
-$page_desc = "查看蜜蜂园玩家守则，了解服务器中的行为规范与注意事项。";
-$active_nav = "docs";
-$docs_search = true;
-$active_doc = "docs-rules";
-$extra_css = <<<'CSS'
-.docs-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;padding:120px 24px 48px;max-width:1440px;margin:0 auto}.docs-sidebar,.docs-content{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}.docs-sidebar{padding:24px;position:sticky;top:96px;height:fit-content}.docs-sidebar h3{font-size:1rem;margin-bottom:16px;color:var(--text-primary)}.docs-sidebar a{display:block;padding:12px 14px;border-radius:10px;color:var(--text-secondary);margin-bottom:8px;transition:all .25s ease}.docs-sidebar a:hover,.docs-sidebar a.active{background:rgba(108,92,231,.14);color:var(--text-primary)}.docs-content{padding:32px;min-width:0}.docs-content h1{font-size:2.5rem;margin-bottom:14px}.docs-content h2{font-size:1.4rem;margin:28px 0 14px}.docs-content p{color:var(--text-secondary);line-height:1.85;margin-bottom:16px}.docs-list{display:grid;gap:12px;margin:16px 0 0}.docs-list .item{padding:14px 16px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--border-color);color:var(--text-secondary)}@media (max-width:1100px){.docs-layout{grid-template-columns:1fr}.docs-sidebar{position:static}}@media (max-width:768px){.docs-layout{padding-top:96px}.docs-content h1{font-size:2rem}}
-CSS;
+<?php
+$page_title = '过滤范围 - LuckyClover-Moderation';
+$page_desc = 'LuckyClover-Moderation 支持的文本入口与处理时机。';
+$active_nav = 'docs'; $active_doc = 'docs-rules'; $docs_page = true;
 require __DIR__ . '/includes/header.php';
 ?>
-
-<main class="docs-layout"><aside class="docs-sidebar"><h3>目录</h3><a href="docs-overview">概览</a><a href="docs-server-info">服务器信息</a><a href="docs-command-guide">指令说明</a><a class="active" href="docs-rules">玩家守则</a><a href="docs-guide">新手指南</a><a href="docs-faq">常见问题</a><a href="docs">返回文档首页</a></aside><section class="docs-content"><h1>玩家守则</h1><p>请遵守以下规则，保持服务器环境友好和稳定。</p><div class="docs-list"><div class="item">禁止外挂、刷物资、恶意利用漏洞。</div><div class="item">禁止恶意破坏、偷窃或骚扰其他玩家。</div><div class="item">如有争议，以管理员最终判定为准。</div></div></section></main><div class="docs-search-modal" id="docs-search-modal" aria-hidden="true"><div class="docs-search-panel"><input id="docs-modal-input" type="text" placeholder="搜索文档，按 Ctrl + K"><div class="docs-search-results" id="docs-modal-results"></div></div></div>
-
-<?php
-$extra_js = <<<'JS'
-function toggleMenu(){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');const isActive=nav.classList.toggle('active');button.setAttribute('aria-expanded',isActive?'true':'false')}document.querySelectorAll('#main-nav a').forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth<=768){const nav=document.getElementById('main-nav');const button=document.querySelector('.mobile-menu-btn');nav.classList.remove('active');button.setAttribute('aria-expanded','false')}}));const docsModal=document.getElementById('docs-search-modal');const docsModalInput=document.getElementById('docs-modal-input');const docsModalResults=document.getElementById('docs-modal-results');const docsPages=[{title:'概览',href:'docs-overview',desc:'快速了解服务器与文档结构。',keywords:'概览 快速了解 介绍'},{title:'服务器信息',href:'docs-server-info',desc:'查看服务器地址、版本、模式等信息。',keywords:'服务器信息 ip 版本 模式'},{title:'指令说明',href:'docs-command-guide',desc:'整理常用指令与权限说明。',keywords:'指令 说明 命令'},{title:'玩家守则',href:'docs-rules',desc:'服务器内的行为规范和注意事项。',keywords:'玩家守则 规则 纪律'},{title:'新手指南',href:'docs-guide',desc:'新玩家入服流程与基础说明。',keywords:'新手 指南 入服 教程'},{title:'常见问题',href:'docs-faq',desc:'常见疑问和快速解答。',keywords:'常见问题 faq 问答'}];function renderDocsResults(query){const text=query.trim().toLowerCase();const items=docsPages.filter(page=>`${page.title} ${page.desc} ${page.keywords}`.toLowerCase().includes(text));docsModalResults.innerHTML=items.map(page=>`<a class="docs-search-result" href="${page.href}"><strong>${page.title}</strong><span>${page.desc}</span></a>`).join('')||'<div class="docs-search-result"><strong>没有结果</strong><span>试试别的关键词</span></div>';}function openDocsSearch(){docsModal.classList.add('active');docsModal.setAttribute('aria-hidden','false');docsModalInput.value='';renderDocsResults('');setTimeout(()=>docsModalInput.focus(),0);}function closeDocsSearch(){docsModal.classList.remove('active');docsModal.setAttribute('aria-hidden','true');}docsModalInput.addEventListener('input',()=>renderDocsResults(docsModalInput.value));docsModal.addEventListener('click',event=>{if(event.target===docsModal)closeDocsSearch()});document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();openDocsSearch()}if(event.key==='Escape')closeDocsSearch()});
-JS;
-require __DIR__ . '/includes/footer.php';
-?>
+<main id="swup" class="docs-layout">
+  <?php require __DIR__ . '/includes/docs-sidebar.php'; ?>
+  <article class="docs-content"><span class="pixel-tag">核心能力 / 过滤范围</span><h1>过滤范围</h1><p class="docs-lead">插件在文本提交前修改违禁内容，覆盖玩家最常见的原生文本入口。</p>
+    <table class="docs-table"><thead><tr><th>入口</th><th>处理内容</th><th>实现路径</th></tr></thead><tbody><tr><td>聊天</td><td>玩家发送的聊天文本</td><td>原始 TextPacket 入口</td></tr><tr><td>书籍</td><td>标题、作者和正文</td><td>LeviLamina 网络包入口</td></tr><tr><td>铁砧</td><td>物品重命名文本</td><td>LeviLamina 网络包入口</td></tr><tr><td>普通告示牌</td><td>编辑中的告示牌文本</td><td>iListenAttentively PlayerEditSignBeforeEvent</td></tr><tr><td>悬挂告示牌</td><td>编辑中的悬挂告示牌文本</td><td>LeviLamina 网络包入口</td></tr></tbody></table>
+    <h2>处理原则</h2><ul><li>在文本落地或发送前处理，避免只修改后台显示。</li><li>白名单优先于内置分类词和自定义词。</li><li>大小写与全半角 ASCII 会进行温和归一化后再匹配。</li><li>词库热重载失败时保留当前可用状态，并记录错误。</li></ul>
+  </article>
+</main>
+<?php require __DIR__ . '/includes/footer.php'; ?>

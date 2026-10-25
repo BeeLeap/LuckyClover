@@ -33,6 +33,7 @@ $assetUrl = static function (string $path): string {
 };
 $cssUrl = $assetUrl($config['assets']['css']);
 $faviconUrl = $assetUrl($site['favicon']);
+$docsCssUrl = $assetUrl('assets/css/docs.css');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -43,6 +44,9 @@ $faviconUrl = $assetUrl($site['favicon']);
   <meta name="keywords" content="<?php echo htmlspecialchars($site['keywords'], ENT_QUOTES, 'UTF-8'); ?>">
   <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></title>
   <link rel="stylesheet" href="<?php echo htmlspecialchars($cssUrl, ENT_QUOTES, 'UTF-8'); ?>">
+  <?php if (!empty($docs_page)) : ?>
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($docsCssUrl, ENT_QUOTES, 'UTF-8'); ?>">
+  <?php endif; ?>
   <link rel="icon" href="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <?php if (!empty($extra_css)) : ?>
   <style data-page-style>
