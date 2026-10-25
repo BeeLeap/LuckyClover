@@ -8,6 +8,9 @@
 
 $config = require __DIR__ . '/config.php';
 $site = $config['site'];
+$transitionScript = 'assets/js/page-transition.js';
+$transitionScriptPath = dirname(__DIR__) . '/' . $transitionScript;
+if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($transitionScriptPath);
 ?>
   <footer>
     <div class="container">
@@ -20,6 +23,7 @@ $site = $config['site'];
     </div>
   </footer>
 
+  <script src="<?php echo htmlspecialchars($transitionScript, ENT_QUOTES, 'UTF-8'); ?>"></script>
   <script>
     function toggleMenu() {
       const nav = document.getElementById('main-nav');

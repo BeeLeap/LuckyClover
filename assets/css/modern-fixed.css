@@ -30,6 +30,23 @@ html {
   scrollbar-width: thin;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(root) { animation-name: page-fade-out; }
+::view-transition-new(root) { animation-name: page-fade-in; }
+
+@keyframes page-fade-out { to { opacity: 0; } }
+@keyframes page-fade-in { from { opacity: 0; } }
+
+html.is-page-loading main {
+  opacity: 0.7;
+  transition: opacity 120ms ease;
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;
