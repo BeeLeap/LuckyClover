@@ -44,6 +44,17 @@ $faviconUrl = $assetUrl($site['favicon']);
   <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></title>
   <link rel="stylesheet" href="<?php echo htmlspecialchars($cssUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <link rel="icon" href="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>">
+  <script type="speculationrules">
+    {
+      "prefetch": [
+        {
+          "where": {
+            "selector_matches": "#main-nav a"
+          }
+        }
+      ]
+    }
+  </script>
   <?php if (!empty($extra_css)) : ?>
   <style data-page-style>
     <?php echo $extra_css; ?>

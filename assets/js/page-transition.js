@@ -2,6 +2,9 @@
   'use strict';
 
   var navigating = false;
+  var pageCache = new Map();
+  var prefetchTimers = new Map();
+  var cacheLifetime = 60000;
 
   function isInternalPageLink(link, event) {
     if (!link || !link.href || event.defaultPrevented) return false;
@@ -14,6 +17,40 @@
     if (url.pathname.indexOf('/admin') === 0 || url.pathname.indexOf('/api') === 0) return false;
     if (url.pathname === window.location.pathname && url.hash) return false;
     return url.pathname !== window.location.pathname || url.search !== window.location.search;
+  }
+
+  function isPrefetchableUrl(url) {
+    return url.origin === window.location.origin &&
+      url.pathname.indexOf('/admin') !== 0 &&
+      url.pathname.indexOf('/api') !== 0 &&
+      (url.pathname !== window.location.pathname || url.search !== window.location.search);
+  }
+
+  function requestPage(url) {
+    var key = url.href;
+    var cached = pageCache.get(key);
+    if (cached && Date.now() - cached.createdAt < cacheLifetime) return cached.promise;
+
+    var request = fetch(key, {
+      headers: { 'X-Requested-With': 'fetch' },
+      credentials: 'same-origin'
+    }).then(function (response) {
+      if (!response.ok) throw new Error('页面请求失败：' + response.status);
+      return response.text();
+    }).catch(function (error) {
+      pageCache.delete(key);
+      throw error;
+    });
+
+    pageCache.set(key, { createdAt: Date.now(), promise: request });
+    return request;
+  }
+
+  function prefetch(link) {
+    if (!link || !link.href) return;
+    var url = new URL(link.href, window.location.href);
+    if (!isPrefetchableUrl(url)) return;
+    requestPage(url).catch(function () {});
   }
 
   function updateActiveNavigation(url) {
@@ -66,12 +103,7 @@
     document.documentElement.classList.add('is-page-loading');
 
     try {
-      var response = await fetch(url.href, {
-        headers: { 'X-Requested-With': 'fetch' },
-        credentials: 'same-origin'
-      });
-      if (!response.ok) throw new Error('页面请求失败：' + response.status);
-      var html = await response.text();
+      var html = await requestPage(url);
       var swap = function () { replacePage(url, html); };
 
       if (document.startViewTransition) await document.startViewTransition(swap).finished;
@@ -91,6 +123,29 @@
     event.preventDefault();
     navigate(new URL(link.href, window.location.href), true);
   });
+
+  document.addEventListener('pointerover', function (event) {
+    var link = event.target.closest && event.target.closest('a');
+    if (!link || (event.relatedTarget && link.contains(event.relatedTarget))) return;
+    if (!link.closest('#main-nav')) return;
+    var key = link.href;
+    if (prefetchTimers.has(key)) return;
+    var timer = window.setTimeout(function () {
+      prefetchTimers.delete(key);
+      prefetch(link);
+    }, 65);
+    prefetchTimers.set(key, timer);
+  });
+
+  document.addEventListener('pointerdown', function (event) {
+    var link = event.target.closest && event.target.closest('#main-nav a');
+    if (link) prefetch(link);
+  });
+
+  document.addEventListener('touchstart', function (event) {
+    var link = event.target.closest && event.target.closest('#main-nav a');
+    if (link) prefetch(link);
+  }, { passive: true });
 
   window.addEventListener('popstate', function () {
     navigate(new URL(window.location.href), false);
