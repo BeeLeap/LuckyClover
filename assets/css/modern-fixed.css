@@ -47,6 +47,14 @@ html.is-page-loading main {
   transition: opacity 120ms ease;
 }
 
+html.is-changing main {
+  transition: opacity 180ms ease;
+}
+
+html.is-animating main {
+  opacity: 0;
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;

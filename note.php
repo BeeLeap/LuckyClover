@@ -20,6 +20,7 @@ CSS;
 require __DIR__ . '/includes/header.php';
 ?>
 
+<main id="swup">
 <section class="page-header">
     <div class="container">
       <h1>最新<span style="color: var(--accent-secondary);">动态</span></h1>
@@ -33,6 +34,7 @@ require __DIR__ . '/includes/header.php';
     </div>
   </section>
 
+</main>
 <?php
 $extra_js = <<<'JS'
 function toggleMenu() {

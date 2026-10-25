@@ -23,8 +23,12 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
     </div>
   </footer>
 
-  <script src="<?php echo htmlspecialchars($transitionScript, ENT_QUOTES, 'UTF-8'); ?>"></script>
-  <script>
+  <script src="https://unpkg.com/swup@4"></script>
+  <script src="https://unpkg.com/@swup/head-plugin@2"></script>
+  <script src="https://unpkg.com/@swup/preload-plugin@3"></script>
+  <script src="https://unpkg.com/@swup/scripts-plugin@2"></script>
+  <script src="<?php echo htmlspecialchars($transitionScript, ENT_QUOTES, 'UTF-8'); ?>" data-swup-ignore-script></script>
+  <script data-swup-ignore-script>
     function toggleMenu() {
       const nav = document.getElementById('main-nav');
       const button = document.querySelector('.mobile-menu-btn');
@@ -45,7 +49,7 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
   </script>
 
   <?php if (!empty($extra_js)) : ?>
-  <script>
+  <script data-swup-reload-script>
     <?php echo $extra_js; ?>
   </script>
   <?php endif; ?>
