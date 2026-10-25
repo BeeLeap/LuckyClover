@@ -33,8 +33,6 @@ $assetUrl = static function (string $path): string {
 };
 $cssUrl = $assetUrl($config['assets']['css']);
 $faviconUrl = $assetUrl($site['favicon']);
-$minecraftTenUrl = $assetUrl('assets/fonts/MinecraftTen.woff2');
-$minecraftUrl = $assetUrl('assets/fonts/Minecraft.woff2');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -44,8 +42,6 @@ $minecraftUrl = $assetUrl('assets/fonts/Minecraft.woff2');
   <meta name="description" content="<?php echo htmlspecialchars($desc, ENT_QUOTES, 'UTF-8'); ?>">
   <meta name="keywords" content="<?php echo htmlspecialchars($site['keywords'], ENT_QUOTES, 'UTF-8'); ?>">
   <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></title>
-  <link rel="preload" href="<?php echo htmlspecialchars($minecraftTenUrl, ENT_QUOTES, 'UTF-8'); ?>" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="<?php echo htmlspecialchars($minecraftUrl, ENT_QUOTES, 'UTF-8'); ?>" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="<?php echo htmlspecialchars($cssUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <link rel="icon" href="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>">
   <?php if (!empty($extra_css)) : ?>
