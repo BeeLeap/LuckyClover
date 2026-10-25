@@ -10,7 +10,7 @@ CSS;
 require __DIR__ . '/includes/header.php';
 ?>
 <main>
-  <section class="portal-hero"><div class="container portal-hero-grid"><div><div class="portal-kicker">Open source Minecraft Bedrock ecosystem</div><h1>Build your <span>server</span> your way.</h1><p class="portal-lead">BeeLeap 为 Minecraft 基岩版服务器制作插件、管理工具和社区基础设施。把复杂的运营能力拆成清晰、可部署、可维护的模块。</p><div class="portal-actions"><a class="pixel-button" href="projects">查看项目</a><a class="pixel-button secondary" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="portal-code"><div class="code-tabs"><span>plugin.js</span><span>server.json</span><span>api</span></div><div class="code-body"><span class="green">// BeeLeap modules are built to work together</span>
+  <section class="portal-hero"><div class="container portal-hero-grid"><div><div class="portal-kicker">Open source Minecraft Bedrock ecosystem</div><h1>Build your <span>server</span> your way.</h1><p class="portal-lead">BeeLeap 为 Minecraft 基岩版服务器制作插件、管理工具和社区基础设施。把复杂的运营能力拆成清晰、可部署、可维护的模块。</p><div class="portal-actions"><a class="pixel-button" href="docs">查看项目</a><a class="pixel-button secondary" href="https://github.com/BeeLeap" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="portal-code"><div class="code-tabs"><span>plugin.js</span><span>server.json</span><span>api</span></div><div class="code-body"><span class="green">// BeeLeap modules are built to work together</span>
 const filtered = LuckyCloverModeration
   .filterText(input);
 

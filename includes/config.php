@@ -20,33 +20,17 @@ $config = [
     // 导航菜单
     'nav' => [
         ['url' => '/',          'label' => '首页'],
-        ['url' => 'projects',   'label' => '项目'],
+        ['url' => 'docs',       'label' => '项目'],
         ['url' => 'status',     'label' => '蜜蜂园'],
-        ['url' => 'docs',       'label' => '插件文档'],
         ['url' => 'team',       'label' => '关于 BeeLeap'],
     ],
 
     // 项目导航下拉菜单
     'project_groups' => [
         [
-            'title' => '核心插件',
+            'title' => '项目',
             'items' => [
-                ['url' => 'https://github.com/BeeLeap/LuckyClover-Moderation', 'label' => 'LuckyClover-Moderation', 'desc' => 'LeviLamina 原生文本过滤插件。', 'external' => true],
-                ['url' => 'https://github.com/BeeLeap/LuckyClover-Moderation/tree/main/LuckyClover-Moderation-API', 'label' => 'Moderation API', 'desc' => '供 LLSE 脚本调用的桥接接口。', 'external' => true],
-            ],
-        ],
-        [
-            'title' => '文档与资源',
-            'items' => [
-                ['url' => 'docs', 'label' => '插件文档', 'desc' => '安装、配置、词库和 API。'],
-                ['url' => 'https://github.com/BeeLeap/LuckyClover-Moderation/blob/main/CHANGELOG.md', 'label' => '更新日志', 'desc' => '查看版本变化和修复记录。', 'external' => true],
-            ],
-        ],
-        [
-            'title' => 'BeeLeap',
-            'items' => [
-                ['url' => 'projects', 'label' => '全部项目', 'desc' => '查看 BeeLeap 的开源项目。'],
-                ['url' => 'https://github.com/BeeLeap', 'label' => 'GitHub 组织', 'desc' => '浏览全部公开仓库。', 'external' => true],
+                ['url' => 'https://github.com/BeeLeap/LuckyClover-Moderation', 'label' => 'LuckyClover-Moderation', 'desc' => 'LeviLamina 原生文本过滤插件。', 'icon' => 'plugin', 'external' => true],
             ],
         ],
     ],

@@ -79,16 +79,16 @@ $docsCssUrl = $assetUrl('assets/css/docs.css');
                   $itemUrl = $itemUrl === '/' ? $homeUrl : $navPrefix . '/' . ltrim($itemUrl, '/');
               }
           ?>
-          <?php if ($item['url'] === 'projects' && !empty($config['project_groups'])) : ?>
+          <?php if ($item['url'] === 'docs' && !empty($config['project_groups'])) : ?>
           <div class="nav-projects<?php echo $isActive ? ' is-active' : ''; ?>">
             <a class="nav-project-trigger" href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?> onclick="toggleProjectsMenu(event)"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?><span class="nav-project-caret" aria-hidden="true">⌄</span></a>
-            <div class="projects-mega-menu" aria-label="项目分类">
+            <div class="projects-mega-menu groups-<?php echo count($config['project_groups']); ?>" aria-label="项目分类">
               <?php foreach ($config['project_groups'] as $group) : ?>
               <section class="projects-mega-group"><h3><?php echo htmlspecialchars($group['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
                 <?php foreach ($group['items'] as $project) :
                     $projectAttrs = !empty($project['external']) ? ' target="_blank" rel="noopener noreferrer"' : '';
                 ?>
-                <a href="<?php echo htmlspecialchars($project['url'], ENT_QUOTES, 'UTF-8'); ?>"<?php echo $projectAttrs; ?>><strong><?php echo htmlspecialchars($project['label'], ENT_QUOTES, 'UTF-8'); ?></strong><span><?php echo htmlspecialchars($project['desc'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+                <a href="<?php echo htmlspecialchars($project['url'], ENT_QUOTES, 'UTF-8'); ?>"<?php echo $projectAttrs; ?>><span class="projects-mega-icon icon-<?php echo htmlspecialchars($project['icon'] ?? 'project', ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/><path d="m4 7 8 4 8-4M12 11v10"/></svg></span><span class="projects-mega-copy"><strong><?php echo htmlspecialchars($project['label'], ENT_QUOTES, 'UTF-8'); ?></strong><span><?php echo htmlspecialchars($project['desc'], ENT_QUOTES, 'UTF-8'); ?></span></span></a>
                 <?php endforeach; ?>
               </section>
               <?php endforeach; ?>
