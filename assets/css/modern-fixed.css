@@ -190,6 +190,7 @@ nav {
 }
 
 nav a,
+nav button.nav-project-trigger,
 .docs-search-btn {
   padding: 10px 13px;
   border: 2px solid transparent;
@@ -200,7 +201,10 @@ nav a,
 
 nav a:hover,
 nav a.active,
-nav a[aria-current="page"] {
+nav a[aria-current="page"],
+nav button.nav-project-trigger:hover,
+nav button.nav-project-trigger.active,
+nav button.nav-project-trigger[aria-current="page"] {
   color: #102018;
   background: var(--accent-secondary);
   border-color: #111;
@@ -219,6 +223,10 @@ header nav a {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  background: transparent;
 }
 
 .nav-project-caret {
