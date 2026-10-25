@@ -81,7 +81,7 @@ $docsCssUrl = $assetUrl('assets/css/docs.css');
           ?>
           <?php if ($item['url'] === 'docs-overview' && !empty($config['project_groups'])) : ?>
           <div class="nav-projects<?php echo $isActive ? ' is-active' : ''; ?>">
-            <a class="nav-project-trigger" href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?> onclick="toggleProjectsMenu(event)"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?><span class="nav-project-caret" aria-hidden="true">⌄</span></a>
+            <a class="nav-project-trigger" href="<?php echo htmlspecialchars($itemUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $attrs; ?> onclick="toggleProjectsMenu(event)"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?><svg class="nav-project-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
             <div class="projects-mega-menu groups-<?php echo count($config['project_groups']); ?>" aria-label="项目分类">
               <?php foreach ($config['project_groups'] as $group) : ?>
               <section class="projects-mega-group"><h3><?php echo htmlspecialchars($group['title'], ENT_QUOTES, 'UTF-8'); ?></h3>

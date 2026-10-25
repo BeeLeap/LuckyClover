@@ -222,9 +222,14 @@ header nav a {
 }
 
 .nav-project-caret {
-  font-size: 1.1em;
-  line-height: 1;
-  transform: translateY(-1px);
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+  transform: translateY(1px);
 }
 
 .projects-mega-menu {
