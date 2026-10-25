@@ -46,6 +46,13 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
 
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
+        const projectMenu = link.closest('.projects-mega-menu');
+        if (projectMenu) {
+          const wrapper = projectMenu.closest('.nav-projects');
+          const trigger = wrapper.querySelector('.nav-project-trigger');
+          wrapper.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
         if (window.innerWidth <= 900) {
           if (link.classList.contains('nav-project-trigger')) {
             return;
