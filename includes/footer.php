@@ -37,18 +37,19 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
     }
 
     function toggleProjectsMenu(event) {
-      if (window.innerWidth <= 900) {
-        const wrapper = event.currentTarget.closest('.nav-projects');
-        if (!wrapper.classList.contains('open')) {
-          event.preventDefault();
-          wrapper.classList.add('open');
-        }
-      }
+      event.preventDefault();
+      const trigger = event.currentTarget;
+      const wrapper = trigger.closest('.nav-projects');
+      const isOpen = wrapper.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
 
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 900) {
+          if (link.classList.contains('nav-project-trigger')) {
+            return;
+          }
           const nav = document.getElementById('main-nav');
           const button = document.querySelector('.mobile-menu-btn');
           nav.classList.remove('active');

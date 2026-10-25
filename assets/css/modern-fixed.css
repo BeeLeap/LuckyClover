@@ -272,8 +272,6 @@ header nav a {
   left: 52%;
 }
 
-.nav-projects:hover .projects-mega-menu,
-.nav-projects:focus-within .projects-mega-menu,
 .nav-projects.open .projects-mega-menu {
   display: grid;
 }
@@ -976,16 +974,6 @@ footer {
   }
 
   nav .nav-projects.open .projects-mega-menu {
-    display: grid !important;
-  }
-
-  nav .nav-projects:hover .projects-mega-menu,
-  nav .nav-projects:focus-within .projects-mega-menu {
-    display: none !important;
-  }
-
-  nav .nav-projects.open:hover .projects-mega-menu,
-  nav .nav-projects.open:focus-within .projects-mega-menu {
     display: grid !important;
   }
 
