@@ -941,6 +941,7 @@ footer {
 
   nav .nav-projects {
     display: block;
+    position: static;
   }
 
   nav .nav-project-trigger {
@@ -957,6 +958,12 @@ footer {
     padding: 14px 16px 0;
     box-shadow: none;
     transform: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  nav .projects-mega-menu.groups-1 {
+    width: 100%;
   }
 
   nav .projects-mega-menu::before {

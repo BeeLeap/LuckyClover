@@ -53,6 +53,7 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
           const button = document.querySelector('.mobile-menu-btn');
           nav.classList.remove('active');
           button.setAttribute('aria-expanded', 'false');
+          document.querySelectorAll('.nav-projects.open').forEach(menu => menu.classList.remove('open'));
         }
       });
     });
