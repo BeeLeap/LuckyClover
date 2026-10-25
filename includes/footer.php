@@ -65,6 +65,15 @@ if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($tran
         }
       });
     });
+
+    document.addEventListener('click', event => {
+      document.querySelectorAll('.nav-projects.open').forEach(wrapper => {
+        if (!wrapper.contains(event.target)) {
+          wrapper.classList.remove('open');
+          wrapper.querySelector('.nav-project-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
   </script>
 
   <?php if (!empty($extra_js)) : ?>
