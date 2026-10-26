@@ -8,6 +8,7 @@ $config = [
     'site' => [
         'name'        => 'BeeLeap',
         'main_url'    => 'https://beeleap.top',
+        'docs_url'    => 'https://docs.beeleap.top',
         'server_url'  => 'https://lcy.beeleap.top',
         'title'       => 'BeeLeap | Minecraft 开源生态',
         'description' => 'BeeLeap 是面向 Minecraft 基岩版服务器的插件、运维工具与蜜蜂园服务器生态。',
