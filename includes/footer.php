@@ -8,7 +8,7 @@
 
 $config = require __DIR__ . '/config.php';
 $site = $config['site'];
-$transitionScript = 'assets/js/page-transition.js';
+$transitionScript = '/assets/js/page-transition.js';
 $transitionScriptPath = dirname(__DIR__) . '/' . $transitionScript;
 if (is_file($transitionScriptPath)) $transitionScript .= '?v=' . filemtime($transitionScriptPath);
 ?>

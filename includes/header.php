@@ -29,7 +29,8 @@ $homeUrl = $navPrefix !== '' ? $navPrefix . '/' : '/';
 $serverUrl = rtrim((string) ($site['server_url'] ?? ''), '/');
 $assetUrl = static function (string $path): string {
     $file = dirname(__DIR__) . '/' . ltrim($path, '/');
-    return is_file($file) ? $path . '?v=' . filemtime($file) : $path;
+    $url = '/' . ltrim($path, '/');
+    return is_file($file) ? $url . '?v=' . filemtime($file) : $url;
 };
 $cssUrl = $assetUrl($config['assets']['css']);
 $faviconUrl = $assetUrl($site['favicon']);
