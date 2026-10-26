@@ -17,8 +17,9 @@ $active = isset($active_doc) ? $active_doc : '';
       <h3><?php echo htmlspecialchars($group['group'], ENT_QUOTES, 'UTF-8'); ?></h3>
       <?php foreach ($group['items'] as $item) :
           $isActive = ($active === $item['url']) ? ' active' : '';
+          $itemPath = $item['path'] ?? $item['url'];
       ?>
-      <a class="<?php echo trim($isActive); ?>" href="<?php echo $item['url']; ?>"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
+      <a class="<?php echo trim($isActive); ?>" href="<?php echo htmlspecialchars($itemPath, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></a>
       <?php endforeach; ?>
     </div>
   <?php endforeach; ?>

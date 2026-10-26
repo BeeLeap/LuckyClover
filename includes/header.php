@@ -88,7 +88,7 @@ $docsCssUrl = $assetUrl('assets/css/docs.css');
                 <?php foreach ($group['items'] as $project) :
                     $projectAttrs = !empty($project['external']) ? ' target="_blank" rel="noopener noreferrer"' : '';
                     $projectUrl = $project['url'] === 'docs-overview'
-                        ? rtrim((string) ($site['docs_url'] ?? ''), '/') . '/'
+                        ? rtrim((string) ($site['docs_url'] ?? ''), '/') . rtrim((string) ($site['docs_path'] ?? ''), '/') . '/'
                         : $project['url'];
                 ?>
                 <a href="<?php echo htmlspecialchars($projectUrl, ENT_QUOTES, 'UTF-8'); ?>"<?php echo $projectAttrs; ?>><span class="projects-mega-icon icon-<?php echo htmlspecialchars($project['icon'] ?? 'project', ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/><path d="m4 7 8 4 8-4M12 11v10"/></svg></span><span class="projects-mega-copy"><strong><?php echo htmlspecialchars($project['label'], ENT_QUOTES, 'UTF-8'); ?></strong><span><?php echo htmlspecialchars($project['desc'], ENT_QUOTES, 'UTF-8'); ?></span></span></a>
